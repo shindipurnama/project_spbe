@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Session;
 
 class LoginController extends Controller
@@ -19,7 +20,7 @@ class LoginController extends Controller
             return view('login');
         }
     }
-    
+
     public function forgotPassword()
     {
         if (Auth::check()) {
@@ -31,9 +32,8 @@ class LoginController extends Controller
 
     public function actionlogin(Request $request)
     {
-        // dd($request);
         $data = [
-            'email' => $request->input('email'),
+            'username' => $request->input('username'),
             'password' => $request->input('password'),
         ];
         if (Auth::Attempt($data)) {

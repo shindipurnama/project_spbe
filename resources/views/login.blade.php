@@ -89,10 +89,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
 
-              <!-- <form id="formAuthentication" class="mb-3" action="{{ route('actionlogin') }}" method="POST"> -->
+              <form id="formAuthentication" class="mb-3" action="{{ route('actionlogin') }}" method="POST">
+                {{ csrf_field() }}
                 <div class="mb-3">
                   <label for="email" class="form-label">Username</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan username" autofocus required/>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" autofocus required/>
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
@@ -115,7 +116,7 @@
                 <div class="mb-3">
                   <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
                 </div>
-              <!-- </form> -->
+              </form>
 
               <!-- <p class="text-center">
                 <span>New on our platform?</span>
