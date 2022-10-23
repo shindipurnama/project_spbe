@@ -19,14 +19,23 @@ class LoginController extends Controller
             return view('login');
         }
     }
+    
+    public function forgotPassword()
+    {
+        if (Auth::check()) {
+            return redirect('home');
+        }else{
+            return view('forgot-password');
+        }
+    }
 
     public function actionlogin(Request $request)
     {
+        // dd($request);
         $data = [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
         ];
-
         if (Auth::Attempt($data)) {
             return redirect('home');
         }else{
