@@ -69,7 +69,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item" id="menuDashboard">
-            <a href="home" class="menu-link">
+            <a href="/home" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -88,14 +88,34 @@
                     <div data-i18n="Without menu">Domain</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="layouts-without-menu.html" class="menu-link">
+                <li class="menu-item" id="subMenuAspek">
+                    <a href="/admin/aspek" class="menu-link">
                     <div data-i18n="Without menu">Aspek</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="layouts-without-menu.html" class="menu-link">
+                <li class="menu-item" id="subMenuIndikator">
+                    <a href="/admin/indikator" class="menu-link">
                     <div data-i18n="Without menu">Indikator</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="menu-item" id="menuEval">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>                
+                <div data-i18n="Layouts">Penilaian</div>
+            </a>
+
+            <ul class="menu-sub">
+                <li class="menu-item" id="subMenuSchedule">
+                    <a href="/admin/schedule" class="menu-link">
+                    <div data-i18n="Without menu">Jadwal</div>
+                    </a>
+                </li>
+                <li class="menu-item" id="subMenuSelfAssessment">
+                    <a href="/admin/selfAssessment" class="menu-link">
+                    <div data-i18n="Without menu">Penilaian Mandiri</div>
                     </a>
                 </li>
             </ul>
