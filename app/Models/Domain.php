@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Domain extends Model
-{use HasFactory, SoftDeletes;
+{
+    use HasFactory, SoftDeletes;
 
     public $table = 'domain';
 
