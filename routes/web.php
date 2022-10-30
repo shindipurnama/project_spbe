@@ -37,11 +37,17 @@ Route::post('actionlogout', [LoginController::class, 'actionlogout'])->name('act
 //     Route::get('/', [SPBEController::class, 'index'])->name('spbe');
 // });
 
+Route::delete('domain/destroy', 'DomainController@massDestroy')->name('domain.massDestroy');
 Route::resource('domain',DomainController::class);
+
+Route::delete('aspek/destroy', 'AspekController@massDestroy')->name('aspek.massDestroy');
+Route::resource('aspek',AspekController::class);
+
+Route::delete('indikator/destroy', 'IndikatorController@massDestroy')->name('indikator.massDestroy');
+Route::resource('indikator',IndikatorController::class)->shallow();;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 
-    Route::delete('domain/destroy', 'DomainController@massDestroy')->name('domain.massDestroy');
 
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Indikator;
 
 class IndikatorController extends Controller
 {
@@ -36,6 +37,8 @@ class IndikatorController extends Controller
     public function store(Request $request)
     {
         //
+        Indikator::create($request->All());
+        return redirect()->route('domain.index');
     }
 
     /**
@@ -70,6 +73,9 @@ class IndikatorController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $indikator = Indikator::find($id)->update($request->all());
+
+        return redirect()->route('domain.index');
     }
 
     /**

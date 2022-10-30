@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Aspek;
 
 class AspekController extends Controller
 {
@@ -36,6 +37,8 @@ class AspekController extends Controller
     public function store(Request $request)
     {
         //
+        Aspek::create($request->All());
+        return redirect()->route('domain.index');
     }
 
     /**
@@ -69,7 +72,9 @@ class AspekController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $aspek = Aspek::find($id)->update($request->all());
+
+        return redirect()->route('domain.index');
     }
 
     /**

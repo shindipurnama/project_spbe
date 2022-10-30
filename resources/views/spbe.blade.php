@@ -44,18 +44,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>A001</td>
-                            <td>Kebijakan Internal Terkait Tata Kelola SPBE</td>
-                            <td>
-                                <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateDomain">
-                                    <i class='bx bxs-edit'></i>
-                                </button>
-                                <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDomain">
-                                    <i class='bx bxs-trash'></i>
-                                </button>
-                            </td>
-                        </tr>
+                        @foreach ($domain as $key =>$d)
+                            <tr>
+                                <td>{{$d->domain_id}}</td>
+                                <td>{{$d->nama_domain}}</td>
+                                <td>
+                                    <a class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateDomain{{$d->id}}">
+                                        <i class='bx bxs-edit'></i>
+                                    </a>
+                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDomain">
+                                        <i class='bx bxs-trash'></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -81,18 +83,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>A001</td>
-                            <td>Kebijakan Internal Terkait Tata Kelola SPBE</td>
-                            <td>
-                                <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateAspek">
-                                    <i class='bx bxs-edit'></i>
-                                </button>
-                                <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAspek">
-                                    <i class='bx bxs-trash'></i>
-                                </button>
-                            </td>
-                        </tr>
+                        @foreach ($aspek as $key =>$a)
+                            <tr>
+                                <td>{{$a->aspek_id}}</td>
+                                <td>{{$a->aspek_name}}</td>
+                                <td>
+                                <td>
+                                    <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateAspek{{$a->id}}">
+                                        <i class='bx bxs-edit'></i>
+                                    </button>
+                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAspek">
+                                        <i class='bx bxs-trash'></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -118,18 +123,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>A001</td>
-                            <td>Tingkat Kematangan Kebijakan Internal Arsitektur SPBE intansi Pusat Atau Pemerinta Daerah</td>
-                            <td>
-                                <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateIndikator">
-                                    <i class='bx bxs-edit'></i>
-                                </button>
-                                <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator">
-                                    <i class='bx bxs-trash'></i>
-                                </button>
-                            </td>
-                        </tr>
+                        @foreach ($indikator as $key =>$i)
+                            <tr>
+                                <td>{{$i->indikator_id}}</td>
+                                <td>{{$i->indikator_name}}</td>
+                                <td>
+                                    <a class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateIndikator{{$i->id}}">
+                                        <i class='bx bxs-edit'></i>
+                                    </a>
+                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator">
+                                        <i class='bx bxs-trash'></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
