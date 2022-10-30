@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\DomainController;
+use App\Http\Controllers\Admin\AspekController;
+use App\Http\Controllers\Admin\IndikatorController;
+use App\Http\Controllers\Admin\ScheduleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +35,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
 
     Route::group(['prefix' => 'domain', 'as' => 'domain'], function() {
         Route::get('/', [DomainController::class, 'index'])->name('domain');
+    });
+
+    Route::group(['prefix' => 'aspek', 'as' => 'aspek'], function() {
+        Route::get('/', [AspekController::class, 'index'])->name('aspek');
+    });
+
+    Route::group(['prefix' => 'indikator', 'as' => 'indikator'], function() {
+        Route::get('/', [IndikatorController::class, 'index'])->name('indikator');
+    });
+
+    Route::group(['prefix' => 'schedule', 'as' => 'schedule'], function() {
+        Route::get('/', [ScheduleController::class, 'index'])->name('schedule');
     });
 
     //contoh  routing
