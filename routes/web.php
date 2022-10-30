@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\DomainController;
+use App\Http\Controllers\Admin\SPBEController;
 use App\Http\Controllers\Admin\AspekController;
 use App\Http\Controllers\Admin\IndikatorController;
 use App\Http\Controllers\Admin\ScheduleController;
@@ -31,11 +31,11 @@ Route::get('home', [HomeController::class, 'home'])->name('home');
 Route::post('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
 // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
-Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
+Route::group(['prefix' => 'spbe', 'as' => 'spbe'], function() {
+    Route::get('/', [SPBEController::class, 'index'])->name('spbe');
+});
 
-    Route::group(['prefix' => 'domain', 'as' => 'domain'], function() {
-        Route::get('/', [DomainController::class, 'index'])->name('domain');
-    });
+Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
 
     Route::group(['prefix' => 'aspek', 'as' => 'aspek'], function() {
         Route::get('/', [AspekController::class, 'index'])->name('aspek');

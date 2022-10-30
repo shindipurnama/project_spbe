@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DomainController extends Controller
+class SPBEController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class DomainController extends Controller
      */
     public function index()
     {
-        return view('domain');
+        return view('spbe');
     }
 
     /**
