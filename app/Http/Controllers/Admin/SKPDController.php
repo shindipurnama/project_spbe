@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AspekController extends Controller
+class SKPDController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class AspekController extends Controller
      */
     public function index()
     {
-        return view('aspek');
+        return view('skpd');
     }
 
     /**

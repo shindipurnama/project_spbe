@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SPBEController;
-use App\Http\Controllers\Admin\AspekController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\SKPDController;
 use App\Http\Controllers\Admin\IndikatorController;
 use App\Http\Controllers\Admin\ScheduleController;
+use App\Http\Controllers\Admin\PenilaianMandiriController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,11 +37,23 @@ Route::group(['prefix' => 'spbe', 'as' => 'spbe'], function() {
     Route::get('/', [SPBEController::class, 'index'])->name('spbe');
 });
 
+Route::group(['prefix' => 'user-management', 'as' => 'user-management'], function() {
+    Route::get('/', [UserController::class, 'index'])->name('user-management');
+});
+
+Route::group(['prefix' => 'skpd', 'as' => 'skpd'], function() {
+    Route::get('/', [SKPDController::class, 'index'])->name('skpd');
+});
+
+Route::group(['prefix' => 'penilaian-mandiri', 'as' => 'penilaian-mandiri'], function() {
+    Route::get('/', [PenilaianMandiriController::class, 'index'])->name('penilaian-mandiri');
+    Route::get('/detail', [PenilaianMandiriController::class, 'detail'])->name('penilaian-mandiri-detail');
+});
+
+
+
 Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
 
-    Route::group(['prefix' => 'aspek', 'as' => 'aspek'], function() {
-        Route::get('/', [AspekController::class, 'index'])->name('aspek');
-    });
 
     Route::group(['prefix' => 'indikator', 'as' => 'indikator'], function() {
         Route::get('/', [IndikatorController::class, 'index'])->name('indikator');

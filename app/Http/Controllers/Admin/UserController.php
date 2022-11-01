@@ -15,6 +15,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        return view("user-management");
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
 

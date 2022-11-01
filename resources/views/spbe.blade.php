@@ -1,5 +1,5 @@
 @extends('layout.index')
-@section('title', 'Domain')
+@section('title', 'Indikator SPBE')
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
@@ -48,10 +48,10 @@
                             <td>A001</td>
                             <td>Kebijakan Internal Terkait Tata Kelola SPBE</td>
                             <td>
-                                <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateDomain">
+                                <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateDomain">
                                     <i class='bx bxs-edit'></i>
                                 </button>
-                                <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDomain">
+                                <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDomain">
                                     <i class='bx bxs-trash'></i>
                                 </button>
                             </td>
@@ -85,10 +85,10 @@
                             <td>A001</td>
                             <td>Kebijakan Internal Terkait Tata Kelola SPBE</td>
                             <td>
-                                <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateAspek">
+                                <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateAspek">
                                     <i class='bx bxs-edit'></i>
                                 </button>
-                                <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAspek">
+                                <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAspek">
                                     <i class='bx bxs-trash'></i>
                                 </button>
                             </td>
@@ -122,10 +122,10 @@
                             <td>A001</td>
                             <td>Tingkat Kematangan Kebijakan Internal Arsitektur SPBE intansi Pusat Atau Pemerinta Daerah</td>
                             <td>
-                                <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateIndikator">
+                                <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateIndikator">
                                     <i class='bx bxs-edit'></i>
                                 </button>
-                                <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator">
+                                <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator">
                                     <i class='bx bxs-trash'></i>
                                 </button>
                             </td>
