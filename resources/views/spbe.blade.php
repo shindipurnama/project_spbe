@@ -8,12 +8,12 @@
         <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
             <li class="nav-item">
                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-domain" aria-controls="navs-domain" aria-selected="true">
-                    <i class="tf-icons bx bx-home"></i> Domain
+                    <i class='bx bx-book'></i> Domain
                 </button>
             </li>
             <li class="nav-item">
                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-aspek" aria-controls="navs-aspek" aria-selected="false">
-                    <i class="tf-icons bx bx-user"></i> Aspek
+                    <i class='bx bx-navigation'></i> Aspek
                 </button>
             </li>
             <li class="nav-item">

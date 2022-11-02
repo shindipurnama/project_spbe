@@ -26,23 +26,23 @@
         <!-- Data SKPD -->
         <li class="menu-item" id="menuDataSKPD">
             <a href="/skpd" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <i class='menu-icon tf-icons bx bxs-user-account'></i>
                 <div data-i18n="Analytics">Data SKPD</div>
             </a>
         </li>
 
-        <!-- User Managemen -->
+        <!-- User -->
         <li class="menu-item" id="menuUserManagement">
             <a href="/user-management" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Analytics">User Management</div>
+                <i class='menu-icon tf-icons bx bx-user'></i>
+                <div data-i18n="Analytics">User</div>
             </a>
         </li>
 
         <!-- Indikator SPBE -->
         <li class="menu-item" id="menuDataSPBE">
             <a href="/spbe" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <i class='menu-icon tf-icons bx bx-data'></i>
                 <div data-i18n="Analytics">Indikator SPBE</div>
             </a>
         </li>
@@ -50,7 +50,7 @@
         <!-- Penilaian Mandiri -->
         <li class="menu-item" id="menuPenilaianMandiri">
             <a href="/penilaian-mandiri" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <i class='menu-icon tf-icons bx bx-notepad'></i>
                 <div data-i18n="Analytics">Penilaian Mandiri</div>
             </a>
         </li>
@@ -58,7 +58,7 @@
         <!-- Hasil Penilaian Mandiri -->
         <li class="menu-item" id="menuHasilPenilaianMandiri">
             <a href="/penilaian-mandiri" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <i class='menu-icon tf-icons bx bxs-book-content'></i>
                 <div data-i18n="Analytics">Hasil Penilaian Mandiri</div>
             </a>
         </li>
