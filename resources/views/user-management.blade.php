@@ -28,24 +28,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Teguh</td>
-                    <td>teguh123</td>
-                    <td>teguh@gmail.com</td>
-                    <td>Admin</td>
-                    <td>
-                        <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateUser">
-                            <i class='bx bxs-edit'></i>
-                        </button>
-                        <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUser">
-                            <i class='bx bxs-trash'></i>
-                        </button>
-                        <button type="button" title="Edit Password" class="btn btn-icon btn-warning" data-bs-toggle="modal" data-bs-target="#updatePasswordUser">
-                            <i class='bx bxs-key'></i>
-                        </button>
-                    </td>
-                </tr>
+                @foreach ($user as $key =>$u)
+                    <tr>
+                        <td>{{$u->user_id}}</td>
+                        <td>{{$u->name}}</td>
+                        <td>{{$u->username}}</td>
+                        <td>{{$u->email}}</td>
+                        <td>--</td>
+                        <td>
+                            <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateUser">
+                                <i class='bx bxs-edit'></i>
+                            </button>
+                            <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUser">
+                                <i class='bx bxs-trash'></i>
+                            </button>
+                            <button type="button" title="Edit Password" class="btn btn-icon btn-warning" data-bs-toggle="modal" data-bs-target="#updatePasswordUser">
+                                <i class='bx bxs-key'></i>
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

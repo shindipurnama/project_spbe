@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Domain;
 use App\Models\Aspek;
+use App\Models\Indikator;
 
 class SKPDController extends Controller
 {
@@ -15,7 +17,19 @@ class SKPDController extends Controller
      */
     public function index()
     {
-        return view('skpd');
+        $code_domain = Domain::count('id') ?? 0;
+        $code_domain ='D'.str_pad($code_domain+1, 3, "0", STR_PAD_LEFT);
+        $domain = Domain::All();
+
+        $code_aspek = Aspek::count('id') ?? 0;
+        $code_aspek ='A'.str_pad($code_aspek+1, 3, "0", STR_PAD_LEFT);
+        $aspek = Aspek::All();
+
+        $code_indikator = Indikator::count('id') ?? 0;
+        $code_indikator ='I'.str_pad($code_indikator+1, 3, "0", STR_PAD_LEFT);
+        $indikator = Indikator::All();
+
+        return view('skpd', compact('code_domain','domain','code_aspek','aspek','code_indikator','indikator'));
     }
 
     /**
