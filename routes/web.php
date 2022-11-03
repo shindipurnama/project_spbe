@@ -29,11 +29,11 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [LoginController::class, 'login'])->name('login');
 Route::get('/forgot-password', [LoginController::class, 'forgotPassword'])->name('forgotPassword');
-Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin')->middleware('auth');
+Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
 // Route::get('home', [HomeController::class, 'home'])->name('home')->middleware('auth');
 Route::get('home', [HomeController::class, 'home'])->name('home');
-Route::post('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
 // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 // Route::group(['prefix' => 'spbe', 'as' => 'spbe'], function() {
