@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\SKPDController;
 use App\Http\Controllers\Admin\IndikatorController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\PenilaianMandiriController;
+use App\Http\Controllers\Admin\DomainController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,9 +35,9 @@ Route::get('home', [HomeController::class, 'home'])->name('home');
 Route::post('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
 // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
-Route::group(['prefix' => 'spbe', 'as' => 'spbe'], function() {
-    Route::get('/', [SPBEController::class, 'index'])->name('spbe');
-});
+// Route::group(['prefix' => 'spbe', 'as' => 'spbe'], function() {
+//     Route::get('/', [SPBEController::class, 'index'])->name('spbe');
+// });
 
 Route::group(['prefix' => 'user-management', 'as' => 'user-management'], function() {
     Route::get('/', [UserController::class, 'index'])->name('user-management');
@@ -54,22 +56,18 @@ Route::group(['prefix' => 'penilaian-mandiri', 'as' => 'penilaian-mandiri'], fun
 
 Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
 
+Route::delete('domain/destroy', 'DomainController@massDestroy')->name('domain.massDestroy');
+Route::resource('domain',DomainController::class);
 
-    Route::group(['prefix' => 'indikator', 'as' => 'indikator'], function() {
-        Route::get('/', [IndikatorController::class, 'index'])->name('indikator');
-    });
+Route::delete('aspek/destroy', 'AspekController@massDestroy')->name('aspek.massDestroy');
+Route::resource('aspek',AspekController::class);
 
-    Route::group(['prefix' => 'schedule', 'as' => 'schedule'], function() {
-        Route::get('/', [ScheduleController::class, 'index'])->name('schedule');
-    });
+Route::delete('indikator/destroy', 'IndikatorController@massDestroy')->name('indikator.massDestroy');
+Route::resource('indikator',IndikatorController::class)->shallow();;
 
-    //contoh  routing
-    // Route::get('/', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 
-    // Lang
-    // Route::resource('language','LocalizationController')->name('language.index');
 
-    // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');
 

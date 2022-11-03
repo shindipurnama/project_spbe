@@ -4,18 +4,34 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Domain;
+use App\Models\Aspek;
 use App\Models\Indikator;
 
-class IndikatorController extends Controller
+class DomainController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('indikator');
+        //
+        $code_domain = Domain::count('id') ?? 0;
+        $code_domain ='D'.str_pad($code_domain+1, 3, "0", STR_PAD_LEFT);
+        $domain = Domain::All();
+
+        $code_aspek = Aspek::count('id') ?? 0;
+        $code_aspek ='A'.str_pad($code_aspek+1, 3, "0", STR_PAD_LEFT);
+        $aspek = Aspek::All();
+
+        $code_indikator = Indikator::count('id') ?? 0;
+        $code_indikator ='I'.str_pad($code_indikator+1, 3, "0", STR_PAD_LEFT);
+        $indikator = Indikator::All();
+        // dd($indikator);
+
+        return view('spbe',compact('code_domain','domain','code_aspek','aspek','code_indikator','indikator'));
     }
 
     /**
@@ -37,7 +53,7 @@ class IndikatorController extends Controller
     public function store(Request $request)
     {
         //
-        Indikator::create($request->All());
+        Domain::create($request->All());
         return redirect()->route('domain.index');
     }
 
@@ -73,7 +89,7 @@ class IndikatorController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $indikator = Indikator::find($id)->update($request->all());
+        $domain = Domain::find($id)->update($request->all());
 
         return redirect()->route('domain.index');
     }

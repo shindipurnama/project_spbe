@@ -30,6 +30,12 @@
                 <div data-i18n="Analytics">Data SKPD</div>
             </a>
         </li>
+        <li class="menu-item" id="menuDataSPBE">
+            <a href="{{ route("domain.index") }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Analytics">Data SPBE</div>
+            </a>
+        </li>
 
         <!-- User -->
         <li class="menu-item" id="menuUserManagement">
@@ -44,6 +50,30 @@
             <a href="/spbe" class="menu-link">
                 <i class='menu-icon tf-icons bx bx-data'></i>
                 <div data-i18n="Analytics">Indikator SPBE</div>
+            </a>
+            <!-- <ul class="menu-sub">
+                <li class="menu-item" id="subMenudomain">
+                    <a href="/admin/domain" class="menu-link">
+                    <div data-i18n="Without menu">Domain</div>
+                    </a>
+                </li>
+                <li class="menu-item" id="subMenuAspek">
+                    <a href="/admin/aspek" class="menu-link">
+                    <div data-i18n="Without menu">Aspek</div>
+                    </a>
+                </li>
+                <li class="menu-item" id="subMenuIndikator">
+                    <a href="/admin/indikator" class="menu-link">
+                    <div data-i18n="Without menu">Indikator</div>
+                    </a>
+                </li>
+            </ul> -->
+        </li>
+
+        <li class="menu-item" id="menuEval">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Layouts">Penilaian</div>
             </a>
         </li>
 
