@@ -53,8 +53,7 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 //     Route::get('/detail', [PenilaianMandiriController::class, 'detail'])->name('penilaian-mandiri-detail');
 // });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
-
+// Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
     Route::delete('domain/destroy', 'DomainController@massDestroy')->name('domain.massDestroy');
     Route::resource('domain', DomainController::class);
 
@@ -72,7 +71,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
 
     Route::delete('penilaian-mandiri/destroy', 'PenilaianMandiriController@massDestroy')->name('penilaian-mandiri.massDestroy');
     Route::resource('penilaian-mandiri', PenilaianMandiriController::class)->shallow();
-});
+// });
 
 
 
