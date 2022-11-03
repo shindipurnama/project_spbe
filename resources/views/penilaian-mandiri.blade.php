@@ -99,6 +99,16 @@
                 </div>
                 <div class="row">
                     <div class="col mb-3">
+                        <label class="form-label">Jadwal</label>
+                        <select id="domain" class="form-select">
+                            <option value="">-- Pilih Jadwal --</option>
+                            <option value="Jadwal 1">Jadwal 1</option>
+                            <option value="Jadwal 2">Jadwal 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
                         <label class="form-label">Domain</label>
                         <select id="domain" class="form-select">
                             <option value="">-- Pilih Domain --</option>
@@ -156,6 +166,16 @@
                     <div class="col mb-3">
                         <label for="name" class="form-label">Nama</label>
                         <input type="text" id="name" class="form-control" placeholder="Masukkan nama" value="Indikator 1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label class="form-label">Jadwal</label>
+                        <select id="domain" class="form-select">
+                            <option value="">-- Pilih Jadwal --</option>
+                            <option value="Jadwal 1">Jadwal 1</option>
+                            <option value="Jadwal 2">Jadwal 2</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
