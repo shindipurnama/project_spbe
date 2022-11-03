@@ -35,7 +35,7 @@
                         </button>
                     </div>
                 </div>
-                <table id="table-aspek" class="table table-striped" style="width:100%">
+                <table id="table-domain" class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                             <th>ID Domain</th>
@@ -87,7 +87,6 @@
                             <tr>
                                 <td>{{$a->aspek_id}}</td>
                                 <td>{{$a->aspek_name}}</td>
-                                <td>
                                 <td>
                                     <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateAspek{{$a->id}}">
                                         <i class='bx bxs-edit'></i>

@@ -7,11 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\Aspek;
 use App\Models\Indikator;
-use App\Models\User;
 
-class UserController extends Controller
+class AspekController extends Controller
 {
-    //
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +17,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        //
         $code_domain = Domain::count('id') ?? 0;
         $code_domain ='D'.str_pad($code_domain+1, 3, "0", STR_PAD_LEFT);
         $domain = Domain::All();
@@ -30,19 +29,17 @@ class UserController extends Controller
         $code_indikator = Indikator::count('id') ?? 0;
         $code_indikator ='I'.str_pad($code_indikator+1, 3, "0", STR_PAD_LEFT);
         $indikator = Indikator::All();
+        // dd($indikator);
 
-        $user = User::All();
-        return view("user-management", compact('code_domain','domain','code_aspek','aspek','code_indikator','indikator', 'user'));
-        // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        return view('spbe',compact('code_domain','domain','code_aspek','aspek','code_indikator','indikator'));
     }
-
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         //
     }
@@ -56,6 +53,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        Aspek::create($request->All());
+        return redirect()->route('domain.index');
     }
 
     /**
@@ -64,7 +63,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( Request $request)
+    public function show($id)
     {
         //
     }
@@ -90,6 +89,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $aspek = Aspek::find($id)->update($request->all());
+
+        return redirect()->route('domain.index');
     }
 
     /**
@@ -102,5 +104,4 @@ class UserController extends Controller
     {
         //
     }
-
 }

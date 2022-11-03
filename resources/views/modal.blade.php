@@ -45,8 +45,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="codeDomain" class="form-label">Kode Domain</label>
-                            <input type="text" id="codeDomain" name="domain_id" class="form-control" readonly value="{{$d->domain_id}}">
+                            <label for="codeDomain2" class="form-label">Kode Domain</label>
+                            <input type="text" id="codeDomain2" name="domain_id" class="form-control" readonly value="{{$d->domain_id}}">
                         </div>
                     </div>
                     <div class="row">
@@ -113,8 +113,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="codeAspek" class="form-label">Kode Aspek</label>
-                            <input type="text" id="codeAspek" name="aspek_id" class="form-control" readonly value="{{$a->aspek_id}}">
+                            <label for="codeAspek2" class="form-label">Kode Aspek</label>
+                            <input type="text" id="codeAspek2" name="aspek_id" class="form-control" readonly value="{{$a->aspek_id}}">
                         </div>
                     </div>
                     <div class="row">
@@ -219,8 +219,8 @@
                 </div>
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="name" class="form-label">Nama</label>
-                        <input type="text" id="name" class="form-control" placeholder="Masukkan nama">
+                        <label for="name_skpd" class="form-label">Nama</label>
+                        <input type="text" id="name_skpd" class="form-control" placeholder="Masukkan nama">
                     </div>
                 </div>
                 <div class="row">
@@ -259,8 +259,8 @@
                 </div>
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="name" class="form-label">Nama</label>
-                        <input type="text" id="name" class="form-control" placeholder="Masukkan nama">
+                        <label for="name_skpd2" class="form-label">Nama</label>
+                        <input type="text" id="name_skpd2" class="form-control" placeholder="Masukkan nama">
                     </div>
                 </div>
                 <div class="row">
@@ -369,8 +369,8 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="name" class="form-label">Nama</label>
-                        <input type="text" id="name" class="form-control" placeholder="Masukkan nama">
+                        <label for="name2" class="form-label">Nama</label>
+                        <input type="text" id="name2" class="form-control" placeholder="Masukkan nama">
                     </div>
                 </div>
                 <div class="row">
@@ -381,8 +381,8 @@
                 </div>
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" class="form-control" placeholder="Masukkan email">
+                        <label for="email2" class="form-label">Email</label>
+                        <input type="email" id="email2" class="form-control" placeholder="Masukkan email">
                     </div>
                 </div>
                 <div class="row">
