@@ -1,5 +1,5 @@
 @extends('layout.index')
-@section('title', 'Domain')
+@section('title', 'Indikator SPBE')
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
@@ -8,12 +8,12 @@
         <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
             <li class="nav-item">
                 <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-domain" aria-controls="navs-domain" aria-selected="true">
-                    <i class="tf-icons bx bx-home"></i> Domain
+                    <i class='bx bx-book'></i> Domain
                 </button>
             </li>
             <li class="nav-item">
                 <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-aspek" aria-controls="navs-aspek" aria-selected="false">
-                    <i class="tf-icons bx bx-user"></i> Aspek
+                    <i class='bx bx-navigation'></i> Aspek
                 </button>
             </li>
             <li class="nav-item">
@@ -58,6 +58,18 @@
                                 </td>
                             </tr>
                         @endforeach
+                        <tr>
+                            <td>A001</td>
+                            <td>Kebijakan Internal Terkait Tata Kelola SPBE</td>
+                            <td>
+                                <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateDomain">
+                                    <i class='bx bxs-edit'></i>
+                                </button>
+                                <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDomain">
+                                    <i class='bx bxs-trash'></i>
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

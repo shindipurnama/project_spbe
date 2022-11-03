@@ -27,53 +27,44 @@
             <a href="{{ route("domain.index") }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Analytics">Data SPBE</div>
+        <!-- Data SKPD -->
+        <li class="menu-item" id="menuDataSKPD">
+            <a href="/skpd" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-user-account'></i>
+                <div data-i18n="Analytics">Data SKPD</div>
             </a>
         </li>
 
-        <!-- Layouts -->
-        <!-- <li class="menu-item" id="menuDataSPBE">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Layouts">Data SPBE</div>
+        <!-- User -->
+        <li class="menu-item" id="menuUserManagement">
+            <a href="/user-management" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-user'></i>
+                <div data-i18n="Analytics">User</div>
             </a>
+        </li>
 
-            <ul class="menu-sub">
-                <li class="menu-item" id="subMenudomain">
-                    <a href="/admin/domain" class="menu-link">
-                    <div data-i18n="Without menu">Domain</div>
-                    </a>
-                </li>
-                <li class="menu-item" id="subMenuAspek">
-                    <a href="/admin/aspek" class="menu-link">
-                    <div data-i18n="Without menu">Aspek</div>
-                    </a>
-                </li>
-                <li class="menu-item" id="subMenuIndikator">
-                    <a href="/admin/indikator" class="menu-link">
-                    <div data-i18n="Without menu">Indikator</div>
-                    </a>
-                </li>
-            </ul>
-        </li> -->
-
-        <li class="menu-item" id="menuEval">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Layouts">Penilaian</div>
+        <!-- Indikator SPBE -->
+        <li class="menu-item" id="menuDataSPBE">
+            <a href="/spbe" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-data'></i>
+                <div data-i18n="Analytics">Indikator SPBE</div>
             </a>
+        </li>
 
-            <ul class="menu-sub">
-                <li class="menu-item" id="subMenuSchedule">
-                    <a href="/admin/schedule" class="menu-link">
-                    <div data-i18n="Without menu">Jadwal</div>
-                    </a>
-                </li>
-                <li class="menu-item" id="subMenuSelfAssessment">
-                    <a href="/admin/selfAssessment" class="menu-link">
-                    <div data-i18n="Without menu">Penilaian Mandiri</div>
-                    </a>
-                </li>
-            </ul>
+        <!-- Penilaian Mandiri -->
+        <li class="menu-item" id="menuPenilaianMandiri">
+            <a href="/penilaian-mandiri" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-notepad'></i>
+                <div data-i18n="Analytics">Penilaian Mandiri</div>
+            </a>
+        </li>
+
+        <!-- Hasil Penilaian Mandiri -->
+        <li class="menu-item" id="menuHasilPenilaianMandiri">
+            <a href="/penilaian-mandiri" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-book-content'></i>
+                <div data-i18n="Analytics">Hasil Penilaian Mandiri</div>
+            </a>
         </li>
     </ul>
 </aside>

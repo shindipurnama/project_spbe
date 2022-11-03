@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\SPBEController;
-use App\Http\Controllers\Admin\AspekController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\SKPDController;
 use App\Http\Controllers\Admin\IndikatorController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\DomainController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\PenilaianMandiriController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,14 +44,22 @@ Route::resource('domain',DomainController::class);
 
 Route::delete('aspek/destroy', 'AspekController@massDestroy')->name('aspek.massDestroy');
 Route::resource('aspek',AspekController::class);
+Route::group(['prefix' => 'user-management', 'as' => 'user-management'], function() {
+    Route::get('/', [UserController::class, 'index'])->name('user-management');
+});
+
+Route::group(['prefix' => 'skpd', 'as' => 'skpd'], function() {
+    Route::get('/', [SKPDController::class, 'index'])->name('skpd');
+});
+
+Route::group(['prefix' => 'penilaian-mandiri', 'as' => 'penilaian-mandiri'], function() {
+    Route::get('/', [PenilaianMandiriController::class, 'index'])->name('penilaian-mandiri');
+    Route::get('/detail', [PenilaianMandiriController::class, 'detail'])->name('penilaian-mandiri-detail');
+});
+
 
 Route::delete('indikator/destroy', 'IndikatorController@massDestroy')->name('indikator.massDestroy');
 Route::resource('indikator',IndikatorController::class)->shallow();;
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
 
-
-    Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
-    Route::resource('permissions', 'PermissionsController');
-
-});
+?>
