@@ -84,13 +84,14 @@
               <h4 class="mb-2 text-body fw-bolder">Login 👋</h4>
               <p class="mb-4">Silahkan masukkan akun anda</p>
 
-              <div class="alert alert-danger alert-dismissible" role="alert">
-                Login gagal
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
+                @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <b>Opps!</b> {{session('error')}}
+                    </div>
+                @endif
 
               <form id="formAuthentication" class="mb-3" action="{{ route('actionlogin') }}" method="POST">
-                {{ csrf_field() }}
+                @csrf
                 <div class="mb-3">
                   <label for="email" class="form-label">Username</label>
                   <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" autofocus required/>

@@ -36,12 +36,10 @@ class LoginController extends Controller
             'username' => $request->input('username'),
             'password' => $request->input('password'),
         ];
-        
-        // dd(Auth::Attempt($data));
         if (Auth::Attempt($data)) {
             return redirect('home');
         }else{
-            // Session::flash('error', 'Email atau Password Salah');
+            Session::flash('error', 'Username atau Password Salah');
             return redirect('/');
         }
     }
