@@ -23,6 +23,22 @@
             </a>
         </li>
 
+        <!-- User -->
+        <li class="menu-item" id="menuUserManagement">
+            <a href="{{ route('user-management.index') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-user'></i>
+                <div data-i18n="Analytics">User</div>
+            </a>
+        </li>
+
+        <!-- Role -->
+        <li class="menu-item" id="menuRole">
+            <a href="{{ route('role.index') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-group'></i>
+                <div data-i18n="Analytics">Role</div>
+            </a>
+        </li>
+
         <!-- Data SKPD -->
         <li class="menu-item" id="menuDataSKPD">
             <a href="{{ route('skpd.index') }}" class="menu-link">
@@ -36,14 +52,6 @@
             <a href="{{ route('domain.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Analytics">Data SPBE</div>
-            </a>
-        </li>
-
-        <!-- User -->
-        <li class="menu-item" id="menuUserManagement">
-            <a href="{{ route('user-management.index') }}" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-user'></i>
-                <div data-i18n="Analytics">User</div>
             </a>
         </li>
 

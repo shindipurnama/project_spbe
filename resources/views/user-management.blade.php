@@ -30,7 +30,7 @@
             <tbody>
                 @foreach ($user as $key =>$u)
                     <tr>
-                        <td>{{$u->user_id}}</td>
+                        <td>{{$u->id}}</td>
                         <td>{{$u->name}}</td>
                         <td>{{$u->username}}</td>
                         <td>{{$u->email}}</td>
@@ -56,7 +56,6 @@
 </div>
 
 <!-- Modal -->
-<!-- User -->
 <div class="modal fade" id="insertUser" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -70,19 +69,19 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="name" class="form-label">Nama</label>
-                            <input type="text" id="name" class="form-control" name="name" placeholder="Masukkan nama">
+                            <input type="text" required id="name" class="form-control" name="name" placeholder="Masukkan nama">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" id="username" class="form-control" name="username" placeholder="Masukkan username">
+                            <input type="text" required id="username" class="form-control" name="username" placeholder="Masukkan username">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan email">
+                            <input type="email" required name="email" id="email" class="form-control" placeholder="Masukkan email">
                         </div>
                     </div>
                     <div class="row">
@@ -90,7 +89,7 @@
                             <div class="form-password-toggle">
                                 <label class="form-label" for="basic-default-password32">Password</label>
                                 <div class="input-group input-group-merge">
-                                    <input type="password" name="password" class="form-control" id="basic-default-password32" placeholder="············" aria-describedby="basic-default-password">
+                                    <input type="password" required name="password" class="form-control" id="basic-default-password32" placeholder="············" aria-describedby="basic-default-password">
                                     <span class="input-group-text cursor-pointer" id="basic-default-password"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
@@ -99,10 +98,11 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label class="form-label">Role</label>
-                            <select id="year" name="role_id" class="form-select">
-                                <option>-- Pilih Role --</option>
-                                <option value="0">Admin</option>
-                                <option value="1">SKPD</option>
+                            <select id="role" required name="role_id" class="form-select">
+                                <option value="">-- Pilih Role --</option>
+                                @foreach ($role as $key => $r )
+                                    <option value="{{$r->role_id}}">{{$r->role}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -131,19 +131,19 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="name2" class="form-label">Nama</label>
-                            <input type="text" id="name2" class="form-control" name="name" value="{{$u->name}}">
+                            <input type="text" required id="name2" class="form-control" name="name" value="{{$u->name}}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" id="username" name="username" class="form-control" value="{{$u->username}}">
+                            <input type="text" required id="username" name="username" class="form-control" value="{{$u->username}}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label for="email2" class="form-label">Email</label>
-                            <input type="email" id="email2" name="email" class="form-control" value="{{$u->email}}">
+                            <input type="email" required id="email2" name="email" class="form-control" value="{{$u->email}}">
                         </div>
                     </div>
                     <div class="row">

@@ -49,9 +49,9 @@
                                 <td>{{$d->domain_id}}</td>
                                 <td>{{$d->nama_domain}}</td>
                                 <td>
-                                    <a class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateDomain{{$d->id}}">
+                                    <button class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateDomain{{$d->id}}">
                                         <i class='bx bxs-edit'></i>
-                                    </a>
+                                    </button>
                                     <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDomain">
                                         <i class='bx bxs-trash'></i>
                                     </button>
@@ -127,9 +127,9 @@
                                 <td>{{$i->indikator_id}}</td>
                                 <td>{{$i->indikator_name}}</td>
                                 <td>
-                                    <a class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateIndikator{{$i->id}}">
+                                    <button class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateIndikator{{$i->id}}">
                                         <i class='bx bxs-edit'></i>
-                                    </a>
+                                    </button>
                                     <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator">
                                         <i class='bx bxs-trash'></i>
                                     </button>

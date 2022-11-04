@@ -7,11 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\Aspek;
 use App\Models\Indikator;
-use App\Models\User;
 use App\Models\Roles;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
     //
     /**
@@ -21,10 +20,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $code_role = Roles::count('id') ?? 0;
+        $code_role ='R'.str_pad($code_role+1, 3, "0", STR_PAD_LEFT);
 
-        $user = User::All();
         $role = Roles::All();
-        return view("user-management", compact('user', 'role'));
+        return view("role", compact('role', 'code_role'));
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
 
@@ -51,17 +51,14 @@ class UserController extends Controller
 
         // dd($request->All());
         $data = array(
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'username'=>$request->username,
+            'role'=>$request->role,
             'role_id'=>$request->role_id,
-            'password'=>Hash::make($request->password),
             'created_at'=> date('Y-m-d H:i:s'),
             'updated_at'=> date('Y-m-d H:i:s'),
         );
         // dd($data);
-        User::create($data);
-        return redirect()->route('user-management.index');
+        Roles::create($data);
+        return redirect()->route('role.index');
 
     }
 
@@ -98,12 +95,12 @@ class UserController extends Controller
     {
         //
 
-        $user = User::find($id)->update($request->all());
+        $user = Roles::find($id)->update($request->all());
 
         // $pass = Hash::make($request->password);
         // user::find($id)->update(['password'=>$pass]);
 
-        return redirect()->route('user-management.index');
+        return redirect()->route('role.index');
     }
 
     /**

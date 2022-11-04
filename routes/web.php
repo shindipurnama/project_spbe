@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\SPBEController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SKPDController;
 use App\Http\Controllers\Admin\IndikatorController;
-use App\Http\Controllers\Admin\ScheduleController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PenilaianMandiriController;
 use App\Http\Controllers\Admin\DomainController;
 use App\Http\Controllers\Admin\AspekController;
@@ -56,6 +56,12 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 // Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
     Route::delete('domain/destroy', 'DomainController@massDestroy')->name('domain.massDestroy');
     Route::resource('domain', DomainController::class);
+    
+    Route::delete('user-management/destroy', 'UserController@massDestroy')->name('user-management.massDestroy');
+    Route::resource('user-management', UserController::class)->shallow();
+
+    Route::delete('role/destroy', 'UserController@massDestroy')->name('role.massDestroy');
+    Route::resource('role', RoleController::class)->shallow();
 
     Route::delete('aspek/destroy', 'AspekController@massDestroy')->name('aspek.massDestroy');
     Route::resource('aspek', AspekController::class);
@@ -66,9 +72,7 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
     Route::delete('skpd/destroy', 'SKPDController@massDestroy')->name('skpd.massDestroy');
     Route::resource('skpd', SKPDController::class)->shallow();
 
-    Route::delete('user-management/destroy', 'UserController@massDestroy')->name('user-management.massDestroy');
-    Route::resource('user-management', UserController::class)->shallow();
-
+    
     Route::delete('penilaian-mandiri/destroy', 'PenilaianMandiriController@massDestroy')->name('penilaian-mandiri.massDestroy');
     Route::resource('penilaian-mandiri', PenilaianMandiriController::class)->shallow();
 // });

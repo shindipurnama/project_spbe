@@ -19,6 +19,41 @@
                         </div>
                     </div>
                 </div>
+            </div><br>
+
+            <div class="card">
+                <h5 class="card-header">Jadwal Tes</h5>
+                <table id="table-soal" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tahun Penilaian</th>
+                            <th>Nama Tes</th>
+                            <th>Waktu Tes</th>
+                            <th>Soal</th>
+                            <th>Jumlah Soal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2022</td>
+                            <td>Penilaian Evaluasi Mandiri 2022</td>
+                            <td>15 Agustus 2022 - 30 Agustus 2022</td>
+                            <td>Penilaian Mandiri</td>
+                            <td>47</td>
+                            <td>
+                                <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#updateRole">
+                                    Kerjakan
+                                </button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRole">
+                                    Lihat Soal
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -26,6 +61,21 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    $("#menuDashboard").addClass("active")
+    $(document).ready(function () {
+        $("#menuDashboard").addClass("active")
+        getData()
+    });
+
+    function getData() {
+        $('#table-soal').DataTable();
+
+        $(".dataTables_wrapper").css("padding-left", "20px")
+        $(".dataTables_wrapper").css("padding-right", "20px")
+        $(".dataTables_empty").css("text-align", "center")
+        $(".dataTables_filter").css("float", "right")
+        $(".dataTables_info").css("padding-top", "15px")
+        $(".dataTables_paginate").css("float", "right")
+        $(".dataTables_paginate").css("padding-top", "15px")
+    }
 </script>
 @endsection
