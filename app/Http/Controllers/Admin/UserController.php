@@ -8,6 +8,7 @@ use App\Models\Domain;
 use App\Models\Aspek;
 use App\Models\Indikator;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,20 +20,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $code_domain = Domain::count('id') ?? 0;
-        $code_domain ='D'.str_pad($code_domain+1, 3, "0", STR_PAD_LEFT);
-        $domain = Domain::All();
-
-        $code_aspek = Aspek::count('id') ?? 0;
-        $code_aspek ='A'.str_pad($code_aspek+1, 3, "0", STR_PAD_LEFT);
-        $aspek = Aspek::All();
-
-        $code_indikator = Indikator::count('id') ?? 0;
-        $code_indikator ='I'.str_pad($code_indikator+1, 3, "0", STR_PAD_LEFT);
-        $indikator = Indikator::All();
 
         $user = User::All();
-        return view("user-management", compact('code_domain','domain','code_aspek','aspek','code_indikator','indikator', 'user'));
+        return view("user-management", compact('user'));
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
 
@@ -56,6 +46,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+
+        // dd($request->All());
+        $data = array(
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'username'=>$request->username,
+            'role_id'=>$request->role_id,
+            'password'=>Hash::make($request->password),
+            'created_at'=> date('Y-m-d H:i:s'),
+            'updated_at'=> date('Y-m-d H:i:s'),
+        );
+        // dd($data);
+        User::create($data);
+        return redirect()->route('user-management.index');
+
     }
 
     /**
@@ -90,6 +95,13 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $user = User::find($id)->update($request->all());
+
+        // $pass = Hash::make($request->password);
+        // user::find($id)->update(['password'=>$pass]);
+
+        return redirect()->route('user-management.index');
     }
 
     /**
