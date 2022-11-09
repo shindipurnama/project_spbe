@@ -8,83 +8,49 @@
     }
 </style>
 
-<div class="bs-toast toast toast-placement-ex m-2 fade bg-danger top-0 start-0 hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-    <div class="toast-header">
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-    <div class="toast-body">Data tidak bole kosong</div>
-</div>
-
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
         <div class="col-6">
         </div>
         <div class="col-6 py-2 mb-4" style="text-align: end;">
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#insertJadwal">
-                Atur Jadwal
-            </button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertIndikator">
-                Tambah Data
+            <button type="button" class="btn btn-secondary">
+                Cetak Laporan
             </button>
         </div>
     </div>
     <!-- Examples -->
     <div class="card mb-4">
-        <h5 class="card-header">Data Penilaian Mandiri</h5>
+        <h5 class="card-header">Data Hasil Penilaian Mandiri</h5>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-name">Nomor Form</label>
+            <div class="col-sm-5">
+                <select id="domain" class="form-select">
+                    <option value="0">Domain 1</option>
+                    <option value="1">Domain 2</option>
+                    <option value="2">Domain 3</option>
+                </select>
+            </div>
+        </div>
         <table id="table-penilaian-mandiri" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>Indikator</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><a href="/penilaian-mandiri/detail">Indikator 1</a></td>
-                    <td>
-                        <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateIndikator">
-                            <i class='bx bxs-edit'></i>
-                        </button>
-                        <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator">
-                            <i class='bx bxs-trash'></i>
-                        </button>
-                        <a href="/penilaian-mandiri/detail">
-                            <button type="button" title="Detail Data" class="btn btn-icon btn-success">
-                                <i class='bx bx-info-circle'></i>
-                            </button>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="card">
-        <h5 class="card-header">Data Jadwal</h5>
-        <table id="table-jadwal" class="table table-striped" style="width:100%">
-            <thead>
-                <tr>
                     <th>No</th>
-                    <th>Nama Tes</th>
-                    <th>Waktu Tes</th>
-                    <th>Soal</th>
-                    <th>Jumlah Soal</th>
+                    <th>Nama</th>
+                    <th>Hasil</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Penilaian Evaluasi SPBE 2022</td>
-                    <td>1 November 2022 - 15 Novemebr 2022</td>
-                    <td>Penilaian Mandiri</td>
-                    <td>47 Soal</td>
+                    <td>Teguh</td>
+                    <td>100</td>
                     <td>
-                        <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateJadwal">
-                            <i class='bx bxs-edit'></i>
+                        <button type="button" title="Edit Data" class="btn btn-info">
+                            Lihat Hasil
                         </button>
-                        <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteJadwal">
-                            <i class='bx bxs-trash'></i>
+                        <button type="button" title="Hapus Data" class="btn btn-danger">
+                            Download
                         </button>
                     </td>
                 </tr>
@@ -257,134 +223,6 @@
     </div>
 </div>
 
-<!-- Modal Atur Jadwal -->
-<div class="modal fade" id="insertJadwal" tabindex="-1" aria-modal="true" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Atur Jadwal</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="nama" class="form-label">Nama Tes</label>
-                        <input type="text" id="nama" class="form-control" placeholder="Masukkan nama">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="timeStart" class="form-label">Waktu Mulai Tes</label>
-                        <input type="date" id="timeStart" class="form-control">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="timeEnd" class="form-label">Waktu Berakhir Tes</label>
-                        <input type="date" id="timeEnd" class="form-control">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Tahun</label>
-                        <select id="year" class="form-select year">
-                            <option value="">-- Pilih Tahun --</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="soal" class="form-label">Soal</label>
-                        <input type="text" id="soal" class="form-control" placeholder="Masukkan soal">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="jumlah" class="form-label">Jumlah Soal</label>
-                        <input type="text" id="jumlah" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Masukkan jumlah soal">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="updateJadwal" tabindex="-1" aria-modal="true" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit Data Penilaian Mandiri</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="nama" class="form-label">Nama Tes</label>
-                        <input type="text" id="nama" class="form-control" placeholder="Masukkan nama">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="timeStart" class="form-label">Waktu Mulai Tes</label>
-                        <input type="date" id="timeStart" class="form-control">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="timeEnd" class="form-label">Waktu Berakhir Tes</label>
-                        <input type="date" id="timeEnd" class="form-control">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Tahun</label>
-                        <select id="year" class="form-select year">
-                            <option value="">-- Pilih Tahun --</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="soal" class="form-label">Soal</label>
-                        <input type="text" id="soal" class="form-control" placeholder="Masukkan soal">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="jumlah" class="form-label">Jumlah Soal</label>
-                        <input type="text" id="jumlah" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="form-control" placeholder="Masukkan jumlah soal">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="deleteJadwal" tabindex="-1" aria-modal="true" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <script>
@@ -392,7 +230,7 @@
     var arrayKriteria = []
 
     $(document).ready(function() {
-        $("#menuPenilaianMandiri").addClass("active")
+        $("#menuHasilPenilaianMandiri").addClass("active")
         getData()
         getYear()
     });
@@ -425,14 +263,14 @@
                 kriteria: value
             })
 
-            
+
             $("#valKriteria").val("")
         } else {
             alert("Masukkan kriteria dahulu")
         }
 
         $("#listKriteria").empty("")
-        for(var i=0; i<arrayKriteria.length; i++) {
+        for (var i = 0; i < arrayKriteria.length; i++) {
             $("#listKriteria").append(`
                 <div class="card mb-3" style="width: 100%;" id="card-kriteria-${arrayKriteria[i].no}">
                     <div class="row g-0">
@@ -457,10 +295,10 @@
     })
 
     function btnRemove(index) {
-        for(var i=0; i<arrayKriteria.length; i++) {
-            if(arrayKriteria[i].no == index) {
-               $("#card-kriteria-"+arrayKriteria[i].no).remove()
-               arrayKriteria.splice(i, 1)
+        for (var i = 0; i < arrayKriteria.length; i++) {
+            if (arrayKriteria[i].no == index) {
+                $("#card-kriteria-" + arrayKriteria[i].no).remove()
+                arrayKriteria.splice(i, 1)
             }
         }
     }

@@ -51,7 +51,7 @@
         <li class="menu-item" id="menuDataSPBE">
             <a href="{{ route('domain.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Analytics">Data SPBE</div>
+                <div data-i18n="Analytics">Indikator SPBE</div>
             </a>
         </li>
 
@@ -65,7 +65,7 @@
         
         <!-- Hasil Penilaian Mandiri -->
         <li class="menu-item" id="menuHasilPenilaianMandiri">
-            <a href="/penilaian-mandiri" class="menu-link">
+            <a href="/hasil-penilaian-mandiri" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-book-content'></i>
                 <div data-i18n="Analytics">Hasil Penilaian Mandiri</div>
             </a>

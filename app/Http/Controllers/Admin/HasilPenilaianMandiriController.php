@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PenilaianMandiriController extends Controller
+class HasilPenilaianMandiriController extends Controller
 {
     //
     /**
@@ -15,7 +15,7 @@ class PenilaianMandiriController extends Controller
      */
     public function index(Request $request)
     {
-        return view('penilaian-mandiri');
+        return view('hasil-penilaian-mandiri');
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
 
@@ -25,10 +25,9 @@ class PenilaianMandiriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function detail()
+    public function detail(Request $request)
     {
-        // dd("13");
-        return view('penilaian-mandiri-detail');
+        // return view('penilaian-mandiri-detail');
     }
 
     /**
