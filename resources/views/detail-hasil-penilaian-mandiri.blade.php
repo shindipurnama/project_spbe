@@ -1,5 +1,5 @@
 @extends('layout.index')
-@section('title', 'Hasil Penilaian Mandiri')
+@section('title', 'Detail Hasil Penilaian Mandiri')
 
 @section('content')
 <style>
@@ -9,31 +9,57 @@
 </style>
 
 <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-6">
+        </div>
+        <div class="col-6 py-2 mb-4" style="text-align: end;">
+            <button type="button" class="btn btn-secondary">
+                Cetak Laporan
+            </button>
+        </div>
+    </div>
     <!-- Examples -->
     <div class="card mb-4">
         <h5 class="card-header">Data Hasil Penilaian Mandiri</h5>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Nomor Form</label>
+            <label class="col-sm-5" for="basic-default-name">: PM012022</label>
+        </div>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Nama Form</label>
+            <label class="col-sm-5" for="basic-default-name">: Evaluasi SPBE 2022</label>
+        </div>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Tahun</label>
+            <label class="col-sm-5" for="basic-default-name">: 2022</label>
+        </div>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Deskripsi</label>
+            <label class="col-sm-5" for="basic-default-name">: Evaluasi SPBE 2022</label>
+        </div>
         <table id="table-penilaian-mandiri" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>No Tes</th>
-                    <th>Nama Tes</th>
-                    <th>Waktu</th>
-                    <th>Deskripsi</th>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Capaian</th>
+                    <th>Hasil</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>PM012022</td>
-                    <td>Evaluasi SPBE 2022</td>
-                    <td>30 Oktober 2022 - 3 November 2022</td>
-                    <td>Evaluasi SPBE 2022</td>
+                    <td>1</td>
+                    <td>Teguh</td>
+                    <td>10/10</td>
+                    <td>100</td>
                     <td>
-                        <a href="{{ route('detail-hasil-penilaian-mandiri.index') }}">
-                            <button type="button" title="Detail" class="btn btn-success">
-                                Detail
-                            </button>
-                        </a>
+                        <button type="button" title="Edit Data" class="btn btn-info">
+                            Lihat Hasil
+                        </button>
+                        <button type="button" title="Hapus Data" class="btn btn-danger">
+                            Download
+                        </button>
                     </td>
                 </tr>
             </tbody>
