@@ -65,7 +65,7 @@
         
         <!-- Hasil Penilaian Mandiri -->
         <li class="menu-item" id="menuHasilPenilaianMandiri">
-            <a href="/hasil-penilaian-mandiri" class="menu-link">
+            <a href="{{ route('hasil-penilaian-mandiri.index') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-book-content'></i>
                 <div data-i18n="Analytics">Hasil Penilaian Mandiri</div>
             </a>

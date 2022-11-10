@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Domain;
+use App\Models\Aspek;
+use App\Models\Indikator;
 
 class PenilaianMandiriController extends Controller
 {
@@ -15,7 +18,11 @@ class PenilaianMandiriController extends Controller
      */
     public function index(Request $request)
     {
-        return view('penilaian-mandiri');
+        $domain = Domain::All();
+        $aspek = Aspek::All();
+        $indikator = Indikator::All();
+
+        return view('penilaian-mandiri', compact('domain', 'aspek', 'indikator'));
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
 
@@ -25,9 +32,8 @@ class PenilaianMandiriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function detail()
+    public function create()
     {
-        // dd("13");
         return view('penilaian-mandiri-detail');
     }
 
@@ -50,7 +56,7 @@ class PenilaianMandiriController extends Controller
      */
     public function show( Request $request)
     {
-        //
+
     }
 
     /**

@@ -75,7 +75,7 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
     Route::delete('penilaian-mandiri/destroy', 'PenilaianMandiriController@massDestroy')->name('penilaian-mandiri.massDestroy');
     Route::resource('penilaian-mandiri', PenilaianMandiriController::class)->shallow();
-    Route::get('penilaian-mandiri/detail', [PenilaianMandiriController::class, 'detail']);
+    // Route::get('penilaian-mandiri/detail', [PenilaianMandiriController::class, 'detail']);
 
     Route::delete('hasil-penilaian-mandiri/destroy', 'HasilPenilaianMandiriController@massDestroy')->name('hasil-penilaian-mandiri.massDestroy');
     Route::resource('hasil-penilaian-mandiri', HasilPenilaianMandiriController::class)->shallow();

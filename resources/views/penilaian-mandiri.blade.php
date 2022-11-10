@@ -40,7 +40,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><a href="/penilaian-mandiri/detail">Indikator 1</a></td>
+                    <td><a href="{{ route('penilaian-mandiri.create') }}">Indikator 1</a></td>
                     <td>
                         <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateIndikator">
                             <i class='bx bxs-edit'></i>
@@ -48,7 +48,7 @@
                         <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator">
                             <i class='bx bxs-trash'></i>
                         </button>
-                        <a href="/penilaian-mandiri/detail">
+                        <a href="{{ route('penilaian-mandiri.create') }}">
                             <button type="button" title="Detail Data" class="btn btn-icon btn-success">
                                 <i class='bx bx-info-circle'></i>
                             </button>
@@ -125,8 +125,9 @@
                         <label class="form-label">Domain</label>
                         <select id="domain" class="form-select">
                             <option value="">-- Pilih Domain --</option>
-                            <option value="Domain 1">Domain 1</option>
-                            <option value="Domain 2">Domain 2</option>
+                            @foreach ($domain as $key => $d)
+                                <option value="{{$d->domain_id}}">{{$d->nama_domain}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -135,8 +136,9 @@
                         <label class="form-label">Aspek</label>
                         <select id="aspek" class="form-select">
                             <option value="">-- Pilih Aspek --</option>
-                            <option value="Aspek 1">Aspek 1</option>
-                            <option value="Aspek 2">Aspek 2</option>
+                            @foreach ($aspek as $key => $a)
+                                <option value="{{$a->aspek_id}}">{{$a->aspek_name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -145,8 +147,9 @@
                         <label class="form-label">Indikator</label>
                         <select id="indikator" class="form-select">
                             <option value="">-- Pilih Indikator --</option>
-                            <option value="Indikator 1">Indikator 1</option>
-                            <option value="Indikator 2">Indikator 2</option>
+                            @foreach ($indikator as $key => $i)
+                                <option value="{{$i->indikator_id}}">{{$i->indikator_name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

@@ -21,15 +21,21 @@
     <!-- Examples -->
     <div class="card mb-4">
         <h5 class="card-header">Data Hasil Penilaian Mandiri</h5>
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label" for="basic-default-name">Nomor Form</label>
-            <div class="col-sm-5">
-                <select id="domain" class="form-select">
-                    <option value="0">Domain 1</option>
-                    <option value="1">Domain 2</option>
-                    <option value="2">Domain 3</option>
-                </select>
-            </div>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Nomor Form</label>
+            <label class="col-sm-5" for="basic-default-name">: PM012022</label>
+        </div>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Nama Form</label>
+            <label class="col-sm-5" for="basic-default-name">: Evaluasi SPBE 2022</label>
+        </div>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Tahun</label>
+            <label class="col-sm-5" for="basic-default-name">: 2022</label>
+        </div>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Deskripsi</label>
+            <label class="col-sm-5" for="basic-default-name">: Evaluasi SPBE 2022</label>
         </div>
         <table id="table-penilaian-mandiri" class="table table-striped" style="width:100%">
             <thead>
