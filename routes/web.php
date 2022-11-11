@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SKPDController;
 use App\Http\Controllers\Admin\IndikatorController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PenilaianMandiriController;
+use App\Http\Controllers\Admin\PenilaianMandiriSKPDController;
 use App\Http\Controllers\Admin\HasilPenilaianMandiriController;
 use App\Http\Controllers\Admin\DetailHasilPenilaianMandiriController;
 use App\Http\Controllers\Admin\DomainController;
@@ -76,7 +77,9 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
     Route::delete('penilaian-mandiri/destroy', 'PenilaianMandiriController@massDestroy')->name('penilaian-mandiri.massDestroy');
     Route::resource('penilaian-mandiri', PenilaianMandiriController::class)->shallow();
-    // Route::get('penilaian-mandiri/detail', [PenilaianMandiriController::class, 'detail']);
+
+    Route::delete('penilaian-mandiri-skpd/destroy', 'PenilaianMandiriController@massDestroy')->name('penilaian-mandiri-skpd.massDestroy');
+    Route::resource('penilaian-mandiri-skpd', PenilaianMandiriSKPDController::class)->shallow();
 
     Route::delete('hasil-penilaian-mandiri/destroy', 'HasilPenilaianMandiriController@massDestroy')->name('hasil-penilaian-mandiri.massDestroy');
     Route::resource('hasil-penilaian-mandiri', HasilPenilaianMandiriController::class)->shallow();

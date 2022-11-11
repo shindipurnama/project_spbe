@@ -59,7 +59,7 @@
         </table>
     </div>
 
-    <div class="card">
+    <div class="card mb-4">
         <h5 class="card-header">Data Jadwal</h5>
         <table id="table-jadwal" class="table table-striped" style="width:100%">
             <thead>
@@ -86,6 +86,40 @@
                         <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteJadwal">
                             <i class='bx bxs-trash'></i>
                         </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header">Jadwal Tes</h5>
+        <table id="table-soal" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Tahun Penilaian</th>
+                    <th>Nama Tes</th>
+                    <th>Waktu Tes</th>
+                    <th>Soal</th>
+                    <th>Jumlah Soal</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2022</td>
+                    <td>Penilaian Evaluasi Mandiri 2022</td>
+                    <td>15 Agustus 2022 - 30 Agustus 2022</td>
+                    <td>Penilaian Mandiri</td>
+                    <td>47</td>
+                    <td>
+                        <a href="{{ route('penilaian-mandiri.create') }}">
+                            <button type="button" class="btn btn-danger">
+                                Lihat Soal
+                            </button>
+                        </a>
                     </td>
                 </tr>
             </tbody>
@@ -126,7 +160,7 @@
                         <select id="domain" class="form-select">
                             <option value="">-- Pilih Domain --</option>
                             @foreach ($domain as $key => $d)
-                                <option value="{{$d->domain_id}}">{{$d->nama_domain}}</option>
+                            <option value="{{$d->domain_id}}">{{$d->nama_domain}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -137,7 +171,7 @@
                         <select id="aspek" class="form-select">
                             <option value="">-- Pilih Aspek --</option>
                             @foreach ($aspek as $key => $a)
-                                <option value="{{$a->aspek_id}}">{{$a->aspek_name}}</option>
+                            <option value="{{$a->aspek_id}}">{{$a->aspek_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -148,7 +182,7 @@
                         <select id="indikator" class="form-select">
                             <option value="">-- Pilih Indikator --</option>
                             @foreach ($indikator as $key => $i)
-                                <option value="{{$i->indikator_id}}">{{$i->indikator_name}}</option>
+                            <option value="{{$i->indikator_id}}">{{$i->indikator_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -403,6 +437,7 @@
     function getData() {
         $('#table-penilaian-mandiri').DataTable();
         $('#table-jadwal').DataTable();
+        $('#table-soal').DataTable();
 
         $(".dataTables_wrapper").css("padding-left", "20px")
         $(".dataTables_wrapper").css("padding-right", "20px")
@@ -428,14 +463,14 @@
                 kriteria: value
             })
 
-            
+
             $("#valKriteria").val("")
         } else {
             alert("Masukkan kriteria dahulu")
         }
 
         $("#listKriteria").empty("")
-        for(var i=0; i<arrayKriteria.length; i++) {
+        for (var i = 0; i < arrayKriteria.length; i++) {
             $("#listKriteria").append(`
                 <div class="card mb-3" style="width: 100%;" id="card-kriteria-${arrayKriteria[i].no}">
                     <div class="row g-0">
@@ -460,10 +495,10 @@
     })
 
     function btnRemove(index) {
-        for(var i=0; i<arrayKriteria.length; i++) {
-            if(arrayKriteria[i].no == index) {
-               $("#card-kriteria-"+arrayKriteria[i].no).remove()
-               arrayKriteria.splice(i, 1)
+        for (var i = 0; i < arrayKriteria.length; i++) {
+            if (arrayKriteria[i].no == index) {
+                $("#card-kriteria-" + arrayKriteria[i].no).remove()
+                arrayKriteria.splice(i, 1)
             }
         }
     }

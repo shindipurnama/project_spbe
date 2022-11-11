@@ -9,7 +9,7 @@
         </div>
     </div>
     <!-- Examples -->
-    <div class="card">
+    <div class="card mb-4">
         <h5 class="card-header">Detail Penilaian Mandiri</h5>
         <div class="card-body">
             <div class="row mb-3">
@@ -42,7 +42,7 @@
                     </select>
                 </div>
             </div>
-            <table id="table-penilaian-mandiri" class="table table-striped mb-4" style="width:100%">
+            <table id="table-penilaian-mandiri" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -71,6 +71,54 @@
                 </div>
                 <div class="col-9">
                     <button type="button" class="btn btn-primary" style="width: 100%;">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header">Detail Penilaian Mandiri</h5>
+        <div class="card-body">
+            <div class="mb-3" style="display: flex;">
+                <label class="col-sm-2" for="basic-default-name">Nomor Form</label>
+                <label class="col-sm-5" for="basic-default-name">: PM012022</label>
+            </div>
+            <div class="mb-3" style="display: flex;">
+                <label class="col-sm-2" for="basic-default-name">Nama Form</label>
+                <label class="col-sm-5" for="basic-default-name">: Penilaian Evaluasi Mandiri 2022</label>
+            </div>
+            <div class="mb-3" style="display: flex;">
+                <label class="col-sm-2" for="basic-default-name">Tahun</label>
+                <label class="col-sm-5" for="basic-default-name">: 2022</label>
+            </div>
+            <div class="mb-3" style="display: flex;">
+                <label class="col-sm-2" for="basic-default-name">Deskripsi</label>
+                <label class="col-sm-5" for="basic-default-name">: Evaluasi SPBE 2022</label>
+            </div>
+            <table id="table-penilaian-mandiri-skpd" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nama Indikator</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="{{ route('penilaian-mandiri.create') }}">Indikator 1</a></td>
+                        <td>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSoal">
+                                Kerjakan
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-3">
+                    <button type="button" class="btn btn-outline-secondary" style="width: 100%;">Kembali</button>
+                </div>
+                <div class="col-9">
+                    <button type="button" class="btn btn-primary" style="width: 100%;">Simpan Semua Jawaban</button>
                 </div>
             </div>
         </div>
@@ -108,6 +156,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="deleteKriteria" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -127,6 +176,73 @@
     </div>
 </div>
 
+<div class="modal fade" id="modalSoal" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="mb-3" style="display: flex;">
+                        <label class="col-sm-2" for="basic-default-name">Domain</label>
+                        <label class="col-sm-10" for="basic-default-name">: D001 - Kebijakan SPBE</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3" style="display: flex;">
+                        <label class="col-sm-2" for="basic-default-name">Aspek</label>
+                        <label class="col-sm-10" for="basic-default-name">: A001 - Kebijakan Internal Terkait Tata Kelola SPBE</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3" style="display: flex;">
+                        <label class="col-sm-2" for="basic-default-name">Indikator</label>
+                        <label class="col-sm-10" for="basic-default-name">: I001 - Tingkat Kematangan Kebijakan Internal</label>
+                    </div>
+                </div>
+                <table id="table-form-kriteria" class="table table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Kriteria</th>
+                            <th>Capaian</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Konsep kebijakan internal terkait Arsitektur SPBE</td>
+                            <td style="text-align: center;">
+                                <input class="form-check-input" type="checkbox" value="" id="checkKriteria1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Kriteria tingkat 4 telah terpenuhi</td>
+                            <td style="text-align: center;">
+                                <input class="form-check-input" type="checkbox" value="" id="checkKriteria2">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mb-3">
+                    <label for="txtCatatan" class="form-label">Catatan</label>
+                    <textarea class="form-control" id="txtCatatan" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="txtImage" class="form-label">Gambar Pendukung</label>
+                    <input class="form-control" type="file" id="txtImage" accept="image/png, image/gif, image/jpeg">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <script>
@@ -136,7 +252,7 @@
     });
 
     function getData() {
-        $('#table-penilaian-mandiri').DataTable();
+        $('.table').DataTable();
 
         // $(".dataTables_wrapper").css("padding-left", "20px")
         // $(".dataTables_wrapper").css("padding-right", "20px")

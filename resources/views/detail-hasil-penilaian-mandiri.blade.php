@@ -65,6 +65,48 @@
             </tbody>
         </table>
     </div>
+
+    <div class="card">
+        <h5 class="card-header">Detail Hasil Penilaian Mandiri</h5>
+        <div class="card-body">
+            <div class="mb-3" style="display: flex;">
+                <label class="col-sm-2" for="basic-default-name">Nomor Form</label>
+                <label class="col-sm-5" for="basic-default-name">: PM012022</label>
+            </div>
+            <div class="mb-3" style="display: flex;">
+                <label class="col-sm-2" for="basic-default-name">Nama Form</label>
+                <label class="col-sm-5" for="basic-default-name">: Penilaian Evaluasi Mandiri 2022</label>
+            </div>
+            <div class="mb-3" style="display: flex;">
+                <label class="col-sm-2" for="basic-default-name">Tahun</label>
+                <label class="col-sm-5" for="basic-default-name">: 2022</label>
+            </div>
+            <div class="mb-3" style="display: flex;">
+                <label class="col-sm-2" for="basic-default-name">Deskripsi</label>
+                <label class="col-sm-5" for="basic-default-name">: Evaluasi SPBE 2022</label>
+            </div>
+            <table id="table-penilaian-mandiri-skpd" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Nama Indikator</th>
+                        <th>Capaian</th>
+                        <!-- <th>Aksi</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Indikator 1</td>
+                        <td>5/10</td>
+                        <!-- <td>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSoal">
+                                Kerjakan
+                            </button>
+                        </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <!-- Examples -->
 
 </div>
@@ -244,8 +286,7 @@
     });
 
     function getData() {
-        $('#table-penilaian-mandiri').DataTable();
-        $('#table-jadwal').DataTable();
+        $('.table').DataTable();
 
         $(".dataTables_wrapper").css("padding-left", "20px")
         $(".dataTables_wrapper").css("padding-right", "20px")

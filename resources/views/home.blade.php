@@ -44,9 +44,6 @@
                             <td>Penilaian Mandiri</td>
                             <td>47</td>
                             <td>
-                                <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#updateRole">
-                                    Kerjakan
-                                </button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRole">
                                     Lihat Soal
                                 </button>

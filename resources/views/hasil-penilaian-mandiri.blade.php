@@ -39,6 +39,36 @@
             </tbody>
         </table>
     </div>
+
+    <div class="card mb-4">
+        <h5 class="card-header">Data Hasil Penilaian Mandiri</h5>
+        <table id="table-penilaian-mandiri-skpd" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>No Tes</th>
+                    <th>Nama Tes</th>
+                    <th>Waktu</th>
+                    <th>Deskripsi</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>PM012022</td>
+                    <td>Evaluasi SPBE 2022</td>
+                    <td>30 Oktober 2022 - 3 November 2022</td>
+                    <td>Evaluasi SPBE 2022</td>
+                    <td>
+                        <a href="{{ route('detail-hasil-penilaian-mandiri.index') }}">
+                            <button type="button" title="Detail" class="btn btn-success">
+                                Detail
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <!-- Examples -->
 
 </div>
@@ -219,6 +249,7 @@
 
     function getData() {
         $('#table-penilaian-mandiri').DataTable();
+        $('#table-penilaian-mandiri-skpd').DataTable();
         $('#table-jadwal').DataTable();
 
         $(".dataTables_wrapper").css("padding-left", "20px")
