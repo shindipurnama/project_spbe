@@ -16,8 +16,6 @@ class PenilaianMandiriController extends Controller
      */
     public function index(Request $request)
     {
-        
-
         return view('penilaian-mandiri');
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }

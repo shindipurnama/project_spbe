@@ -276,7 +276,6 @@
                 kriteria: value
             })
 
-
             $("#valKriteria").val("")
         } else {
             alert("Masukkan kriteria dahulu")

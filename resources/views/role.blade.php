@@ -19,7 +19,7 @@
         <table id="table-role" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th>ID Role</th>
                     <th>Nama Role</th>
                     <th>Aksi</th>
                 </tr>

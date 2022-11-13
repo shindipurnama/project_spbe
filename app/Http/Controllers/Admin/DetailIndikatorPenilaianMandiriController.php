@@ -18,7 +18,7 @@ class DetailIndikatorPenilaianMandiriController extends Controller
      */
     public function index(Request $request)
     {
-        return view('penilaian-mandiri-detail-indikator');
+        return view('penilaian-mandiri-indikator');
     }
 
 

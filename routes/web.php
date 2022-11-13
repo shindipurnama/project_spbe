@@ -86,13 +86,13 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
     Route::delete('penilaian-mandiri-detail/destroy', 'DetailPenilaianMandiriController@massDestroy')->name('penilaian-mandiri-detail.massDestroy');
     Route::resource('penilaian-mandiri-detail', DetailPenilaianMandiriController::class)->shallow();
 
-    Route::delete('penilaian-mandiri-detail-indikator/destroy', 'DetailIndikatorPenilaianMandiriController@massDestroy')->name('penilaian-mandiri-detail-indikator.massDestroy');
-    Route::resource('penilaian-mandiri-detail-indikator', DetailIndikatorPenilaianMandiriController::class)->shallow();
+    Route::delete('penilaian-mandiri-indikator/destroy', 'DetailIndikatorPenilaianMandiriController@massDestroy')->name('penilaian-mandiri-indikator.massDestroy');
+    Route::resource('penilaian-mandiri-indikator', DetailIndikatorPenilaianMandiriController::class)->shallow();
 
     Route::delete('hasil-penilaian-mandiri/destroy', 'HasilPenilaianMandiriController@massDestroy')->name('hasil-penilaian-mandiri.massDestroy');
     Route::resource('hasil-penilaian-mandiri', HasilPenilaianMandiriController::class)->shallow();
 
-    Route::delete('detail-hasil-penilaian-mandiri/destroy', 'HasilPenilaianMandiriController@massDestroy')->name('detail-hasil-penilaian-mandiri.massDestroy');
+    Route::delete('detail-hasil-penilaian-mandiri/destroy', 'DetailHasilPenilaianMandiriController@massDestroy')->name('detail-hasil-penilaian-mandiri.massDestroy');
     Route::resource('detail-hasil-penilaian-mandiri', DetailHasilPenilaianMandiriController::class)->shallow();
 // });
 

@@ -118,7 +118,7 @@
                     <td>Penilaian Mandiri</td>
                     <td>47</td>
                     <td>
-                        <a href="{{ route('penilaian-mandiri.create') }}">
+                        <a href="{{ route('penilaian-mandiri-detail.index') }}">
                             <button type="button" class="btn btn-danger">
                                 Lihat Soal
                             </button>
