@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\HasilPenilaianMandiriController;
 use App\Http\Controllers\Admin\DetailHasilPenilaianMandiriController;
 use App\Http\Controllers\Admin\DomainController;
 use App\Http\Controllers\Admin\AspekController;
+use App\Http\Controllers\Admin\PenjadwalanController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +62,7 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 // Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
     Route::delete('domain/destroy', 'DomainController@massDestroy')->name('domain.massDestroy');
     Route::resource('domain', DomainController::class);
-    
+
     Route::delete('user-management/destroy', 'UserController@massDestroy')->name('user-management.massDestroy');
     Route::resource('user-management', UserController::class)->shallow();
 
@@ -85,6 +86,9 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
     Route::delete('penilaian-mandiri-detail/destroy', 'DetailPenilaianMandiriController@massDestroy')->name('penilaian-mandiri-detail.massDestroy');
     Route::resource('penilaian-mandiri-detail', DetailPenilaianMandiriController::class)->shallow();
+
+    Route::delete('penjadwalan/destroy', 'PenjadwalanController@massDestroy')->name('penjadwalan.massDestroy');
+    Route::resource('penjadwalan', PenjadwalanController::class)->shallow();
 
     Route::delete('penilaian-mandiri-detail-indikator/destroy', 'DetailIndikatorPenilaianMandiriController@massDestroy')->name('penilaian-mandiri-detail-indikator.massDestroy');
     Route::resource('penilaian-mandiri-detail-indikator', DetailIndikatorPenilaianMandiriController::class)->shallow();
