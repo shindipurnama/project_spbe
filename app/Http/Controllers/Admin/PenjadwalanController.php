@@ -5,24 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Penjadwalan;
+use Symfony\Component\HttpFoundation\Response;
 
-
-class PenilaianMandiriController extends Controller
+class PenjadwalanController extends Controller
 {
-    //
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
-        $jadwal = Penjadwalan::All();
-        return view('penilaian-mandiri', compact('jadwal'));
-        // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -31,7 +26,7 @@ class PenilaianMandiriController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -43,6 +38,9 @@ class PenilaianMandiriController extends Controller
     public function store(Request $request)
     {
         //
+        Penjadwalan::create($request->All());
+        return back();
+
     }
 
     /**
@@ -51,8 +49,9 @@ class PenilaianMandiriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
+        //
     }
 
     /**
@@ -63,8 +62,7 @@ class PenilaianMandiriController extends Controller
      */
     public function edit($id)
     {
-
-        // return view('penilaian-mandiri-soal', compact('id', 'aspek', 'indikator'));
+        //
     }
 
     /**
@@ -77,6 +75,9 @@ class PenilaianMandiriController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $jadwal = Penjadwalan::find($id)->update($request->all());
+        return back();
     }
 
     /**
@@ -88,6 +89,8 @@ class PenilaianMandiriController extends Controller
     public function destroy($id)
     {
         //
-    }
 
+        Penjadwalan::find($id)->delete();
+        return back();
+    }
 }

@@ -78,19 +78,21 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($jadwal as $key => $j)
                 <tr>
-                    <td>1</td>
-                    <td>Periode November</td>
-                    <td>1 November 2022 - 15 November 2022</td>
+                    <td>{{$key +1}}</td>
+                    <td>{{$j->nama}}</td>
+                    <td>{{$j->start_date->format('d F y')}}  -  {{$j->end_date->format('d F y')}}</td>
                     <td>
-                        <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateJadwal">
+                        <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateJadwal{{$j->id}}">
                             <i class='bx bxs-edit'></i>
                         </button>
-                        <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteJadwal">
+                        <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteJadwal{{$j->id}}">
                             <i class='bx bxs-trash'></i>
                         </button>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -224,73 +226,87 @@
                 <h5 class="modal-title" id="exampleModalLabel1">Atur Jadwal</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="timeStart" class="form-label">Nama Jadwal</label>
-                        <input type="text" id="nameSchedule" class="form-control" placeholder="Masukkan nama jadwal">
+            <form action="{{ route("penjadwalan.store") }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="timeStart" class="form-label">Nama Jadwal</label>
+                            <input type="text" name="nama" id="nameSchedule" class="form-control" placeholder="Masukkan nama jadwal">
+                            <input type="hidden" name="penjadwalan_id" id="nameSchedule" value="J001" class="form-control" placeholder="Masukkan nama jadwal">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="timeStart" class="form-label">Waktu Mulai Tes</label>
+                            <input type="date" name="start_date" id="timeStart" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="timeEnd" class="form-label">Waktu Berakhir Tes</label>
+                            <input type="date" name="end_date" id="timeEnd" class="form-control">
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="timeStart" class="form-label">Waktu Mulai Tes</label>
-                        <input type="date" id="timeStart" class="form-control">
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="timeEnd" class="form-label">Waktu Berakhir Tes</label>
-                        <input type="date" id="timeEnd" class="form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-<div class="modal fade" id="updateJadwal" tabindex="-1" aria-modal="true" role="dialog">
+
+@foreach ($jadwal as $key => $j )
+<div class="modal fade" id="updateJadwal{{$j->id}}" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Data Penilaian Mandiri</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="{{ route('penjadwalan.update', $j->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
             <div class="modal-body">
                 <div class="row">
                     <div class="col mb-3">
                         <label for="timeStart" class="form-label">Nama Jadwal</label>
-                        <input type="text" id="nameSchedule" class="form-control" placeholder="Masukkan nama jadwal">
+                        <input type="text" id="nameSchedule" name="nama" value="{{$j->nama}}" class="form-control" placeholder="Masukkan nama jadwal">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col mb-3">
                         <label for="timeStart" class="form-label">Waktu Mulai Tes</label>
-                        <input type="date" id="timeStart" class="form-control">
+                        <input type="text" id="timeStart" name="start_date" value="{{$j->start_date}}" class="form-control">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col mb-3">
                         <label for="timeEnd" class="form-label">Waktu Berakhir Tes</label>
-                        <input type="date" id="timeEnd" class="form-control">
+                        <input type="text" id="timeEnd"  name="end_date" value="{{$j->end_date}}" class="form-control">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
-<div class="modal fade" id="deleteJadwal" tabindex="-1" aria-modal="true" role="dialog">
+
+<div class="modal fade" id="deleteJadwal{{$j->id}}" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="{{ route("penjadwalan.destroy",$j->id) }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="modal-body">
                 <div class="row">
                     <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
@@ -298,11 +314,13 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
+                <button type="submit" class="btn btn-danger">Hapus</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
+@endforeach
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 

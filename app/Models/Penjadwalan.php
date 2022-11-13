@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Penjadwalan extends Model
-{use HasFactory, SoftDeletes;
+{
+    use HasFactory, SoftDeletes;
 
     public $table = 'penjadwalan';
 
     protected $dates = [
+        'start_date',
+        'end_date',
         'updated_at',
         'created_at',
         'deleted_at',
@@ -21,7 +24,7 @@ class Penjadwalan extends Model
         'penjadwalan_id',
         'start_date',
         'end_date',
-        'attribute',
+        'nama',
         'created_at',
         'updated_at',
         'deleted_at',
