@@ -66,6 +66,31 @@
 </div>
 @endforeach
 
+@foreach ($domain as $key => $d )
+<div class="modal fade" id="deleteDomain{{$d->id}}" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route("domain.destroy",$d->id) }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
 <!-- Aspek -->
 <div class="modal fade" id="insertAspek" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
@@ -134,6 +159,30 @@
 </div>
 @endforeach
 
+@foreach ($aspek as $key => $a )
+<div class="modal fade" id="deleteAspek{{$a->id}}" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route("aspek.destroy",$a->id) }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 <!-- Indikator -->
 <div class="modal fade" id="insertIndikator" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
@@ -202,6 +251,30 @@
 </div>
 @endforeach
 
+@foreach ($indikator as $key => $i )
+<div class="modal fade" id="deleteIndikator{{$i->id}}" tabindex="-1" aria-modal="true" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route("indikator.destroy",$i->id) }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 <!-- SKPD -->
 <div class="modal fade" id="insertSKPD" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">

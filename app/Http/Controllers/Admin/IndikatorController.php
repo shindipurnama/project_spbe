@@ -87,5 +87,8 @@ class IndikatorController extends Controller
     public function destroy($id)
     {
         //
+
+        Indikator::find($id)->delete();
+        return back();
     }
 }

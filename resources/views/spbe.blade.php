@@ -52,7 +52,7 @@
                                     <button class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateDomain{{$d->id}}">
                                         <i class='bx bxs-edit'></i>
                                     </button>
-                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDomain">
+                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDomain{{$d->id}}">
                                         <i class='bx bxs-trash'></i>
                                     </button>
                                 </td>
@@ -91,7 +91,7 @@
                                     <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateAspek{{$a->id}}">
                                         <i class='bx bxs-edit'></i>
                                     </button>
-                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAspek">
+                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAspek{{$a->id}}">
                                         <i class='bx bxs-trash'></i>
                                     </button>
                                 </td>
@@ -130,7 +130,7 @@
                                     <button class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateIndikator{{$i->id}}">
                                         <i class='bx bxs-edit'></i>
                                     </button>
-                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator">
+                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator{{$i->id}}">
                                         <i class='bx bxs-trash'></i>
                                     </button>
                                 </td>

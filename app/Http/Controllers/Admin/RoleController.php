@@ -112,6 +112,9 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //
+
+        Role::find($id)->delete();
+        return back();
     }
 
 }
