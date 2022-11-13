@@ -42,9 +42,9 @@
                             <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUser">
                                 <i class='bx bxs-trash'></i>
                             </button>
-                            <button type="button" title="Edit Password" class="btn btn-icon btn-warning" data-bs-toggle="modal" data-bs-target="#updatePasswordUser">
+                            <!-- <button type="button" title="Edit Password" class="btn btn-icon btn-warning" data-bs-toggle="modal" data-bs-target="#updatePasswordUser">
                                 <i class='bx bxs-key'></i>
-                            </button>
+                            </button> -->
                         </td>
                     </tr>
                 @endforeach
@@ -171,7 +171,7 @@
 </div>
 @endforeach
 
-<div class="modal fade" id="updatePasswordUser" tabindex="-1" aria-modal="true" role="dialog">
+<!-- <div class="modal fade" id="updatePasswordUser" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -208,7 +208,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="modal fade" id="deleteUser" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">

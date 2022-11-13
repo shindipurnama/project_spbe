@@ -39,9 +39,9 @@
                         <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSKPD">
                             <i class='bx bxs-trash'></i>
                         </button>
-                        <button type="button" title="Edit Password" class="btn btn-icon btn-warning" data-bs-toggle="modal" data-bs-target="#updatePasswordSKPD">
+                        <!-- <button type="button" title="Edit Password" class="btn btn-icon btn-warning" data-bs-toggle="modal" data-bs-target="#updatePasswordSKPD">
                             <i class='bx bxs-key'></i>
-                        </button>
+                        </button> -->
                     </td>
                 </tr>
             </tbody>

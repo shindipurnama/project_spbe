@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Domain;
+use App\Models\Aspek;
+use App\Models\Indikator;
 
-
-class PenilaianMandiriController extends Controller
+class DetailPenilaianMandiriController extends Controller
 {
     //
     /**
@@ -16,10 +18,11 @@ class PenilaianMandiriController extends Controller
      */
     public function index(Request $request)
     {
-        
+        $domain = Domain::All();
+        $aspek = Aspek::All();
+        $indikator = Indikator::All();
 
-        return view('penilaian-mandiri');
-        // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        return view('penilaian-mandiri-detail', compact('domain', 'aspek', 'indikator'));
     }
 
 
@@ -28,9 +31,9 @@ class PenilaianMandiriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function detail(Request $request)
     {
-        
+        // return view('penilaian-mandiri-detail');
     }
 
     /**
@@ -50,10 +53,11 @@ class PenilaianMandiriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show( Request $request)
     {
+        //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -62,8 +66,7 @@ class PenilaianMandiriController extends Controller
      */
     public function edit($id)
     {
-        
-        // return view('penilaian-mandiri-soal', compact('id', 'aspek', 'indikator'));
+        //
     }
 
     /**
