@@ -103,5 +103,7 @@ class DomainController extends Controller
     public function destroy($id)
     {
         //
+        Domain::find($id)->delete();
+        return back();
     }
 }

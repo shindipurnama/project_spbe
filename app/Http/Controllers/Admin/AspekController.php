@@ -103,5 +103,8 @@ class AspekController extends Controller
     public function destroy($id)
     {
         //
+
+        Aspek::find($id)->delete();
+        return back();
     }
 }

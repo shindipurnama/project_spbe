@@ -34,12 +34,12 @@
                         <td>{{$u->name}}</td>
                         <td>{{$u->username}}</td>
                         <td>{{$u->email}}</td>
-                        <td>--</td>
+                        <td>{{$u->role->role}}</td>
                         <td>
                             <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateUser{{$u->id}}">
                                 <i class='bx bxs-edit'></i>
                             </button>
-                            <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUser">
+                            <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUser{{$u->id}}">
                                 <i class='bx bxs-trash'></i>
                             </button>
                             <button type="button" title="Edit Password" class="btn btn-icon btn-warning" data-bs-toggle="modal" data-bs-target="#updatePasswordUser">
@@ -210,24 +210,31 @@
     </div>
 </div>
 
-<div class="modal fade" id="deleteUser" tabindex="-1" aria-modal="true" role="dialog">
+
+@foreach ($user as $key => $u )
+<div class="modal fade" id="deleteUser{{$u->id}}" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+            <form action="{{ route("user-management.destroy",$u->id) }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+@endforeach
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
