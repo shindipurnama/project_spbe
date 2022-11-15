@@ -300,13 +300,13 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="timeStart" class="form-label">Waktu Mulai Tes</label>
-                        <input type="text" id="timeStart" name="start_date" value="{{$j->start_date}}" class="form-control">
+                        <input type="date" id="timeStart" name="start_date" value="{{date('Y-m-d', strtotime($j->start_date))}}" class="form-control">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col mb-3">
                         <label for="timeEnd" class="form-label">Waktu Berakhir Tes</label>
-                        <input type="text" id="timeEnd"  name="end_date" value="{{$j->end_date}}" class="form-control">
+                        <input type="date" id="timeEnd"  name="end_date" value="{{date('Y-m-d', strtotime($j->end_date))}}" class="form-control">
                     </div>
                 </div>
             </div>
