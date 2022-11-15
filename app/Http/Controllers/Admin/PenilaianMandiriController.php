@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Penjadwalan;
-
+use App\Models\User;
+use App\Models\Capaian;
+use App\Models\PenilaianMandiri;
 
 class PenilaianMandiriController extends Controller
 {
@@ -19,7 +21,8 @@ class PenilaianMandiriController extends Controller
     {
 
         $jadwal = Penjadwalan::All();
-        return view('penilaian-mandiri', compact('jadwal'));
+        $penilaian = PenilaianMandiri::All();
+        return view('penilaian-mandiri', compact('jadwal','penilaian'));
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
 
@@ -43,6 +46,27 @@ class PenilaianMandiriController extends Controller
     public function store(Request $request)
     {
         //
+        $skpd = User::where('role_id','R002')->get();
+        $penilaian_id = PenilaianMandiri::latest('id')->first() ?? 0;
+        $penilaian_id = $penilaian_id +1;
+        $id = 'PM'.str_pad($penilaian_id,3,"0",STR_PAD_LEFT);
+        // dd($request->all());
+
+        foreach($skpd as $key => $skpd){
+            $data = array(
+                'penilaian_id' => $id,
+                'user_id' => $skpd->username
+            );
+            Capaian::create($data);
+        }
+
+        $penilaian = array(
+            'penilaian_id'=>$id,
+            'penjadwalan_id'=>$request->penjadwalan_id,
+            'penilaian_name'=>$request->penilaian_name
+        );
+        PenilaianMandiri::create($penilaian);
+        return back();
     }
 
     /**
@@ -64,7 +88,6 @@ class PenilaianMandiriController extends Controller
     public function edit($id)
     {
 
-        // return view('penilaian-mandiri-soal', compact('id', 'aspek', 'indikator'));
     }
 
     /**
@@ -77,6 +100,9 @@ class PenilaianMandiriController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        PenilaianMandiri::find($id)->update($request->all());
+        return back();
     }
 
     /**
@@ -88,6 +114,11 @@ class PenilaianMandiriController extends Controller
     public function destroy($id)
     {
         //
+        $penilaian = PenilaianMandiri::find($id);
+        $capaian = Capaian::where('penilaian_id',$penilaian->penilaian_id)->delete();
+        $penilaian->delete();
+        // dd($capaian);
+        return back();
     }
 
 }

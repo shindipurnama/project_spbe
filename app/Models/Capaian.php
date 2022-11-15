@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Capaian extends Model
-{use HasFactory, SoftDeletes;
+{
+    use HasFactory;
 
-    public $table = 'capian';
+    public $table = 'capaian';
 
     protected $dates = [
         'updated_at',
@@ -18,6 +19,7 @@ class Capaian extends Model
     ];
 
     protected $fillable = [
+        'user_id',
         'spbe_id',
         'penilaian_id',
         'jumlah_capaian',

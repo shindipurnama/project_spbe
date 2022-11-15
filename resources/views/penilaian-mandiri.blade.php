@@ -43,25 +43,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Penilaian 1</td>
-                    <td>1 November 2022 - 15 Novemebr 2022</td>
-                    <td>20 Soal</td>
-                    <td>
-                        <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updatePenilaianMandiri">
-                            <i class='bx bxs-edit'></i>
-                        </button>
-                        <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deletePenilaianMandiri">
-                            <i class='bx bxs-trash'></i>
-                        </button>
-                        <a href="{{ route('penilaian-mandiri-detail.index') }}">
-                            <button type="button" class="btn btn-icon btn-success">
-                                <i class='bx bx-info-circle'></i>
+                @foreach ($penilaian as $key =>$p)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td>{{$p->penilaian_name}}</td>
+                        <td>{{$p->jadwal->start_date->format('d F y')}} - {{$p->jadwal->end_date->format('d F y')}}</td>
+                        <td>{{$p->jumlah_indikator ?? ''}}</td>
+                        <td>
+                            <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updatePenilaianMandiri{{$p->id}}">
+                                <i class='bx bxs-edit'></i>
                             </button>
-                        </a>
-                    </td>
-                </tr>
+                            <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deletePenilaianMandiri{{$p->id}}">
+                                <i class='bx bxs-trash'></i>
+                            </button>
+                            <a href="{{ route('penilaian-mandiri-detail.index') }}">
+                                <button type="button" class="btn btn-icon btn-success">
+                                    <i class='bx bx-info-circle'></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -142,81 +144,100 @@
                 <h5 class="modal-title" id="exampleModalLabel1">Tambah Data Penilaian Mandiri</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="name" class="form-label">Nama Penilaian</label>
-                        <input type="text" id="name" class="form-control" placeholder="Masukkan nama">
+            <form action="{{ route("penilaian-mandiri.store") }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="name" class="form-label">Nama Penilaian</label>
+                            <input type="text" id="name" name="penilaian_name" class="form-control" placeholder="Masukkan nama">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label class="form-label">Jadwal</label>
+                            <select id="domain" name="penjadwalan_id" class="form-select">
+                                <option hidden selected>-- Pilih Jadwal --</option>
+                                @foreach ($jadwal as $key => $j)
+                                    <option value="{{$j->penjadwalan_id}}">{{$j->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Jadwal</label>
-                        <select id="domain" class="form-select">
-                            <option value="">-- Pilih Jadwal --</option>
-                            <option value="Jadwal 1">Jadwal 1</option>
-                            <option value="Jadwal 2">Jadwal 2</option>
-                        </select>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-<div class="modal fade" id="updatePenilaianMandiri" tabindex="-1" aria-modal="true" role="dialog">
+
+@foreach ($penilaian as $key => $p )
+<div class="modal fade" id="updatePenilaianMandiri{{$p->id}}" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Edit Data Penilaian Mandiri</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="name" class="form-label">Nama Penilaian</label>
-                        <input type="text" id="name" class="form-control" placeholder="Masukkan nama" value="Indikator 1">
+            <form action="{{ route('penilaian-mandiri.update', $p->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="name" class="form-label">Nama Penilaian</label>
+                            <input type="text" id="name" class="form-control" name="penilaian_name" value="{{$p->penilaian_name}}" placeholder="Masukkan nama" value="Indikator 1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label class="form-label">Jadwal</label>
+                            <select id="domain" name="penjadwalan_id" class="form-select">
+                                @foreach ($jadwal as $key => $j)
+                                    @if($j->ppenjadwalan_id == $p->penjadwalan_id)
+                                        <option value="{{$j->penjadwalan_id}}" selected>{{$j->nama}}</option>
+                                    @else
+                                        <option value="{{$j->penjadwalan_id}}">{{$j->nama}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Jadwal</label>
-                        <select id="domain" class="form-select">
-                            <option value="">-- Pilih Jadwal --</option>
-                            <option value="Jadwal 1">Jadwal 1</option>
-                            <option value="Jadwal 2">Jadwal 2</option>
-                        </select>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-<div class="modal fade" id="deletePenilaianMandiri" tabindex="-1" aria-modal="true" role="dialog">
+<div class="modal fade" id="deletePenilaianMandiri{{$p->id}}" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+            <form action="{{ route("penilaian-mandiri.destroy",$p->id) }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+@endforeach
 
 <!-- Modal Atur Jadwal -->
 <div class="modal fade" id="insertJadwal" tabindex="-1" aria-modal="true" role="dialog">

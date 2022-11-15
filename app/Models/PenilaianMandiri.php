@@ -27,4 +27,9 @@ class PenilaianMandiri extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function jadwal()
+    {
+        return $this->hasone(Penjadwalan::class, 'penjadwalan_id', 'penjadwalan_id');
+    }
 }

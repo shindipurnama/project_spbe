@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Domain;
-use App\Models\Aspek;
-use App\Models\Indikator;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class SKPDController extends Controller
 {
@@ -17,19 +16,10 @@ class SKPDController extends Controller
      */
     public function index()
     {
-        $code_domain = Domain::count('id') ?? 0;
-        $code_domain ='D'.str_pad($code_domain+1, 3, "0", STR_PAD_LEFT);
-        $domain = Domain::All();
-
-        $code_aspek = Aspek::count('id') ?? 0;
-        $code_aspek ='A'.str_pad($code_aspek+1, 3, "0", STR_PAD_LEFT);
-        $aspek = Aspek::All();
-
-        $code_indikator = Indikator::count('id') ?? 0;
-        $code_indikator ='I'.str_pad($code_indikator+1, 3, "0", STR_PAD_LEFT);
-        $indikator = Indikator::All();
-
-        return view('skpd', compact('code_domain','domain','code_aspek','aspek','code_indikator','indikator'));
+        $skpd = User::where('role_id','R002')->get();
+        $user = User::where('role_id','R002')->get();
+        // dd($skpd);
+        return view('skpd', compact('skpd','user'));
     }
 
     /**
@@ -51,8 +41,19 @@ class SKPDController extends Controller
     public function store(Request $request)
     {
         //
-        Aspek::create($request->All());
-        return redirect()->route('domain.index');
+        $data = array(
+            'name'=>$request->name,
+            'email'=>'',
+            'username'=>$request->username,
+            'tipe'=>$request->tipe,
+            'role_id'=>'R002',
+            'password'=>Hash::make($request->username),
+            'created_at'=> date('Y-m-d H:i:s'),
+            'updated_at'=> date('Y-m-d H:i:s'),
+        );
+        // dd($data);
+        User::create($data);
+        return redirect()->route('skpd.index');
     }
 
     /**
@@ -75,6 +76,10 @@ class SKPDController extends Controller
     public function edit($id)
     {
         //
+
+       User::find($id)->update($request->all());
+
+        return redirect()->route('skpd.index');
     }
 
     /**
@@ -86,9 +91,10 @@ class SKPDController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $aspek = Aspek::find($id)->update($request->all());
+        // dd($id);
+        User::find($id)->update($request->all());
 
-        return redirect()->route('domain.index');
+        return redirect()->route('skpd.index');
     }
 
     /**
@@ -100,5 +106,7 @@ class SKPDController extends Controller
     public function destroy($id)
     {
         //
+        User::find($id)->delete();
+        return back();
     }
 }
