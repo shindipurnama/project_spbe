@@ -21,6 +21,7 @@ class IndikatorSPBE extends Model
     protected $fillable = [
         'spbe_id',
         'indikator_id',
+        'penilaian_id',
         'domain_id',
         'aspek_id',
         'spbe',

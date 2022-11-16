@@ -56,7 +56,7 @@
                             <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deletePenilaianMandiri{{$p->id}}">
                                 <i class='bx bxs-trash'></i>
                             </button>
-                            <a href="{{ route('penilaian-mandiri-detail.index') }}">
+                            <a href="{{ route('penilaian-mandiri-detail.show', $p->id) }}">
                                 <button type="button" class="btn btn-icon btn-success">
                                     <i class='bx bx-info-circle'></i>
                                 </button>

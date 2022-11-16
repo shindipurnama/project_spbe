@@ -26,9 +26,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($spbe as $key => $s)
                     <tr>
-                        <td>1</td>
-                        <td>Indikator 1</a></td>
+                        <td>{{$key+1}}</td>
+                        <td>{{$s->spbe}}</a></td>
                         <td>
                             <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updatIndikator">
                                 <i class='bx bxs-edit'></i>
@@ -36,13 +37,14 @@
                             <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator">
                                 <i class='bx bxs-trash'></i>
                             </button>
-                            <a href="{{ route('penilaian-mandiri-indikator.index') }}">
+                            <a href="{{ route('penilaian-mandiri-detail.edit',$s->id) }}">
                                 <button type="button" class="btn btn-icon btn-success">
                                     <i class='bx bx-info-circle'></i>
                                 </button>
                             </a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -107,62 +109,66 @@
                 <h5 class="modal-title" id="exampleModalLabel1">Tambah Data</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="name" class="form-label">Nama</label>
-                        <input type="text" id="name" class="form-control" placeholder="Masukkan nama">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Domain</label>
-                        <select id="domain" class="form-select">
-                            <option value="">-- Pilih Domain --</option>
-                            @foreach ($domain as $key => $d)
-                            <option value="{{$d->domain_id}}">{{$d->nama_domain}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Aspek</label>
-                        <select id="aspek" class="form-select">
-                            <option value="">-- Pilih Aspek --</option>
-                            @foreach ($aspek as $key => $a)
-                            <option value="{{$a->aspek_id}}">{{$a->aspek_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Indikator</label>
-                        <select id="indikator" class="form-select">
-                            <option value="">-- Pilih Indikator --</option>
-                            @foreach ($indikator as $key => $i)
-                            <option value="{{$i->indikator_id}}">{{$i->indikator_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Kriteria</label>
-                        <div class="input-group">
-                            <input type="text" id="valKriteria" class="form-control" placeholder="Masukkan kriteria" aria-label="Masukkan kriteria" aria-describedby="btnAddKriteria">
-                            <button class="btn btn-secondary" type="button" id="btnAddKriteria">Tambah</button>
-                        </div>
-                        <div class="input-group" style="margin: 10px 10px 10px 0px;" id="listKriteria">
+            <form action="{{ route("penilaian-mandiri-detail.store") }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" id="name" name="spbe" class="form-control" placeholder="Masukkan nama">
+                            <input type="hidden" id="name" name="penilaian_id" value="{{$penilaian->penilaian_id}}" class="form-control" placeholder="Masukkan nama">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label class="form-label">Domain</label>
+                            <select id="domain" name="domain" class="form-select">
+                                <option value="">-- Pilih Domain --</option>
+                                @foreach ($domain as $key => $d)
+                                <option value="{{$d->domain_id}}">{{$d->nama_domain}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label class="form-label">Aspek</label>
+                            <select id="aspek"  name="aspek" class="form-select">
+                                <option value="">-- Pilih Aspek --</option>
+                                @foreach ($aspek as $key => $a)
+                                <option value="{{$a->aspek_id}}">{{$a->aspek_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label class="form-label">Indikator</label>
+                            <select id="indikator"  name="indikator" class="form-select">
+                                <option value="">-- Pilih Indikator --</option>
+                                @foreach ($indikator as $key => $i)
+                                <option value="{{$i->indikator_id}}">{{$i->indikator_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label class="form-label">Kriteria</label>
+                            <div class="input-group">
+                                <input type="text" id="valKriteria" class="form-control" placeholder="Masukkan kriteria" aria-label="Masukkan kriteria" aria-describedby="btnAddKriteria">
+                                <button class="btn btn-secondary" type="button" id="btnAddKriteria">Tambah</button>
+                            </div>
+                            <div class="input-group" style="margin: 10px 10px 10px 0px;" id="listKriteria">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -369,6 +375,7 @@
                                 <p class="card-text">
                                     ${arrayKriteria[i].no}, ${arrayKriteria[i].kriteria}
                                 </p>
+                                <input type="hidden" class="form-control" name="kirteria[]" value="${arrayKriteria[i].kriteria}">
                             </div>
                         </div>
                         <div class="col-md-2">

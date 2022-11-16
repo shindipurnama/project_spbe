@@ -8,6 +8,9 @@ use App\Models\Penjadwalan;
 use App\Models\User;
 use App\Models\Capaian;
 use App\Models\PenilaianMandiri;
+use App\Models\Domain;
+use App\Models\Aspek;
+use App\Models\Indikator;
 
 class PenilaianMandiriController extends Controller
 {
@@ -22,7 +25,11 @@ class PenilaianMandiriController extends Controller
 
         $jadwal = Penjadwalan::All();
         $penilaian = PenilaianMandiri::All();
-        return view('penilaian-mandiri', compact('jadwal','penilaian'));
+        $domain = Domain::All();
+        $aspek = Aspek::All();
+        $indikator = Indikator::All();
+
+        return view('penilaian-mandiri', compact('jadwal','penilaian','domain','aspek','indikator'));
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
 
@@ -48,7 +55,7 @@ class PenilaianMandiriController extends Controller
         //
         $skpd = User::where('role_id','R002')->get();
         $penilaian_id = PenilaianMandiri::latest('id')->first() ?? 0;
-        $penilaian_id = $penilaian_id +1;
+        $penilaian_id = $penilaian_id->id +1;
         $id = 'PM'.str_pad($penilaian_id,3,"0",STR_PAD_LEFT);
         // dd($request->all());
 
