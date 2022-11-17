@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\Aspek;
 use App\Models\Indikator;
+use App\Models\Kirteria;
+use App\Models\PenilaianMandiri;
+use App\Models\IndikatorSPBE;
 
 class DetailPenilaianMandiriController extends Controller
 {
@@ -18,11 +21,6 @@ class DetailPenilaianMandiriController extends Controller
      */
     public function index(Request $request)
     {
-        $domain = Domain::All();
-        $aspek = Aspek::All();
-        $indikator = Indikator::All();
-
-        return view('penilaian-mandiri-detail', compact('domain', 'aspek', 'indikator'));
     }
 
 
@@ -45,6 +43,34 @@ class DetailPenilaianMandiriController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->all());
+        $spbe = IndikatorSPBE::latest('id')->first();
+        $id = $spbe->id+1;
+
+        $data_spbe = array(
+            'spbe_id'=>$id,
+            'penilaian_id'=>$request->penilaian_id,
+            'domain_id'=>$request->domain,
+            'aspek_id'=>$request->aspek,
+            'indikator_id'=>$request->indikator,
+            'spbe'=>$request->spbe,
+            'jumlah_capaian'=>0,
+            'total'=>0,
+        );
+        IndikatorSPBE::create($data_spbe);
+
+        foreach ($request->kirteria as $key => $kirteria){
+            $kirteria = Kirteria::latest('id')->first() ?? 0;
+
+            $data = array(
+                'kirteria_id' => $kirteria->id+1,
+                'spbe_id'=>$id,
+                'kirteria'=>$request->kirteria[$key]
+            );
+            Kirteria::create($data);
+        }
+
+        return back();
     }
 
     /**
@@ -53,9 +79,17 @@ class DetailPenilaianMandiriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( Request $request)
+    public function show( $id)
     {
         //
+
+        $domain = Domain::All();
+        $aspek = Aspek::All();
+        $indikator = Indikator::All();
+        $penilaian =PenilaianMandiri::find($id);
+        $spbe =  IndikatorSPBE::where('penilaian_id',$penilaian->penilaian_id)->get();
+
+        return view('penilaian-mandiri-detail', compact('domain', 'aspek', 'indikator','penilaian','spbe'));
     }
 
     /**
@@ -67,6 +101,14 @@ class DetailPenilaianMandiriController extends Controller
     public function edit($id)
     {
         //
+        $spbe =  IndikatorSPBE::find($id);
+        $domain = Domain::All();
+        $aspek = Aspek::All();
+        $indikator = Indikator::All();
+        $kirteria = Kirteria::where('spbe_id',$spbe->spbe_id)->get();
+        // dd($kirteria);
+
+        return view('penilaian-mandiri-indikator', compact('domain', 'aspek', 'indikator','kirteria','spbe'));
     }
 
     /**
@@ -79,6 +121,17 @@ class DetailPenilaianMandiriController extends Controller
     public function update(Request $request, $id)
     {
         //
+        switch ($request->input('action')) {
+            case 'save':
+                IndikatorSPBE::find($id)->update($request->all());
+                return back();
+
+            break;
+            case 'kirteria':
+                Kirteria::find($id)->update($request->all());
+                return back();
+            break;
+        }
     }
 
     /**
@@ -90,6 +143,11 @@ class DetailPenilaianMandiriController extends Controller
     public function destroy($id)
     {
         //
+        $spbe = IndikatorSPBE::find($id);
+        $Kirteria = Kirteria::where('spbe_id',$spbe->spbe_id)->delete();
+        $spbe->delete();
+        // dd($capaian);
+        return back();
     }
 
 }

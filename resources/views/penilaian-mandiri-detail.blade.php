@@ -3,6 +3,9 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
+
+    @can('admin')
+    {{-- admin --}}
     <div class="row">
         <div class="col-6">
         </div>
@@ -26,28 +29,127 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($spbe as $key => $s)
                     <tr>
-                        <td>1</td>
-                        <td>Indikator 1</a></td>
+                        <td>{{$key+1}}</td>
+                        <td>{{$s->spbe}}</a></td>
                         <td>
-                            <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updatIndikator">
-                                <i class='bx bxs-edit'></i>
-                            </button>
-                            <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator">
-                                <i class='bx bxs-trash'></i>
-                            </button>
-                            <a href="{{ route('penilaian-mandiri-indikator.index') }}">
-                                <button type="button" class="btn btn-icon btn-success">
+                            <a href="{{ route('penilaian-mandiri-detail.edit',$s->id) }}">
+                                <button type="button" class="btn btn-icon btn-info">
                                     <i class='bx bx-info-circle'></i>
                                 </button>
                             </a>
+                            <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator{{$s->id}}">
+                                <i class='bx bxs-trash'></i>
+                            </button>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="insertIndikator" tabindex="-1" aria-modal="true" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Tambah Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route("penilaian-mandiri-detail.store") }}" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="name" class="form-label">Nama</label>
+                                <input type="text" id="name" name="spbe" class="form-control" placeholder="Masukkan nama">
+                                <input type="hidden" id="name" name="penilaian_id" value="{{$penilaian->penilaian_id}}" class="form-control" placeholder="Masukkan nama">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label class="form-label">Domain</label>
+                                <select id="domain" name="domain" class="form-select">
+                                    <option value="">-- Pilih Domain --</option>
+                                    @foreach ($domain as $key => $d)
+                                    <option value="{{$d->domain_id}}">{{$d->nama_domain}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label class="form-label">Aspek</label>
+                                <select id="aspek"  name="aspek" class="form-select">
+                                    <option value="">-- Pilih Aspek --</option>
+                                    @foreach ($aspek as $key => $a)
+                                    <option value="{{$a->aspek_id}}">{{$a->aspek_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label class="form-label">Indikator</label>
+                                <select id="indikator"  name="indikator" class="form-select">
+                                    <option value="">-- Pilih Indikator --</option>
+                                    @foreach ($indikator as $key => $i)
+                                    <option value="{{$i->indikator_id}}">{{$i->indikator_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label class="form-label">Kriteria</label>
+                                <div class="input-group">
+                                    <input type="text" id="valKriteria" class="form-control" placeholder="Masukkan kriteria" aria-label="Masukkan kriteria" aria-describedby="btnAddKriteria">
+                                    <button class="btn btn-secondary" type="button" id="btnAddKriteria">Tambah</button>
+                                </div>
+                                <div class="input-group" style="margin: 10px 10px 10px 0px;" id="listKriteria">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @foreach ($spbe as $key=> $s)
+    <div class="modal fade" id="deleteIndikator{{$s->id}}" tabindex="-1" aria-modal="true" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route("penilaian-mandiri-detail.destroy",$s->id) }}" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
+    @endcan
+
+    @can('skpd')
     <div class="card">
         <h5 class="card-header">Detail Penilaian Mandiri</h5>
         <div class="card-body">
@@ -97,230 +199,75 @@
     </div>
     <!-- Examples -->
 
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="insertIndikator" tabindex="-1" aria-modal="true" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Tambah Data</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="name" class="form-label">Nama</label>
-                        <input type="text" id="name" class="form-control" placeholder="Masukkan nama">
-                    </div>
+    <div class="modal fade" id="modalSoal" tabindex="-1" aria-modal="true" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Domain</label>
-                        <select id="domain" class="form-select">
-                            <option value="">-- Pilih Domain --</option>
-                            @foreach ($domain as $key => $d)
-                            <option value="{{$d->domain_id}}">{{$d->nama_domain}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Aspek</label>
-                        <select id="aspek" class="form-select">
-                            <option value="">-- Pilih Aspek --</option>
-                            @foreach ($aspek as $key => $a)
-                            <option value="{{$a->aspek_id}}">{{$a->aspek_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Indikator</label>
-                        <select id="indikator" class="form-select">
-                            <option value="">-- Pilih Indikator --</option>
-                            @foreach ($indikator as $key => $i)
-                            <option value="{{$i->indikator_id}}">{{$i->indikator_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Kriteria</label>
-                        <div class="input-group">
-                            <input type="text" id="valKriteria" class="form-control" placeholder="Masukkan kriteria" aria-label="Masukkan kriteria" aria-describedby="btnAddKriteria">
-                            <button class="btn btn-secondary" type="button" id="btnAddKriteria">Tambah</button>
-                        </div>
-                        <div class="input-group" style="margin: 10px 10px 10px 0px;" id="listKriteria">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="mb-3" style="display: flex;">
+                            <label class="col-sm-2" for="basic-default-name">Domain</label>
+                            <label class="col-sm-10" for="basic-default-name">: D001 - Kebijakan SPBE</label>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="updateIndikator" tabindex="-1" aria-modal="true" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit Data</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="name" class="form-label">Nama Penilaian</label>
-                        <input type="text" id="name" class="form-control" placeholder="Masukkan nama" value="Indikator 1">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Jadwal</label>
-                        <select id="domain" class="form-select">
-                            <option value="">-- Pilih Jadwal --</option>
-                            <option value="Jadwal 1">Jadwal 1</option>
-                            <option value="Jadwal 2">Jadwal 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Domain</label>
-                        <select id="domain" class="form-select">
-                            <option value="Domain 1">Domain 1</option>
-                            <option value="Domain 2">Domain 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Aspek</label>
-                        <select id="aspek" class="form-select">
-                            <option value="Aspek 1">Aspek 1</option>
-                            <option value="Aspek 2">Aspek 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Indikator</label>
-                        <select id="indikator" class="form-select">
-                            <option value="Indikator 1">Indikator 1</option>
-                            <option value="Indikator 2">Indikator 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Kriteria</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Masukkan kriteria" aria-label="Masukkan kriteria" aria-describedby="button-addon2">
-                            <button class="btn btn-secondary" type="button" id="button-addon2">Tambah</button>
+                    <div class="row">
+                        <div class="mb-3" style="display: flex;">
+                            <label class="col-sm-2" for="basic-default-name">Aspek</label>
+                            <label class="col-sm-10" for="basic-default-name">: A001 - Kebijakan Internal Terkait Tata Kelola SPBE</label>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="mb-3" style="display: flex;">
+                            <label class="col-sm-2" for="basic-default-name">Indikator</label>
+                            <label class="col-sm-10" for="basic-default-name">: I001 - Tingkat Kematangan Kebijakan Internal</label>
+                        </div>
+                    </div>
+                    <table id="table-form-kriteria" class="table table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Kriteria</th>
+                                <th>Capaian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Konsep kebijakan internal terkait Arsitektur SPBE</td>
+                                <td style="text-align: center;">
+                                    <input class="form-check-input" type="checkbox" value="" id="checkKriteria1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Kriteria tingkat 4 telah terpenuhi</td>
+                                <td style="text-align: center;">
+                                    <input class="form-check-input" type="checkbox" value="" id="checkKriteria2">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mb-3">
+                        <label for="txtCatatan" class="form-label">Catatan</label>
+                        <textarea class="form-control" id="txtCatatan" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtImage" class="form-label">Gambar Pendukung</label>
+                        <input class="form-control" type="file" id="txtImage" accept="image/png, image/gif, image/jpeg">
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Simpan</button>
+                </div>
             </div>
         </div>
     </div>
+    @endcan
 </div>
 
-<div class="modal fade" id="deleteIndikator" tabindex="-1" aria-modal="true" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalSoal" tabindex="-1" aria-modal="true" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="mb-3" style="display: flex;">
-                        <label class="col-sm-2" for="basic-default-name">Domain</label>
-                        <label class="col-sm-10" for="basic-default-name">: D001 - Kebijakan SPBE</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="mb-3" style="display: flex;">
-                        <label class="col-sm-2" for="basic-default-name">Aspek</label>
-                        <label class="col-sm-10" for="basic-default-name">: A001 - Kebijakan Internal Terkait Tata Kelola SPBE</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="mb-3" style="display: flex;">
-                        <label class="col-sm-2" for="basic-default-name">Indikator</label>
-                        <label class="col-sm-10" for="basic-default-name">: I001 - Tingkat Kematangan Kebijakan Internal</label>
-                    </div>
-                </div>
-                <table id="table-form-kriteria" class="table table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Kriteria</th>
-                            <th>Capaian</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Konsep kebijakan internal terkait Arsitektur SPBE</td>
-                            <td style="text-align: center;">
-                                <input class="form-check-input" type="checkbox" value="" id="checkKriteria1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Kriteria tingkat 4 telah terpenuhi</td>
-                            <td style="text-align: center;">
-                                <input class="form-check-input" type="checkbox" value="" id="checkKriteria2">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="mb-3">
-                    <label for="txtCatatan" class="form-label">Catatan</label>
-                    <textarea class="form-control" id="txtCatatan" rows="3"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="txtImage" class="form-label">Gambar Pendukung</label>
-                    <input class="form-control" type="file" id="txtImage" accept="image/png, image/gif, image/jpeg">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
@@ -369,6 +316,7 @@
                                 <p class="card-text">
                                     ${arrayKriteria[i].no}, ${arrayKriteria[i].kriteria}
                                 </p>
+                                <input type="hidden" class="form-control" name="kirteria[]" value="${arrayKriteria[i].kriteria}">
                             </div>
                         </div>
                         <div class="col-md-2">

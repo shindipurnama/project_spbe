@@ -89,7 +89,7 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
     Route::delete('penilaian-mandiri-indikator/destroy', 'DetailIndikatorPenilaianMandiriController@massDestroy')->name('penilaian-mandiri-indikator.massDestroy');
     Route::resource('penilaian-mandiri-indikator', DetailIndikatorPenilaianMandiriController::class)->shallow();
-    
+
     Route::delete('penjadwalan/destroy', 'PenjadwalanController@massDestroy')->name('penjadwalan.massDestroy');
     Route::resource('penjadwalan', PenjadwalanController::class)->shallow();
 

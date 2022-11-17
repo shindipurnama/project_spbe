@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\Aspek;
 use App\Models\Indikator;
+use App\Models\Kirteria;
+use DB;
 
 class DetailIndikatorPenilaianMandiriController extends Controller
 {
@@ -41,6 +43,15 @@ class DetailIndikatorPenilaianMandiriController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->kirteria);
+        $a = DB::table('kirteria')->latest()->first('id');
+        $data = array(
+            'kirteria_id' => $a->id+1,
+            'spbe_id'=>$request->spbe_id,
+            'kirteria'=>$request->kirteria
+        );
+        Kirteria::create($data);
+        return back();
     }
 
     /**
@@ -85,7 +96,10 @@ class DetailIndikatorPenilaianMandiriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //Delete Kriteria
+
+        $Kirteria = Kirteria::find($id)->delete();
+        return back();
     }
 
 }
