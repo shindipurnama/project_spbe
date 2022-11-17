@@ -23,7 +23,10 @@
             </a>
         </li>
 
+        {{-- Admin --}}
         <!-- User -->
+
+        @can('admin')
         <li class="menu-item" id="menuUserManagement">
             <a href="{{ route('user-management.index') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bx-user'></i>
@@ -54,6 +57,7 @@
                 <div data-i18n="Analytics">Indikator SPBE</div>
             </a>
         </li>
+        @endcan
 
         <!-- Penilaian Mandiri -->
         <li class="menu-item" id="menuPenilaianMandiri">
@@ -62,7 +66,7 @@
                 <div data-i18n="Analytics">Penilaian Mandiri</div>
             </a>
         </li>
-        
+
         <!-- Hasil Penilaian Mandiri -->
         <li class="menu-item" id="menuHasilPenilaianMandiri">
             <a href="{{ route('hasil-penilaian-mandiri.index') }}" class="menu-link">

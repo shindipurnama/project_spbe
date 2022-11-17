@@ -21,6 +21,7 @@
                 </div>
             </div><br>
 
+            @can('skpd')
             <div class="card">
                 <h5 class="card-header">Jadwal Tes</h5>
                 <table id="table-soal" class="table table-striped" style="width:100%">
@@ -52,6 +53,7 @@
                     </tbody>
                 </table>
             </div>
+            @endcan
         </div>
     </div>
 </div>

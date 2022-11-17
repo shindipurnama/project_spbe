@@ -143,6 +143,11 @@ class DetailPenilaianMandiriController extends Controller
     public function destroy($id)
     {
         //
+        $spbe = IndikatorSPBE::find($id);
+        $Kirteria = Kirteria::where('spbe_id',$spbe->spbe_id)->delete();
+        $spbe->delete();
+        // dd($capaian);
+        return back();
     }
 
 }
