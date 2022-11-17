@@ -2,7 +2,7 @@
     <div class="app-brand demo">
         <a href="/home" class="app-brand-link">
             <span class="app-brand-logo demo">
-                <img src="../assets/img/logo.png" style="width: 40px;"/>
+                <img src="../../assets/img/logo.png" style="width: 40px;"/>
             </span>
             <span class="app-brand-text menu-text fw-bolder ms-2" style="font-size: 1.75rem;">SPBE</span>
         </a>

@@ -90,6 +90,7 @@
                     <tr>
                         <th>Nama Indikator</th>
                         <th>Capaian</th>
+                        <th>Hasil</th>
                         <!-- <th>Aksi</th> -->
                     </tr>
                 </thead>
@@ -97,6 +98,7 @@
                     <tr>
                         <td>Indikator 1</td>
                         <td>5/10</td>
+                        <td>50</td>
                         <!-- <td>
                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSoal">
                                 Kerjakan
