@@ -3,7 +3,6 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-
     @can('admin')
     {{-- admin --}}
     <div class="row">
@@ -82,7 +81,7 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label class="form-label">Aspek</label>
-                                <select id="aspek"  name="aspek" class="form-select">
+                                <select id="aspek" name="aspek" class="form-select">
                                     <option value="">-- Pilih Aspek --</option>
                                     @foreach ($aspek as $key => $a)
                                     <option value="{{$a->aspek_id}}">{{$a->aspek_name}}</option>
@@ -93,7 +92,7 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label class="form-label">Indikator</label>
-                                <select id="indikator"  name="indikator" class="form-select">
+                                <select id="indikator" name="indikator" class="form-select">
                                     <option value="">-- Pilih Indikator --</option>
                                     @foreach ($indikator as $key => $i)
                                     <option value="{{$i->indikator_id}}">{{$i->indikator_name}}</option>
@@ -132,15 +131,15 @@
                 <form action="{{ route("penilaian-mandiri-detail.destroy",$s->id) }}" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <div class="modal-body">
-                    <div class="row">
-                        <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+                    <div class="modal-body">
+                        <div class="row">
+                            <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -275,7 +274,6 @@
     @endcan
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <script>
@@ -323,15 +321,15 @@
                 <div class="card mb-3" style="width: 100%;" id="card-kriteria-${arrayKriteria[i].no}">
                     <div class="row g-0">
                         <div class="col-md-10">
-                            <div class="card-body">
-                                <p class="card-text">
+                            <div class="card-body" style="padding: 1rem 1rem;">
+                                <label class="card-text">
                                     ${arrayKriteria[i].no}, ${arrayKriteria[i].kriteria}
-                                </p>
+                                </label>
                                 <input type="hidden" class="form-control" name="kirteria[]" value="${arrayKriteria[i].kriteria}">
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div class="card-body">
+                            <div class="card-body" style="padding: 1rem 1rem;">
                                 <button type="button" class="btn btn-sm btn-icon btn-primary" onclick="btnRemove(${arrayKriteria[i].no})">
                                     <span class="tf-icons bx bx-trash-alt"></span>
                                 </button>

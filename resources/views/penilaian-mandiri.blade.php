@@ -50,7 +50,7 @@
                         <td>{{$key+1}}</td>
                         <td>{{$p->penilaian_name}}</td>
                         <td>{{$p->jadwal->start_date->format('d F y')}} - {{$p->jadwal->end_date->format('d F y')}}</td>
-                        <td>{{$p->jumlah_indikator ?? ''}}</td>
+                        <td>{{$p->jumlah_indikator ?? '-'}}</td>
                         <td>
                             <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updatePenilaianMandiri{{$p->id}}">
                                 <i class='bx bxs-edit'></i>

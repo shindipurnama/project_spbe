@@ -45,10 +45,11 @@ class DetailPenilaianMandiriController extends Controller
         //
         // dd($request->all());
         $spbe = IndikatorSPBE::latest('id')->first();
-        $id = $spbe->id+1;
+        // dd($spbe);
+        $id = $spbe->id ?? 0;
 
         $data_spbe = array(
-            'spbe_id'=>$id,
+            'spbe_id'=>$id+1,
             'penilaian_id'=>$request->penilaian_id,
             'domain_id'=>$request->domain,
             'aspek_id'=>$request->aspek,
@@ -60,10 +61,11 @@ class DetailPenilaianMandiriController extends Controller
         IndikatorSPBE::create($data_spbe);
 
         foreach ($request->kirteria as $key => $kirteria){
-            $kirteria = Kirteria::latest('id')->first() ?? 0;
+            $kirteria = Kirteria::latest('id')->first();
+            $id_kriteria = $kirteria->id ?? 0;
 
             $data = array(
-                'kirteria_id' => $kirteria->id+1,
+                'kirteria_id' =>$id_kriteria+1,
                 'spbe_id'=>$id,
                 'kirteria'=>$request->kirteria[$key]
             );
@@ -126,7 +128,6 @@ class DetailPenilaianMandiriController extends Controller
             case 'save':
                 IndikatorSPBE::find($id)->update($request->all());
                 return back();
-
             break;
             case 'kirteria':
                 Kirteria::find($id)->update($request->all());
