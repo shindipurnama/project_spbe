@@ -88,8 +88,9 @@ class DetailPenilaianMandiriController extends Controller
         $indikator = Indikator::All();
         $penilaian =PenilaianMandiri::find($id);
         $spbe =  IndikatorSPBE::where('penilaian_id',$penilaian->penilaian_id)->get();
+        $kirteria = Kirteria::All();
 
-        return view('penilaian-mandiri-detail', compact('domain', 'aspek', 'indikator','penilaian','spbe'));
+        return view('penilaian-mandiri-detail', compact('domain', 'aspek', 'indikator','penilaian','spbe','kirteria'));
     }
 
     /**

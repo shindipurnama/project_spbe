@@ -11,6 +11,7 @@ use App\Models\PenilaianMandiri;
 use App\Models\Domain;
 use App\Models\Aspek;
 use App\Models\Indikator;
+use App\Models\IndikatorSPBE;
 
 class PenilaianMandiriController extends Controller
 {
@@ -70,7 +71,8 @@ class PenilaianMandiriController extends Controller
         $penilaian = array(
             'penilaian_id'=>$id,
             'penjadwalan_id'=>$request->penjadwalan_id,
-            'penilaian_name'=>$request->penilaian_name
+            'penilaian_name'=>$request->penilaian_name,
+            'jumlah_indikator'=>0
         );
         PenilaianMandiri::create($penilaian);
         return back();

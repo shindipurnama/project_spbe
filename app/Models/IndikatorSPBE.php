@@ -32,4 +32,19 @@ class IndikatorSPBE extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function domain()
+    {
+        return $this->hasone(Domain::class, 'domain_id', 'domain_id');
+    }
+
+    public function aspek()
+    {
+        return $this->hasone(Aspek::class, 'aspek_id', 'aspek_id');
+    }
+
+    public function indikator()
+    {
+        return $this->hasone(Indikator::class, 'indikator_id', 'indikator_id');
+    }
 }

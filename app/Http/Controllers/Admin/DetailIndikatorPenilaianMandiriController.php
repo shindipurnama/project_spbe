@@ -86,6 +86,16 @@ class DetailIndikatorPenilaianMandiriController extends Controller
     public function update(Request $request, $id)
     {
         //
+        foreach ($request->kirteria_id as $key => $kirteria){
+            $kirteria = Kirteria::find($request->kirteria_id[$key]);
+            $kirteria->int_attribute = $request->capaian[$key];
+            // dd($kirteria);
+            $kirteria->save();
+        }
+
+        $capaian = Kirteria::where('spbe_id',$id)->sum('int_attribute');
+        $spbe = 
+        return back();
     }
 
     /**

@@ -114,27 +114,27 @@
                     <th>Tahun Penilaian</th>
                     <th>Nama Tes</th>
                     <th>Waktu Tes</th>
-                    <th>Soal</th>
                     <th>Jumlah Soal</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2022</td>
-                    <td>Penilaian Evaluasi Mandiri 2022</td>
-                    <td>15 Agustus 2022 - 30 Agustus 2022</td>
-                    <td>Penilaian Mandiri</td>
-                    <td>47</td>
-                    <td>
-                        <a href="{{ route('penilaian-mandiri-detail.index') }}">
-                            <button type="button" class="btn btn-danger">
-                                Lihat Soal
-                            </button>
-                        </a>
-                    </td>
-                </tr>
+                @foreach ($penilaian as $key =>$p)
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td>{{$p->jadwal->start_date->format('Y')}}</td>
+                        <td>{{$p->penilaian_name}}</td>
+                        <td>{{$p->jadwal->start_date->format('d F y')}} - {{$p->jadwal->end_date->format('d F y')}}</td>
+                        <td>{{$p->jumlah_indikator ?? ''}}</td>
+                        <td>
+                            <a href="{{ route('penilaian-mandiri-detail.show',$p->id) }}">
+                                <button type="button" class="btn btn-danger">
+                                    Lihat Soal
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
