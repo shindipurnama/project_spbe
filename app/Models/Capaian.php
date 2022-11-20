@@ -20,12 +20,33 @@ class Capaian extends Model
 
     protected $fillable = [
         'user_id',
-        'spbe_id',
+        'kirteria_id',
         'penilaian_id',
         'jumlah_capaian',
-        'jumlah_kirteria',
+        'spbe_id',
+        'nilai',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
+
+    public function kirteria()
+    {
+        return $this->hasone(kirteria::class, 'id', 'kirteria_id');
+    }
+    public function penilaian()
+    {
+        return $this->hasone(PenilaianMandiri::class, 'penilaian_id', 'penilaian_id');
+    }
+
+    public function spbe()
+    {
+        return $this->hasone(IndikatorSPBE::class, 'spbe_id', 'spbe_id');
+    }
+
+    public function user()
+    {
+        return $this->hasone(User::class, 'id', 'user_id');
+    }
 }

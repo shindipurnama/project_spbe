@@ -60,13 +60,13 @@ class PenilaianMandiriController extends Controller
         $id = 'PM'.str_pad($penilaian_id,3,"0",STR_PAD_LEFT);
         // dd($request->all());
 
-        foreach($skpd as $key => $skpd){
-            $data = array(
-                'penilaian_id' => $id,
-                'user_id' => $skpd->username
-            );
-            Capaian::create($data);
-        }
+        // foreach($skpd as $key => $skpd){
+        //     $data = array(
+        //         'penilaian_id' => $id,
+        //         'user_id' => $skpd->username
+        //     );
+        //     Capaian::create($data);
+        // }
 
         $penilaian = array(
             'penilaian_id'=>$id,

@@ -145,132 +145,140 @@
         </div>
     </div>
     @endforeach
-
     @endcan
 
     @can('skpd')
-    <div class="card">
-        <h5 class="card-header">Detail Penilaian Mandiri</h5>
-        <div class="card-body">
-            <div class="mb-3" style="display: flex;">
-                <label class="col-sm-2" for="basic-default-name">Nomor Form</label>
-                <label class="col-sm-5" for="basic-default-name">: {{$penilaian->penilaian_id}}</label>
-            </div>
-            <div class="mb-3" style="display: flex;">
-                <label class="col-sm-2" for="basic-default-name">Nama Form</label>
-                <label class="col-sm-5" for="basic-default-name">: {{$penilaian->penilaian_name}}</label>
-            </div>
-            <div class="mb-3" style="display: flex;">
-                <label class="col-sm-2" for="basic-default-name">Tahun</label>
-                <label class="col-sm-5" for="basic-default-name">: {{$penilaian->jadwal->start_date->format('Y')}}</label>
-            </div>
-            <table id="table-penilaian-mandiri-skpd" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Nama Indikator</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($spbe as $key=> $s)
-                    <tr>
-                        <td><a href="{{ route('penilaian-mandiri.create') }}">{{$s->spbe}}</a></td>
-                        <td>
-                            <button type="button" class="btn btn-success" id="indikator" data-bs-toggle="modal" data-bs-target="#modalSoal{{$s->id}}">
-                                Kerjakan
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="row">
-                <div class="col-3">
-                    <button type="button" class="btn btn-outline-secondary" style="width: 100%;">Kembali</button>
+    <form action="{{ route('hasil-penilaian-mandiri.update', $penilaian->penilaian_id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <div class="card">
+            <h5 class="card-header">Detail Penilaian Mandiri</h5>
+            <div class="card-body">
+                <div class="mb-3" style="display: flex;">
+                    <label class="col-sm-2" for="basic-default-name">Nomor Form</label>
+                    <label class="col-sm-5" for="basic-default-name">: {{$penilaian->penilaian_id}}</label>
                 </div>
-                <div class="col-9">
-                    <button type="button" class="btn btn-primary" style="width: 100%;">Simpan Semua Jawaban</button>
+                <div class="mb-3" style="display: flex;">
+                    <label class="col-sm-2" for="basic-default-name">Nama Form</label>
+                    <label class="col-sm-5" for="basic-default-name">: {{$penilaian->penilaian_name}}</label>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- Examples -->
-
-
-    @foreach ($spbe as $key=> $s)
-    <div class="modal fade" id="modalSoal{{$s->id}}" tabindex="-1" aria-modal="true" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="mb-3" style="display: flex;">
+                    <label class="col-sm-2" for="basic-default-name">Tahun</label>
+                    <label class="col-sm-5" for="basic-default-name">: {{$penilaian->jadwal->start_date->format('Y')}}</label>
                 </div>
-
-                <form action="{{ route('penilaian-mandiri-indikator.update', $s->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="mb-3" style="display: flex;">
-                                <label class="col-sm-2" for="basic-default-name">Domain</label>
-                                <label class="col-sm-10" for="basic-default-name">: {{$s->domain->domain_id}} - {{$s->domain->nama_domain}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="mb-3" style="display: flex;">
-                                <label class="col-sm-2" for="basic-default-name">Aspek</label>
-                                <label class="col-sm-10" for="basic-default-name">: {{$s->aspek->aspek_id}} - {{$s->aspek->aspek_name}}</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="mb-3" style="display: flex;">
-                                <label class="col-sm-2" for="basic-default-name">Indikator</label>
-                                <label class="col-sm-10" for="basic-default-name">: {{$s->indikator->indikator_id ?? ''}} - {{$s->indikator->indikator_name?? ''}}</label>
-                            </div>
-                        </div>
-                        <table id="table-form-kriteria" class="table table-bordered" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Kriteria</th>
-                                    <th>Capaian</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $no = 1 ?>
-                                @foreach ($kirteria as $key=> $k)
-                                @if ($k->spbe_id == $s->spbe_id)
-                                <tr>
-                                    <td>{{$no}}</td>
-                                    <td>{{$k->kirteria}}</td>
-                                    <td style="text-align: center;">
-                                        <input class="form-check-input" name="capaian[]" type="checkbox" value="1" id="checkKriteria">
-                                        <input type="hidden"  name="capaian[]" value="0" id="checkKriteria">
-                                        <input type="hidden" id="name" name="kirteria_id[]" value="{{$k->id}}" class="form-control" >
-                                    </td>
-                                </tr>
-                                <?php $no ++ ?>
+                <table id="table-penilaian-mandiri-skpd" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nama Indikator</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($spbe as $key=> $s)
+                        <tr>
+                            <td><a href="{{ route('penilaian-mandiri.create') }}">{{$s->spbe}}</a></td>
+                            <td>
+                                @if($status == 0)
+                                <button type="button" class="btn btn-success" id="indikator" data-bs-toggle="modal" data-bs-target="#modalSoal{{$s->id}}">
+                                    Kerjakan
+                                </button>
+                                @else
+                                    Selesai
                                 @endif
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <div class="mb-3">
-                            <label for="txtCatatan" class="form-label">Catatan</label>
-                            <textarea class="form-control" id="txtCatatan" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="txtImage" class="form-label">Gambar Pendukung</label>
-                            <input class="form-control" type="file" id="txtImage" accept="image/png, image/gif, image/jpeg">
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @foreach ($spbe as $key=> $s)
+                    <div class="modal fade" id="modalSoal{{$s->id}}" tabindex="-1" aria-modal="true" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="mb-3" style="display: flex;">
+                                                <label class="col-sm-2" for="basic-default-name">Domain</label>
+                                                <label class="col-sm-10" for="basic-default-name">: {{$s->domain->domain_id}} - {{$s->domain->nama_domain}}</label>
+                                                <input type="hidden" id="name" name="indikator_spbe[]" value="{{$s->id}}" class="form-control" ></td>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="mb-3" style="display: flex;">
+                                                <label class="col-sm-2" for="basic-default-name">Aspek</label>
+                                                <label class="col-sm-10" for="basic-default-name">: {{$s->aspek->aspek_id}} - {{$s->aspek->aspek_name}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="mb-3" style="display: flex;">
+                                                <label class="col-sm-2" for="basic-default-name">Indikator</label>
+                                                <label class="col-sm-10" for="basic-default-name">: {{$s->indikator->indikator_id ?? ''}} - {{$s->indikator->indikator_name?? ''}}</label>
+                                            </div>
+                                        </div>
+                                        <table id="table-form-kriteria" class="table table-bordered" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Kriteria</th>
+                                                    <th>Capaian</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $no = 1 ?>
+                                                @foreach ($kirteria as $key=> $k)
+                                                @if ($k->spbe_id == $s->spbe_id)
+                                                <tr>
+                                                    <td>{{$no}}</td>
+                                                    <td>{{$k->kirteria}}</td>
+                                                    <td style="text-align: center;">
+                                                        <input class="form-check-input" name="capaian{{$k->id}}" type="checkbox" value="1" id="checkKriteria">
+                                                        {{-- <input type="hidden"  name="capaian[]" value="0" id="checkKriteria"> --}}
+                                                        <input type="hidden" id="name" name="kirteria_id[]" value="{{$k->id}}" class="form-control" >
+                                                        <input type="hidden" id="name" name="spbe_id[]" value="{{$s->spbe_id}}" class="form-control" >
+                                                        <input type="hidden" id="name" name="penilaian_id" value="{{$penilaian->penilaian_id}}" class="form-control" >
+                                                        <input type="hidden" id="name" name="user_id" value="{{ auth()->user()->id }}" class="form-control" >
+                                                    </td>
+                                                </tr>
+                                                <?php $no ++ ?>
+                                                @endif
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        <div class="mb-3">
+                                            <label for="txtCatatan" class="form-label">Catatan</label>
+                                            <textarea class="form-control" id="txtCatatan" rows="3"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="txtImage" class="form-label">Gambar Pendukung</label>
+                                            <input class="form-control" type="file" id="txtImage" accept="image/png, image/gif, image/jpeg">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
+                    @endforeach
+                <div class="row">
+                    <div class="col-3">
+                        <a href="{{ route('penilaian-mandiri.index') }}"><button type="button" class="btn btn-outline-secondary" style="width: 100%;">Kembali</button></a>
                     </div>
-                </form>
+                    <div class="col-9">
+                        @if($status == 0)
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Simpan Semua Jawaban</button>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    @endforeach
+        <!-- Examples -->
+    </form>
     @endcan
 </div>
 

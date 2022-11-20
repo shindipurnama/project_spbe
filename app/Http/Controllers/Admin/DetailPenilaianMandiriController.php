@@ -10,6 +10,8 @@ use App\Models\Indikator;
 use App\Models\Kirteria;
 use App\Models\PenilaianMandiri;
 use App\Models\IndikatorSPBE;
+use App\Models\Capaian;
+use Illuminate\Support\Facades\Auth;
 
 class DetailPenilaianMandiriController extends Controller
 {
@@ -85,14 +87,21 @@ class DetailPenilaianMandiriController extends Controller
     {
         //
 
+        $user = Auth::id();
         $domain = Domain::All();
         $aspek = Aspek::All();
         $indikator = Indikator::All();
         $penilaian =PenilaianMandiri::find($id);
-        $spbe =  IndikatorSPBE::where('penilaian_id',$penilaian->penilaian_id)->get();
+        $spbe =  IndikatorSPBE::where('indikator_spbe.penilaian_id',$penilaian->penilaian_id)->get();
         $kirteria = Kirteria::All();
-
-        return view('penilaian-mandiri-detail', compact('domain', 'aspek', 'indikator','penilaian','spbe','kirteria'));
+        $capaian=Capaian::where(['penilaian_id'=>$penilaian->penilaian_id,'user_id'=>$user])->first();
+        if($capaian){
+            $status = 1;
+        }else{
+            $status = 0;
+        }
+        // dd($status);
+        return view('penilaian-mandiri-detail', compact('domain', 'aspek', 'indikator','penilaian','spbe','kirteria','status'));
     }
 
     /**

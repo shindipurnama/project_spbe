@@ -20,6 +20,7 @@ class DetailIndikatorPenilaianMandiriController extends Controller
      */
     public function index(Request $request)
     {
+
         return view('penilaian-mandiri-indikator');
     }
 
@@ -87,14 +88,18 @@ class DetailIndikatorPenilaianMandiriController extends Controller
     {
         //
         foreach ($request->kirteria_id as $key => $kirteria){
-            $kirteria = Kirteria::find($request->kirteria_id[$key]);
-            $kirteria->int_attribute = $request->capaian[$key];
-            // dd($kirteria);
-            $kirteria->save();
+            $data = array(
+                'user_id' => $request->user_id,
+                'penilaian_id'=> $request->penilaian_id,
+                'kirteria_id'=>$request->kirteria_id,
+                'nilai'=>$request->capaian[$key]
+            );
+            dd("masuk");
+            // Capaian::create($data);
         }
 
-        $capaian = Kirteria::where('spbe_id',$id)->sum('int_attribute');
-        $spbe = 
+        // $capaian = Kirteria::where('spbe_id',$id)->sum('int_attribute');
+        // $spbe =
         return back();
     }
 

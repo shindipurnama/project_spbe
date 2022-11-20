@@ -18,29 +18,40 @@
                     <th>No Tes</th>
                     <th>Nama Tes</th>
                     <th>Waktu</th>
-                    <th>Deskripsi</th>
+                    <th>Jumlah Indikator</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($penilaian as $key => $p)
                 <tr>
-                    <td>PM012022</td>
-                    <td>Evaluasi SPBE 2022</td>
-                    <td>30 Oktober 2022 - 3 November 2022</td>
-                    <td>Evaluasi SPBE 2022</td>
+                    <td>{{$p->penilaian_id}}</td>
+                    <td>{{$p->penilaian_name}}</td>
+                    <td>{{$p->jadwal->start_date->format('d F y')}} - {{$p->jadwal->end_date->format('d F y')}}</td>
+                    <td>{{$p->jumlah_indikator ?? '-'}}</td>
                     <td>
-                        <a href="{{ route('detail-hasil-penilaian-mandiri.index') }}">
+                        @can('admin')
+                        <a href="{{ route('detail-hasil-penilaian-mandiri.show',$p->penilaian_id) }}">
                             <button type="button" title="Detail" class="btn btn-success">
                                 Detail
                             </button>
                         </a>
+                        @endcan
+                        @can('skpd')
+                            <a href="{{ route('hasil-penilaian-mandiri.show',$p->penilaian_id) }}">
+                                <button type="button" title="Detail" class="btn btn-success">
+                                    Detail
+                                </button>
+                            </a>
+                        @endcan
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 
-    <div class="card mb-4">
+    {{-- <div class="card mb-4">
         <h5 class="card-header">Data Hasil Penilaian Mandiri</h5>
         <table id="table-penilaian-mandiri-skpd" class="table table-striped" style="width:100%">
             <thead>
@@ -68,172 +79,11 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> --}}
     <!-- Examples -->
 
 </div>
 
-<!-- Modal Indikator -->
-<div class="modal fade" id="insertIndikator" tabindex="-1" aria-modal="true" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Tambah Data Penilaian Mandiri</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="name" class="form-label">Nama</label>
-                        <input type="text" id="name" class="form-control" placeholder="Masukkan nama">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Jadwal</label>
-                        <select id="domain" class="form-select">
-                            <option value="">-- Pilih Jadwal --</option>
-                            <option value="Jadwal 1">Jadwal 1</option>
-                            <option value="Jadwal 2">Jadwal 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Domain</label>
-                        <select id="domain" class="form-select">
-                            <option value="">-- Pilih Domain --</option>
-                            <option value="Domain 1">Domain 1</option>
-                            <option value="Domain 2">Domain 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Aspek</label>
-                        <select id="aspek" class="form-select">
-                            <option value="">-- Pilih Aspek --</option>
-                            <option value="Aspek 1">Aspek 1</option>
-                            <option value="Aspek 2">Aspek 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Indikator</label>
-                        <select id="indikator" class="form-select">
-                            <option value="">-- Pilih Indikator --</option>
-                            <option value="Indikator 1">Indikator 1</option>
-                            <option value="Indikator 2">Indikator 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Kriteria</label>
-                        <div class="input-group">
-                            <input type="text" id="valKriteria" class="form-control" placeholder="Masukkan kriteria" aria-label="Masukkan kriteria" aria-describedby="btnAddKriteria">
-                            <button class="btn btn-secondary" type="button" id="btnAddKriteria">Tambah</button>
-                        </div>
-                        <div class="input-group" style="margin: 10px 10px 10px 0px;" id="listKriteria">
-                            <!-- <label class="col-12">1. sfsf</label> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="updateIndikator" tabindex="-1" aria-modal="true" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Edit Data Penilaian Mandiri</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="name" class="form-label">Nama</label>
-                        <input type="text" id="name" class="form-control" placeholder="Masukkan nama" value="Indikator 1">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Jadwal</label>
-                        <select id="domain" class="form-select">
-                            <option value="">-- Pilih Jadwal --</option>
-                            <option value="Jadwal 1">Jadwal 1</option>
-                            <option value="Jadwal 2">Jadwal 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Domain</label>
-                        <select id="domain" class="form-select">
-                            <option value="Domain 1">Domain 1</option>
-                            <option value="Domain 2">Domain 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Aspek</label>
-                        <select id="aspek" class="form-select">
-                            <option value="Aspek 1">Aspek 1</option>
-                            <option value="Aspek 2">Aspek 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Indikator</label>
-                        <select id="indikator" class="form-select">
-                            <option value="Indikator 1">Indikator 1</option>
-                            <option value="Indikator 2">Indikator 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-3">
-                        <label class="form-label">Kriteria</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Masukkan kriteria" aria-label="Masukkan kriteria" aria-describedby="button-addon2">
-                            <button class="btn btn-secondary" type="button" id="button-addon2">Tambah</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary">Simpan</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="deleteIndikator" tabindex="-1" aria-modal="true" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 

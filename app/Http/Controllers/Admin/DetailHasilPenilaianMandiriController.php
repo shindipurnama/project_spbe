@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Capaian;
+use App\Models\User;
+use App\Models\Kirteria;
+use App\Models\PenilaianMandiri;
+use DB;
 
 class DetailHasilPenilaianMandiriController extends Controller
 {
@@ -15,8 +20,8 @@ class DetailHasilPenilaianMandiriController extends Controller
      */
     public function index(Request $request)
     {
-        return view('detail-hasil-penilaian-mandiri');
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        return view('detail-hasil-penilaian-mandiri');
     }
 
 
@@ -47,9 +52,14 @@ class DetailHasilPenilaianMandiriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( Request $request)
+    public function show( Request $request, $id)
     {
         //
+        $penilaian = Capaian::where('penilaian_id',$id)
+                ->select(DB::raw('count(kirteria_id) as jumlah'),DB::raw('sum(nilai) as nilai'),'user_id')
+                ->groupBy('user_id')->get();
+        $head = Capaian::where('penilaian_id',$id)->first();
+        return view('detail-hasil-penilaian-mandiri',compact('head','penilaian'));
     }
 
     /**
