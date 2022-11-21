@@ -27,7 +27,7 @@
                 <tr>
                     <td>{{$p->penilaian_id}}</td>
                     <td>{{$p->penilaian_name}}</td>
-                    <td>{{$p->jadwal->start_date->format('d F y')}} - {{$p->jadwal->end_date->format('d F y')}}</td>
+                    <td>{{$p->jadwal->start_date->format('d F Y')}} - {{$p->jadwal->end_date->format('d F Y')}}</td>
                     <td>{{$p->jumlah_indikator ?? '-'}}</td>
                     <td>
                         @can('admin')

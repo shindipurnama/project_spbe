@@ -31,25 +31,27 @@
                             <th>Tahun Penilaian</th>
                             <th>Nama Tes</th>
                             <th>Waktu Tes</th>
-                            <th>Soal</th>
                             <th>Jumlah Soal</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($penilaian as $key =>$p)
                         <tr>
-                            <td>1</td>
-                            <td>2022</td>
-                            <td>Penilaian Evaluasi Mandiri 2022</td>
-                            <td>15 Agustus 2022 - 30 Agustus 2022</td>
-                            <td>Penilaian Mandiri</td>
-                            <td>47</td>
+                            <td>{{$key+1}}</td>
+                            <td>{{$p->jadwal->start_date->format('Y')}}</td>
+                            <td>{{$p->penilaian_name}}</td>
+                            <td>{{$p->jadwal->start_date->format('d F Y')}} - {{$p->jadwal->end_date->format('d F Y')}}</td>
+                            <td>{{$p->jumlah_indikator ?? ''}}</td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRole">
-                                    Lihat Soal
-                                </button>
+                                <a href="{{ route('penilaian-mandiri-detail.show',$p->id) }}">
+                                    <button type="button" class="btn btn-danger">
+                                        Lihat Soal
+                                    </button>
+                                </a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -60,7 +62,7 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#menuDashboard").addClass("active")
         getData()
     });

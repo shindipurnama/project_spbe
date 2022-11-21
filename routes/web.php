@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\HasilPenilaianMandiriController;
 use App\Http\Controllers\Admin\DetailHasilPenilaianMandiriController;
 use App\Http\Controllers\Admin\DomainController;
 use App\Http\Controllers\Admin\AspekController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\PenjadwalanController;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -101,6 +102,9 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
     Route::delete('detail-hasil-penilaian-mandiri/destroy', 'DetailHasilPenilaianMandiriController@massDestroy')->name('detail-hasil-penilaian-mandiri.massDestroy');
     Route::resource('detail-hasil-penilaian-mandiri', DetailHasilPenilaianMandiriController::class)->shallow();
+
+    Route::delete('report/destroy', 'ReportController@massDestroy')->name('report.massDestroy');
+    Route::resource('report', ReportController::class)->shallow();
 // });
 
 

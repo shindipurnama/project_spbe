@@ -10,104 +10,106 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
     @can('admin')
-        <div class="row">
-            <div class="col-6">
-            </div>
-            <div class="col-6 py-2 mb-4" style="text-align: end;">
+    <div class="row">
+        <div class="col-6">
+        </div>
+        <div class="col-6 py-2 mb-4" style="text-align: end;">
+            <a href="{{ route('report.edit', $id) }}" target="_blank">
                 <button type="button" class="btn btn-secondary">
                     Cetak Laporan
                 </button>
-            </div>
+            </a>
         </div>
-        <!-- Examples -->
-        <div class="card mb-4">
-            <h5 class="card-header">Data Hasil Penilaian Mandiri</h5>
-            <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+    </div>
+
+    <!-- Examples -->
+    <div class="card mb-4">
+        <h5 class="card-header">Data Hasil Penilaian Mandiri</h5>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Nomor Form</label>
+            <label class="col-sm-5" for="basic-default-name">: {{$head->penilaian_id ?? ''}}</label>
+        </div>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Nama Form</label>
+            <label class="col-sm-5" for="basic-default-name">: {{$head->penilaian->penilaian_name ?? ''}}</label>
+        </div>
+        <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <label class="col-sm-2" for="basic-default-name">Jadwal</label>
+            <label class="col-sm-5" for="basic-default-name">: {{$head->penilaian->jadwal->start_date->format('d F Y') ?? ''}}</label>
+        </div>
+        <table id="table-penilaian-mandiri" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Capaian</th>
+                    <th>Hasil</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($penilaian as $key =>$p)
+                <tr>
+                    <td>{{$key+1}}</td>
+                    <td>{{$p->user->name ?? ''}}</td>
+                    <td>{{$p->nilai}} / {{$p->jumlah}}</td>
+                    <td>{{Round(($p->nilai / $p->jumlah) * 100)}}</td>
+                    <td>
+                        <a href="{{ route('report.show', $p->spbe_id) }}" target="_blank">
+                            <button type="button" title="Hapus Data" class="btn btn-danger" data-code="{{$p->spbe_id}}">
+                                Download
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    @endcan
+
+    @can('skpd')
+    <div class="card">
+        <h5 class="card-header">Detail Hasil Penilaian Mandiri</h5>
+        <div class="card-body">
+            <div class="mb-3" style="display: flex; padding-left: 10px; padding-right: 10px;">
                 <label class="col-sm-2" for="basic-default-name">Nomor Form</label>
                 <label class="col-sm-5" for="basic-default-name">: {{$head->penilaian_id ?? ''}}</label>
             </div>
-            <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
+            <div class="mb-3" style="display: flex; padding-left: 10px; padding-right: 10px;">
                 <label class="col-sm-2" for="basic-default-name">Nama Form</label>
                 <label class="col-sm-5" for="basic-default-name">: {{$head->penilaian->penilaian_name ?? ''}}</label>
             </div>
-            <div class="mb-3" style="display: flex; padding-left: 1.5rem;">
-                <label class="col-sm-2" for="basic-default-name">Jadwal</label>
-                <label class="col-sm-5" for="basic-default-name">: {{$head->penilaian->jadwal->start_date ?? ''}}</label>
+            <div class="mb-3" style="display: flex; padding-left: 10px; padding-right: 10px;">
+                <label class="col-sm-2" for="basic-default-name">Tahun</label>
+                <label class="col-sm-5" for="basic-default-name">: {{$head->penilaian->jadwal->start_date->format('d F Y') ?? ''}}</label>
             </div>
-            <table id="table-penilaian-mandiri" class="table table-striped" style="width:100%">
+            <table id="table-penilaian-mandiri-skpd" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Nama</th>
+                        <th>Nama Indikator</th>
                         <th>Capaian</th>
                         <th>Hasil</th>
-                        <th>Aksi</th>
+                        <!-- <th>Aksi</th> -->
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($penilaian as $key =>$p)
-                        <tr>
-                            <td>{{$key+1}}</td>
-                            <td>{{$p->user->name}}</td>
-                            <td>{{$p->nilai}} / {{$p->jumlah}}</td>
-                            <td>{{Round(($p->nilai / $p->jumlah) * 100)}}</td>
-                            <td>
-                                <button type="button" title="Edit Data" class="btn btn-info">
-                                    Lihat Hasil
-                                </button>
-                                <button type="button" title="Hapus Data" class="btn btn-danger">
-                                    Download
-                                </button>
-                            </td>
-                        </tr>
-                        @endforeach
-                </tbody>
-            </table>
-        </div>
-    @endcan
-
-    @can('skpd')
-        <div class="card">
-            <h5 class="card-header">Detail Hasil Penilaian Mandiri</h5>
-            <div class="card-body">
-                <div class="mb-3" style="display: flex;">
-                    <label class="col-sm-2" for="basic-default-name">Nomor Form</label>
-                    <label class="col-sm-5" for="basic-default-name">: {{$head->penilaian_id ?? ''}}</label>
-                </div>
-                <div class="mb-3" style="display: flex;">
-                    <label class="col-sm-2" for="basic-default-name">Nama Form</label>
-                    <label class="col-sm-5" for="basic-default-name">: {{$head->penilaian->penilaian_name ?? ''}}</label>
-                </div>
-                <div class="mb-3" style="display: flex;">
-                    <label class="col-sm-2" for="basic-default-name">Tahun</label>
-                    <label class="col-sm-5" for="basic-default-name">: {{$head->penilaian->jadwal->start_date->format('Y') ?? '2022'}}</label>
-                </div>
-                <table id="table-penilaian-mandiri-skpd" class="table table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Nama Indikator</th>
-                            <th>Capaian</th>
-                            <th>Hasil</th>
-                            <!-- <th>Aksi</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($penilaian as $key =>$p)
-                        <tr>
-                            <td>{{$p->spbe->spbe}}</td>
-                            <td>{{$p->nilai}} / {{$p->jumlah}}</td>
-                            <td>{{round(($p->nilai / $p->jumlah) * 100)}}</td>
-                            <!-- <td>
+                    <tr>
+                        <td>{{$p->spbe->spbe}}</td>
+                        <td>{{$p->nilai}} / {{$p->jumlah}}</td>
+                        <td>{{round(($p->nilai / $p->jumlah) * 100)}}</td>
+                        <!-- <td>
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSoal">
                                     Kerjakan
                                 </button>
                             </td> -->
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
+    </div>
     @endcan
     <!-- Examples -->
 
@@ -124,13 +126,18 @@
         $("#menuHasilPenilaianMandiri").addClass("active")
         getData()
         getYear()
+
+        $(document).on("click", "#btnDownload", function() {
+            var code = $(this).data("code")
+
+        });
     });
 
     function getData() {
         $('.table').DataTable();
 
-        $(".dataTables_wrapper").css("padding-left", "20px")
-        $(".dataTables_wrapper").css("padding-right", "20px")
+        $(".dataTables_wrapper").css("padding-left", "10px")
+        $(".dataTables_wrapper").css("padding-right", "10px")
         $(".dataTables_empty").css("text-align", "center")
         $(".dataTables_filter").css("float", "right")
         $(".dataTables_info").css("padding-top", "15px")
@@ -140,7 +147,6 @@
 
     function getYear() {
         for (i = new Date().getFullYear(); i > 2015; i--) {
-            console.log(i)
             $('.year').append(`<option value="${i}">${i}</option>`);
         }
     }

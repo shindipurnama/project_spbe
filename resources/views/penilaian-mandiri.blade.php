@@ -49,7 +49,7 @@
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{$p->penilaian_name}}</td>
-                        <td>{{$p->jadwal->start_date->format('d F y')}} - {{$p->jadwal->end_date->format('d F y')}}</td>
+                        <td>{{$p->jadwal->start_date->format('d F Y')}} - {{$p->jadwal->end_date->format('d F Y')}}</td>
                         <td>{{$p->jumlah_indikator ?? '-'}}</td>
                         <td>
                             <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updatePenilaianMandiri{{$p->id}}">
@@ -86,7 +86,7 @@
                 <tr>
                     <td>{{$key +1}}</td>
                     <td>{{$j->nama}}</td>
-                    <td>{{$j->start_date->format('d F y')}}  -  {{$j->end_date->format('d F y')}}</td>
+                    <td>{{$j->start_date->format('d F Y')}}  -  {{$j->end_date->format('d F Y')}}</td>
                     <td>
                         <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateJadwal{{$j->id}}">
                             <i class='bx bxs-edit'></i>
@@ -124,7 +124,7 @@
                         <td>{{$key+1}}</td>
                         <td>{{$p->jadwal->start_date->format('Y')}}</td>
                         <td>{{$p->penilaian_name}}</td>
-                        <td>{{$p->jadwal->start_date->format('d F y')}} - {{$p->jadwal->end_date->format('d F y')}}</td>
+                        <td>{{$p->jadwal->start_date->format('d F Y')}} - {{$p->jadwal->end_date->format('d F Y')}}</td>
                         <td>{{$p->jumlah_indikator ?? ''}}</td>
                         <td>
                             <a href="{{ route('penilaian-mandiri-detail.show',$p->id) }}">

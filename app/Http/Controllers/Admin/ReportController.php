@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Capaian;
+use App\Models\Kirteria;
+use App\Models\PenilaianMandiri;
+use DB;
+use PDF;
 
 class ReportController extends Controller
 {
@@ -26,7 +31,7 @@ class ReportController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -46,9 +51,10 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( Request $request)
+    public function show( Request $request, $id)
     {
-        //
+    	$pdf = PDF::loadview('laporan', compact('id'));
+    	return $pdf->stream('laporan-hasil-penilaian-mandiri-pdf');
     }
 
     /**
@@ -59,7 +65,13 @@ class ReportController extends Controller
      */
     public function edit($id)
     {
-        //
+        $penilaian = Capaian::where('penilaian_id',$id)
+                ->select(DB::raw('count(kirteria_id) as jumlah'),DB::raw('sum(nilai) as nilai'),'user_id', 'spbe_id')
+                ->groupBy('user_id', 'spbe_id')->get();
+        $head = Capaian::where('penilaian_id',$id)->first();
+
+        $pdf = PDF::loadview('laporan-all', compact('penilaian', 'head', 'id'));
+    	return $pdf->stream('laporan-hasil-penilaian-mandiri-pdf');
     }
 
     /**

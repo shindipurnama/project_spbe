@@ -163,8 +163,8 @@
                     <label class="col-sm-5" for="basic-default-name">: {{$penilaian->penilaian_name}}</label>
                 </div>
                 <div class="mb-3" style="display: flex;">
-                    <label class="col-sm-2" for="basic-default-name">Tahun</label>
-                    <label class="col-sm-5" for="basic-default-name">: {{$penilaian->jadwal->start_date->format('Y')}}</label>
+                    <label class="col-sm-2" for="basic-default-name">Jadwal</label>
+                    <label class="col-sm-5" for="basic-default-name">: {{$penilaian->jadwal->start_date->format('d F Y')}}</label>
                 </div>
                 <table id="table-penilaian-mandiri-skpd" class="table table-striped" style="width:100%">
                     <thead>
@@ -176,7 +176,7 @@
                     <tbody>
                         @foreach ($spbe as $key=> $s)
                         <tr>
-                            <td><a href="{{ route('penilaian-mandiri.create') }}">{{$s->spbe}}</a></td>
+                            <td>{{$s->spbe}}</td>
                             <td>
                                 @if($status == 0)
                                 <button type="button" class="btn btn-success" id="indikator" data-bs-toggle="modal" data-bs-target="#modalSoal{{$s->id}}">
@@ -247,14 +247,14 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                        <div class="mb-3">
+                                        <!-- <div class="mb-3">
                                             <label for="txtCatatan" class="form-label">Catatan</label>
                                             <textarea class="form-control" id="txtCatatan" rows="3"></textarea>
                                         </div>
                                         <div class="mb-3">
                                             <label for="txtImage" class="form-label">Gambar Pendukung</label>
                                             <input class="form-control" type="file" id="txtImage" accept="image/png, image/gif, image/jpeg">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>

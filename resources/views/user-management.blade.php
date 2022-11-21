@@ -97,6 +97,12 @@
                     </div>
                     <div class="row">
                         <div class="col mb-3">
+                            <label for="email" class="form-label">Foto</label>
+                            <input class="form-control" type="file" id="image" name="image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
                             <label class="form-label">Role</label>
                             <select id="role" required name="role_id" class="form-select">
                                 <option value="">-- Pilih Role --</option>
@@ -144,6 +150,12 @@
                         <div class="col mb-3">
                             <label for="email2" class="form-label">Email</label>
                             <input type="email" required id="email2" name="email" class="form-control" value="{{$u->email}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="email" class="form-label">Foto</label>
+                            <input class="form-control" type="file" id="image" name="image">
                         </div>
                     </div>
                     <div class="row">

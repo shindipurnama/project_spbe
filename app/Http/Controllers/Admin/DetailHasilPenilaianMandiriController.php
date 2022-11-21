@@ -56,10 +56,11 @@ class DetailHasilPenilaianMandiriController extends Controller
     {
         //
         $penilaian = Capaian::where('penilaian_id',$id)
-                ->select(DB::raw('count(kirteria_id) as jumlah'),DB::raw('sum(nilai) as nilai'),'user_id')
-                ->groupBy('user_id')->get();
+                ->select(DB::raw('count(kirteria_id) as jumlah'),DB::raw('sum(nilai) as nilai'),'user_id', 'spbe_id')
+                ->groupBy('user_id', 'spbe_id')->get();
         $head = Capaian::where('penilaian_id',$id)->first();
-        return view('detail-hasil-penilaian-mandiri',compact('head','penilaian'));
+        // dd($penilaian);
+        return view('detail-hasil-penilaian-mandiri',compact('head','penilaian', 'id'));
     }
 
     /**

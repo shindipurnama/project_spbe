@@ -37,17 +37,6 @@ class HasilPenilaianMandiriController extends Controller
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function detail(Request $request)
-    {
-        // return view('penilaian-mandiri-detail');
-    }
-
     /**
      * Store a newly created resource in storage.
      *

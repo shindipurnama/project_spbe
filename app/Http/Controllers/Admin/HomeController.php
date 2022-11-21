@@ -4,6 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Penjadwalan;
+use App\Models\User;
+use App\Models\Capaian;
+use App\Models\PenilaianMandiri;
+use App\Models\Domain;
+use App\Models\Aspek;
+use App\Models\Indikator;
 
 class HomeController extends Controller
 {
@@ -14,7 +21,13 @@ class HomeController extends Controller
      */
     public function home()
     {
-        return view('home');
+        $jadwal = Penjadwalan::All();
+        $penilaian = PenilaianMandiri::All();
+        $domain = Domain::All();
+        $aspek = Aspek::All();
+        $indikator = Indikator::All();
+
+        return view('home', compact('jadwal','penilaian','domain','aspek','indikator'));
     }
 
     /**
