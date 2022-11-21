@@ -55,11 +55,11 @@
                     <td>{{$p->nilai}} / {{$p->jumlah}}</td>
                     <td>{{Round(($p->nilai / $p->jumlah) * 100)}}</td>
                     <td>
-                        <a href="{{ route('report.show', $p->spbe_id) }}" target="_blank">
-                            <button type="button" title="Hapus Data" class="btn btn-danger" data-code="{{$p->spbe_id}}">
-                                Download
-                            </button>
-                        </a>
+                        <form action="{{ route("report.show", $p->spbe_id) }}" method="GET" enctype="multipart/form-data" target="_blank" class="form-horizontal">
+                           @csrf
+                            <input type="hidden" value="{{$p->user_id}}" name="user_id">
+                            <button type="submit" title="Hapus Data" class="btn btn-danger"  data-code="{{$p->spbe_id}}">Download</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

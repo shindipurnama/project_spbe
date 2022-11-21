@@ -65,30 +65,26 @@
         .container {
             /* to centre page on screen*/
             /* border:1px solid #333; */
+          padding: 1%;
+
         }
 
         table {
-            width: 100%;
-            padding-left: 0;
-            padding: 10px;
-            border-collapse: collapse;
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
         }
 
-        tr,
-        th {
-            /* padding-right:3px; */
-            padding: 10px;
-            width: auto;
+        td, th {
+          border: 1px solid;
+          text-align: left;
+          padding: 8px;
+          font-size: 12px !important;
         }
 
         th {
-            /* background-color: #E5E4E2; */
-            font-size: 11px;
-            /* width: 98%; */
-            margin: 10px;
-            text-align: center;
-            border-top: 1px solid #000000;
-            border-bottom: 1px solid #000000;
+            text-align: center !important;
+          background-color: #dddddd;
         }
 
         h4,
@@ -97,137 +93,54 @@
             font-size: 12px;
         }
 
-        td {
-            padding: 2px;
-            font-size: 11px;
-            /* vertical-align: text-top; */
-            width: auto;
-        }
 
-        .table-footer {
-            margin-top: 5% !important;
-            text-align: center;
-            font-size: 12px;
-            object-position: center bottom !important;
-        }
-
-        /* .bg {
-            background-color: #E5E4E2;
-        } */
-
-        tfoot {
-            margin-top: 5% !important;
-            border-top: 1px solid #cacaca;
-            border-bottom: 1px dashed #cacaca;
-        }
-
-        .page_break {
-            page-break-before: always;
-        }
-
-        hr {
-            color: green;
-        }
-
-        .table-content {
-            padding: 15px !important;
-        }
-
-        .npwp {
-            /* margin-top: 90%; */
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            padding-left: 10px;
-            padding-bottom: 30px;
-        }
-
-        .text-header {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
     </style>
 </head>
 
 <body>
 
     <header>
-        <table>
-            <tr style="height:90px">
-                <td style="width: 100%;">
-                    <img style="width: 12%; float:left" src="../assets/img/logo.png">
-                    <!-- <p style="font-size:16px; margin-top:5px"><b style="color: green;">&nbsp;&nbsp;PT. BUANA MEGAH</b></p>
-                    <p style="font-size:12px;">
-                        <b> &nbsp;&nbsp;Head Office : </b>Jl. Argopuro 42, Surabaya 60251, East Java, Indonesia<br>&nbsp;
-                        <b>Pasuruan Office : </b>Jalan Raya Cangkringmalang km. 40, Beji Pasuruan 67154 East Java, Indonesia<br>&nbsp;
-                        <b>Tel. </b>&nbsp;082231723136, 08510062998<br>
-                    </p> -->
-                </td>
-            </tr>
-        </table>
+        <img style="width: 12%; float:left" src="public/assets/img/logo.png">
+        <h2 style="text-align: center"> Laporan Penilaian Mandiri {{$head->spbe->spbe}} </h2>
     </header>
 
     {{-- Body --}}
     <div class="container ">
-        <label class="text-header">NIP : 111</label><br>
-        <label class="mb-3 text-header">Nama SKPD : Teguh</label>
+        <label class="text-header">NIP : {{$head->user->username}}</label><br>
+        <label class="mb-3 text-header">Nama SKPD : {{$head->user->name}}</label> <br>
         <table>
-            <tbody>
+            <thead>
                 <tr>
                     <th>Indikator</th>
-                    <th>Nama Domain</th>
-                    <th>Nama Aspek</th>
-                    <th>Nama Indikator</th>
+                    <th> Domain</th>
+                    <th> Aspek</th>
+                    <th> Indikator</th>
+                    <th>Hasil</th>
                     <th>Kriteria</th>
                     <th>Capaian</th>
-                    <th>Hasil</th>
                 </tr>
-
-                {{-- Looping data --}}
-
-                <tr>
-                    <td rowspan="3" style="vertical-align: top;">{{$id}}</td>
-                    <td rowspan="3" style="vertical-align: top;">Domain 1</td>
-                    <td rowspan="3" style="vertical-align: top;">Aspek 1</td>
-                    <td rowspan="3" style="vertical-align: top;">Indikator 1</td>
-                    <td>
-                        adadada adadaf fsdfwefw eg,m, sfww bjbds ndjnajndjad 22jnkasfas hbhfbak3ra bbdjabdja bjbajk
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td rowspan="3" style="vertical-align: top;">100</td>
-                </tr>
-                <tr>
-                    <td>wrwrfaf</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>wrwrfaf</td>
-                    <td>2</td>
-                </tr>
-                
-                <tr>
-                    <td rowspan="3" style="vertical-align: top;">{{$id}}</td>
-                    <td rowspan="3" style="vertical-align: top;">Domain 1</td>
-                    <td rowspan="3" style="vertical-align: top;">Aspek 1</td>
-                    <td rowspan="3" style="vertical-align: top;">Indikator 1</td>
-                    <td>
-                        adadada adadaf fsdfwefw eg,m, sfww bjbds ndjnajndjad 22jnkasfas hbhfbak3ra bbdjabdja bjbajk
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td rowspan="3" style="vertical-align: top;">100</td>
-                </tr>
-                <tr>
-                    <td>wrwrfaf</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>wrwrfaf</td>
-                    <td>2</td>
-                </tr>
+            </thead>
+            <tbody>
+                @php $no = 0; @endphp
+                @php $rowspan=0;  @endphp
+                @foreach ($penilaian as $key => $p)
+                    @foreach ($nilai as $key =>$n)
+                        @if ($n->spbe_id == $p->spbe_id)
+                        @php $no++; $rowspan=$n->jumlah; @endphp
+                            <tr>
+                                @if ($no == 1)
+                                    <td rowspan="{{$rowspan}}" style="vertical-align: top; width: 15%">{{$p->spbe->spbe}} </td>
+                                    <td rowspan="{{$rowspan}}" style="vertical-align: top; width: 15%">{{$p->spbe->domain->nama_domain}}</td>
+                                    <td rowspan="{{$rowspan}}" style="vertical-align: top; width: 15%">{{$p->spbe->aspek->aspek_name}}</td>
+                                    <td rowspan="{{$rowspan}}" style="vertical-align: top; width: 15%">{{$p->spbe->indikator->indikator_name}}</td>
+                                    <td rowspan="{{$rowspan}}" style="vertical-align: top; width: 10%">{{Round(($n->nilai / $n->jumlah) * 100)}}</td>
+                                @endif
+                                    <td style="width: 30% !important;">{{$p->kirteria->kirteria}}</td>
+                                    <td style="width: 10%;">{{$p->nilai}}</td>
+                            </tr>
+                        @endif
+                    @endforeach
+                @endforeach
                 {{-- Count total --}}
 
 

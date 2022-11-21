@@ -105,6 +105,7 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
     Route::delete('report/destroy', 'ReportController@massDestroy')->name('report.massDestroy');
     Route::resource('report', ReportController::class)->shallow();
+    // Route::get('report/{id}/{user_id}', 'ReportController@detail')->name('report');
 // });
 
 

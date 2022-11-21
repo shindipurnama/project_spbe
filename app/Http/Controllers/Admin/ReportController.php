@@ -31,7 +31,7 @@ class ReportController extends Controller
      */
     public function create(Request $request)
     {
-        
+
     }
 
     /**
@@ -53,7 +53,16 @@ class ReportController extends Controller
      */
     public function show( Request $request, $id)
     {
-    	$pdf = PDF::loadview('laporan', compact('id'));
+        // dd($id);
+        $penilaian = Capaian::where(['spbe_id'=>$id, 'user_id'=>$request->user_id])->get();
+
+        $nilai = Capaian::where(['spbe_id'=>$id, 'user_id'=>$request->user_id])
+                                ->select(DB::raw('count(kirteria_id) as jumlah'),DB::raw('sum(nilai) as nilai'),'spbe_id','user_id')
+                                ->groupBy('spbe_id','user_id')->get();
+
+        $head = Capaian::where('spbe_id',$id)->first();
+        // dd($head);
+    	$pdf = PDF::loadview('laporan', compact('penilaian', 'head','nilai'));
     	return $pdf->stream('laporan-hasil-penilaian-mandiri-pdf');
     }
 
