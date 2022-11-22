@@ -41,6 +41,13 @@ class SKPDController extends Controller
     public function store(Request $request)
     {
         //
+        $image = $request->image;
+        $input['imagename'] =$request->name.'.'.$image->extension();
+
+        $filePath2 = public_path('/assets/img/users/');
+        // dd($filePath2);
+        $image->move($filePath2, $input['imagename']);
+
         $data = array(
             'name'=>$request->name,
             'email'=>'',
@@ -48,6 +55,7 @@ class SKPDController extends Controller
             'tipe'=>$request->tipe,
             'role_id'=>'R002',
             'password'=>Hash::make($request->username),
+            'foto' => '/assets/img/users/'.$input['imagename'],
             'created_at'=> date('Y-m-d H:i:s'),
             'updated_at'=> date('Y-m-d H:i:s'),
         );
