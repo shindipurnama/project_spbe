@@ -55,9 +55,15 @@ class PenilaianMandiriController extends Controller
     {
         //
         $skpd = User::where('role_id','R002')->get();
-        $penilaian_id = PenilaianMandiri::latest('id')->first() ?? 0;
-        $penilaian_id = $penilaian_id->id +1;
-        $id = 'PM'.str_pad($penilaian_id,3,"0",STR_PAD_LEFT);
+        $penilaian_id = PenilaianMandiri::latest('id')->first() ?? "0";
+        // dd($penilaian_id->id+1);
+        $penilaian_id2 = 0;
+        if($penilaian_id == "0"){
+            $penilaian_id2 = 1;
+        }else{
+            $penilaian_id2 = $penilaian_id->id+1;
+        }
+        $id = 'PM'.str_pad($penilaian_id2,3,"0",STR_PAD_LEFT);
         // dd($request->all());
 
         // foreach($skpd as $key => $skpd){

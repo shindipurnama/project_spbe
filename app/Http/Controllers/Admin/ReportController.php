@@ -62,8 +62,11 @@ class ReportController extends Controller
 
         $head = Capaian::where('spbe_id',$id)->first();
         // dd($head);
-    	$pdf = PDF::loadview('laporan', compact('penilaian', 'head','nilai'));
-    	return $pdf->stream('laporan-hasil-penilaian-mandiri-pdf');
+    	// $pdf = PDF::loadview('laporan', compact('penilaian', 'head','nilai'));
+    	// return $pdf->stream('laporan-hasil-penilaian-mandiri-pdf');
+
+        return PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
+        ->loadView('laporan', compact('penilaian', 'head','nilai'))->stream('laporan-hasil-penilaian-mandiri-pdf');
     }
 
     /**

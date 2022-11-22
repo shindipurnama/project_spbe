@@ -63,12 +63,17 @@ class DetailPenilaianMandiriController extends Controller
         IndikatorSPBE::create($data_spbe);
 
         foreach ($request->kirteria as $key => $kirteria){
-            $kirteria = Kirteria::latest('id')->first();
-            $id_kriteria = $kirteria->id ?? 0;
+            $kirteria = Kirteria::latest('id')->first() ?? "0";
+            $id_kriteria = 0;
+            if($kirteria == "0") {
+                $id_kriteria+1;
+            }else{
+                $id_kriteria = $kirteria->id + 1;
+            }
 
             $data = array(
-                'kirteria_id' =>$id_kriteria+1,
-                'spbe_id'=>$id,
+                'kirteria_id' =>$id_kriteria,
+                'spbe_id'=>$id+1,
                 'kirteria'=>$request->kirteria[$key]
             );
             Kirteria::create($data);
