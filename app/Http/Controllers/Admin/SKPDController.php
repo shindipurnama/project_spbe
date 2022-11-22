@@ -42,7 +42,7 @@ class SKPDController extends Controller
     {
         //
         $image = $request->image;
-        $input['imagename'] =$request->name.'.'.$image->extension();
+        $input['imagename'] =$request->username.'.'.$image->extension();
 
         $filePath2 = public_path('/assets/img/users/');
         // dd($filePath2);
