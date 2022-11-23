@@ -52,7 +52,7 @@
             color: #333;
             text-align: left;
             font-size: 11;
-            margin-top: 4cm;
+            margin-top: 2.5cm;
             margin-left: 20px;
             margin-right: 20px;
             font-size: 11px;
@@ -100,14 +100,14 @@
 <body>
 
     <header>
-        <img style="width: 12%; float:left" src="public/assets/img/logo.png">
-        <h2 style="text-align: center"> Laporan Penilaian Mandiri {{$head->spbe->spbe}} </h2>
+        <!-- <img style="width: 12%; float:left" src="public/assets/img/logo.png"> -->
+        <h2 style="text-align: center">Laporan Penilaian Mandiri {{$head->spbe->spbe}} </h2>
     </header>
 
     {{-- Body --}}
     <div class="container ">
         <label class="text-header">NIP : {{$head->user->username}}</label><br>
-        <label class="mb-3 text-header">Nama SKPD : {{$head->user->name}}</label> <br>
+        <label class="mb-3 text-header">Nama SKPD : {{$head->user->name}}</label><br><br>
         <table>
             <thead>
                 <tr>

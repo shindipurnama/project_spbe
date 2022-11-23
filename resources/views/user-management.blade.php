@@ -21,7 +21,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Username</th>
+                    <th>Username / NIP</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Aksi</th>
@@ -29,24 +29,24 @@
             </thead>
             <tbody>
                 @foreach ($user as $key =>$u)
-                    <tr>
-                        <td>{{$u->id}}</td>
-                        <td>{{$u->name}}</td>
-                        <td>{{$u->username}}</td>
-                        <td>{{$u->email}}</td>
-                        <td>{{$u->role->role}}</td>
-                        <td>
-                            <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateUser{{$u->id}}">
-                                <i class='bx bxs-edit'></i>
-                            </button>
-                            <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUser{{$u->id}}">
-                                <i class='bx bxs-trash'></i>
-                            </button>
-                            <!-- <button type="button" title="Edit Password" class="btn btn-icon btn-warning" data-bs-toggle="modal" data-bs-target="#updatePasswordUser">
+                <tr>
+                    <td>{{$u->id}}</td>
+                    <td>{{$u->name}}</td>
+                    <td>{{$u->username}}</td>
+                    <td>{{$u->email}}</td>
+                    <td>{{$u->role->role}}</td>
+                    <td>
+                        <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateUser{{$u->id}}">
+                            <i class='bx bxs-edit'></i>
+                        </button>
+                        <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUser{{$u->id}}">
+                            <i class='bx bxs-trash'></i>
+                        </button>
+                        <!-- <button type="button" title="Edit Password" class="btn btn-icon btn-warning" data-bs-toggle="modal" data-bs-target="#updatePasswordUser">
                                 <i class='bx bxs-key'></i>
                             </button> -->
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="username" class="form-label">Username</label>
+                            <label for="username" class="form-label">Username / NIP</label>
                             <input type="text" required id="username" class="form-control" name="username" placeholder="Masukkan username">
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                             <select id="role" required name="role_id" class="form-select">
                                 <option value="">-- Pilih Role --</option>
                                 @foreach ($role as $key => $r )
-                                    <option value="{{$r->role_id}}">{{$r->role}}</option>
+                                <option value="{{$r->role_id}}">{{$r->role}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -142,7 +142,7 @@
                     </div>
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="username" class="form-label">Username</label>
+                            <label for="username" class="form-label">Username / NIP</label>
                             <input type="text" required id="username" name="username" class="form-control" value="{{$u->username}}">
                         </div>
                     </div>
@@ -155,20 +155,28 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="email" class="form-label">Foto</label>
-                            <input class="form-control" type="file" id="image" name="image">
+                            <input class="form-control" value="" type="file" id="image" name="image">
+                            <input class="form-control d-none" value="{{$u->foto}}" type="text" id="image2" name="image2">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label class="form-label">Role</label>
                             <select id="year" name="role_id" class="form-select">
-                                @if($u->role_id == 0)
-                                    <option value="0" selected>Admin</option>
-                                    <option value="1">SKPD</option>
+                                @foreach ($role as $key => $r)
+                                <option value="{{ $r->role_id }}" @if ($r->role_id == $u->role_id)
+                                    selected="selected"
+                                    @endif
+                                    >{{ $r->role }}</option>
+                                @endforeach
+
+                                <!-- @if($u->role_id == 0)
+                                <option value="0" selected>Admin</option>
+                                <option value="1">SKPD</option>
                                 @else
-                                    <option value="0" >Admin</option>
-                                    <option value="1"selected>SKPD</option>
-                                @endif
+                                <option value="0">Admin</option>
+                                <option value="1" selected>SKPD</option>
+                                @endif -->
                             </select>
                         </div>
                     </div>
@@ -252,7 +260,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#menuUserManagement").addClass("active")
         getData()
     });

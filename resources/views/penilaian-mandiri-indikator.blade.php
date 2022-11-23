@@ -98,10 +98,10 @@
                     </tbody>
                 </table>
                 <div class="row">
-                    <div class="col-3">
+                    <!-- <div class="col-3">
                         <button type="button" class="btn btn-outline-secondary" style="width: 100%;">Kembali</button>
-                    </div>
-                    <div class="col-9">
+                    </div> -->
+                    <div class="col-12">
                         <button type="submit" name='action' value="save" class="btn btn-primary" style="width: 100%;">Simpan</button>
                     </div>
                 </div>

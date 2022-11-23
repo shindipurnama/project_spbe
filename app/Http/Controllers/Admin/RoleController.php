@@ -113,7 +113,7 @@ class RoleController extends Controller
     {
         //
 
-        Role::find($id)->delete();
+        Roles::find($id)->delete();
         return back();
     }
 

@@ -37,8 +37,22 @@ class PenjadwalanController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        Penjadwalan::create($request->All());
+        $penjadwalan_id = Penjadwalan::latest('id')->first() ?? "0";
+        // dd($penjadwalan_id->id+1);
+        $penjadwalan_id2 = 0;
+        if($penjadwalan_id == "0"){
+            $penjadwalan_id2 = 1;
+        }else{
+            $penjadwalan_id2 = $penjadwalan_id->id+1;
+        }
+        $id = 'J'.str_pad($penjadwalan_id2,3,"0",STR_PAD_LEFT);
+
+        $penjadwalan = array(
+            'penjadwalan_id'=>$id,
+            'start_date'=>$request->start_date,
+            'end_date'=>$request->end_date
+        );
+        Penjadwalan::create($penjadwalan);
         return back();
 
     }

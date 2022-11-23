@@ -47,7 +47,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image = $request->image;
+        $input['imagename'] =$request->username.'.'.$image->extension();
+
+        $filePath2 = public_path('/assets/img/users/');
+        // dd($filePath2);
+        $image->move($filePath2, $input['imagename']);
 
         // dd($request->All());
         $data = array(
@@ -56,6 +61,7 @@ class UserController extends Controller
             'username'=>$request->username,
             'role_id'=>$request->role_id,
             'password'=>Hash::make($request->password),
+            'foto' => '/assets/img/users/'.$input['imagename'],
             'created_at'=> date('Y-m-d H:i:s'),
             'updated_at'=> date('Y-m-d H:i:s'),
         );
@@ -96,9 +102,31 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = "";
+        $image = $request->image;
+        // dd($request->image2);
+        if($image == null) {
+            $data = $request->image2;
+        }else{
+            $input['imagename'] =$request->username.'.'.$image->extension();
+    
+            $filePath2 = public_path('/assets/img/users/');
+            $image->move($filePath2, $input['imagename']);
+            $data = '/assets/img/users/'.$input['imagename'];
+        }
 
-        $user = User::find($id)->update($request->all());
+        $data = array(
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'username'=>$request->username,
+            'role_id'=>$request->role_id,
+            // 'password'=>Hash::make($request->password),
+            'foto' => $data,
+            'created_at'=> date('Y-m-d H:i:s'),
+            'updated_at'=> date('Y-m-d H:i:s'),
+        );
+
+        $user = User::find($id)->update($data);
 
         // $pass = Hash::make($request->password);
         // user::find($id)->update(['password'=>$pass]);

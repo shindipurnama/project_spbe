@@ -29,7 +29,7 @@ class PenilaianMandiriController extends Controller
         $domain = Domain::All();
         $aspek = Aspek::All();
         $indikator = Indikator::All();
-
+        // dd($penilaian);
         return view('penilaian-mandiri', compact('jadwal','penilaian','domain','aspek','indikator'));
         // abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
     }

@@ -26,18 +26,18 @@
             </thead>
             <tbody>
                 @foreach ($role as $key =>$r)
-                    <tr>
-                        <td>{{$r->role_id}}</td>
-                        <td>{{$r->role}}</td>
-                        <td>
-                            <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateRole{{$r->id}}">
-                                <i class='bx bxs-edit'></i>
-                            </button>
-                            <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRole">
-                                <i class='bx bxs-trash'></i>
-                            </button>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{$r->role_id}}</td>
+                    <td>{{$r->role}}</td>
+                    <td>
+                        <button type="button" title="Edit Data" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateRole{{$r->id}}">
+                            <i class='bx bxs-edit'></i>
+                        </button>
+                        <button type="button" title="Hapus Data" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteRole{{$r->id}}">
+                            <i class='bx bxs-trash'></i>
+                        </button>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -114,30 +114,35 @@
 </div>
 @endforeach
 
-<div class="modal fade" id="deleteRole" tabindex="-1" aria-modal="true" role="dialog">
+@foreach ($role as $key => $r )
+<div class="modal fade" id="deleteRole{{$r->id}}" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+            <form action="{{ route("role.destroy",$r->id) }}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title">Apakah anda yakin ingin menghapus data ini ?</h5>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
+@endforeach
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $("#menuRole").addClass("active")
         getData()
     });

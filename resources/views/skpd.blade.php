@@ -79,12 +79,13 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label class="form-label">Tipe</label>
-                            <select id="year" name="tipe" class="form-select">
+                            <input type="text" id="tipe" name="tipe" class="form-control" placeholder="Masukkan tipe">
+                            <!-- <select id="year" name="tipe" class="form-select">
                                 <option>-- Pilih Tipe --</option>
                                 <option value="Evaluasi Internal Seupervisor">Evaluasi Internal Seupervisor</option>
                                 <option value="Evaluasi">Evaluasi</option>
                                 <option value="Evaluasi">Evaluasi</option>
-                            </select>
+                            </select> -->
                         </div>
                     </div>
                     <div class="row">
@@ -130,7 +131,7 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label class="form-label">Tipe</label>
-                            <input type="text" id="tipe" class="form-control" name="tipe" value="{{$skpd->tipe}}" placeholder="Masukkan nama">
+                            <input type="text" id="tipe" class="form-control" name="tipe" value="{{$skpd->tipe}}" placeholder="Masukkan tipe">
 
                         </div>
                     </div>

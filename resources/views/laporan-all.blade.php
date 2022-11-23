@@ -52,7 +52,7 @@
             color: #333;
             text-align: left;
             font-size: 11;
-            margin-top: 4cm;
+            margin-top: 2.5cm;
             margin-left: 20px;
             margin-right: 20px;
             font-size: 11px;
@@ -152,19 +152,20 @@
 <body>
 
     <header>
-        <table>
+        <!-- <table>
             <tr style="height:90px">
                 <td style="width: 100%;">
                     <img style="width: 12%; float:left" src="../assets/img/logo.png">
-                    <!-- <p style="font-size:16px; margin-top:5px"><b style="color: green;">&nbsp;&nbsp;PT. BUANA MEGAH</b></p>
+                    <p style="font-size:16px; margin-top:5px"><b style="color: green;">&nbsp;&nbsp;PT. BUANA MEGAH</b></p>
                     <p style="font-size:12px;">
                         <b> &nbsp;&nbsp;Head Office : </b>Jl. Argopuro 42, Surabaya 60251, East Java, Indonesia<br>&nbsp;
                         <b>Pasuruan Office : </b>Jalan Raya Cangkringmalang km. 40, Beji Pasuruan 67154 East Java, Indonesia<br>&nbsp;
                         <b>Tel. </b>&nbsp;082231723136, 08510062998<br>
-                    </p> -->
+                    </p>
                 </td>
             </tr>
-        </table>
+        </table> -->
+        <h2 style="text-align: center">Laporan Penilaian Mandiri</h2>
     </header>
 
     {{-- Body --}}

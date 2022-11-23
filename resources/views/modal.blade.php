@@ -183,6 +183,7 @@
     </div>
 </div>
 @endforeach
+
 <!-- Indikator -->
 <div class="modal fade" id="insertIndikator" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog" role="document">

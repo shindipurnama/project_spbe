@@ -43,12 +43,12 @@
         </li>
 
         <!-- Data SKPD -->
-        <li class="menu-item" id="menuDataSKPD">
+        <!-- <li class="menu-item" id="menuDataSKPD">
             <a href="{{ route('skpd.index') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-user-account'></i>
                 <div data-i18n="Analytics">Data SKPD</div>
             </a>
-        </li>
+        </li> -->
 
         <!-- Data SPBE -->
         <li class="menu-item" id="menuDataSPBE">
