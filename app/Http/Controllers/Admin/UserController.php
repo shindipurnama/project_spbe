@@ -10,6 +10,7 @@ use App\Models\Indikator;
 use App\Models\User;
 use App\Models\Roles;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class UserController extends Controller
 {
@@ -67,6 +68,7 @@ class UserController extends Controller
         );
         // dd($data);
         User::create($data);
+        Session::flash('success', 'Berhasil Input Data');
         return redirect()->route('user-management.index');
 
     }
@@ -130,7 +132,7 @@ class UserController extends Controller
 
         // $pass = Hash::make($request->password);
         // user::find($id)->update(['password'=>$pass]);
-
+        Session::flash('success', 'Berhasil Update Data');
         return redirect()->route('user-management.index');
     }
 
@@ -144,6 +146,7 @@ class UserController extends Controller
     {
             //
             User::find($id)->delete();
+            Session::flash('success', 'Berhasil Hapus Data');
             return back();
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Penjadwalan;
 use Symfony\Component\HttpFoundation\Response;
+use Session;
 
 class PenjadwalanController extends Controller
 {
@@ -49,10 +50,12 @@ class PenjadwalanController extends Controller
 
         $penjadwalan = array(
             'penjadwalan_id'=>$id,
+            'nama'=>$request->nama,
             'start_date'=>$request->start_date,
             'end_date'=>$request->end_date
         );
         Penjadwalan::create($penjadwalan);
+        Session::flash('success', 'Berhasil Input Data');
         return back();
 
     }
@@ -91,6 +94,7 @@ class PenjadwalanController extends Controller
         //
 
         $jadwal = Penjadwalan::find($id)->update($request->all());
+        Session::flash('success', 'Berhasil Update Data');
         return back();
     }
 
@@ -105,6 +109,7 @@ class PenjadwalanController extends Controller
         //
 
         Penjadwalan::find($id)->delete();
+        Session::flash('success', 'Berhasil Hapus Data');
         return back();
     }
 }

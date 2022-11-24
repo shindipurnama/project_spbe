@@ -10,6 +10,7 @@ use App\Models\Kirteria;
 use App\Models\PenilaianMandiri;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Session;
 
 class HasilPenilaianMandiriController extends Controller
 {
@@ -108,6 +109,7 @@ class HasilPenilaianMandiriController extends Controller
                 'nilai'=>$request->$capaian ?? 0
             );
             // dd($data);
+            Session::flash('success', 'Berhasil Menyimpan Jawaban');
             Capaian::create($data);
         }
 

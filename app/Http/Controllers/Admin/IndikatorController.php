@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Indikator;
+use Session;
 
 class IndikatorController extends Controller
 {
@@ -38,6 +39,7 @@ class IndikatorController extends Controller
     {
         //
         Indikator::create($request->All());
+        Session::flash('success', 'Berhasil Input Data');
         return redirect()->route('domain.index');
     }
 
@@ -74,7 +76,7 @@ class IndikatorController extends Controller
     {
         //
         $indikator = Indikator::find($id)->update($request->all());
-
+        Session::flash('success', 'Berhasil Update Data');
         return redirect()->route('domain.index');
     }
 
@@ -89,6 +91,7 @@ class IndikatorController extends Controller
         //
 
         Indikator::find($id)->delete();
+        Session::flash('success', 'Berhasil Hapus Data');
         return back();
     }
 }

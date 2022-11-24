@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\Aspek;
 use App\Models\Indikator;
+use Session;
 
 class AspekController extends Controller
 {
@@ -54,6 +55,7 @@ class AspekController extends Controller
     {
         //
         Aspek::create($request->All());
+        Session::flash('success', 'Berhasil Input Data');
         return redirect()->route('domain.index');
     }
 
@@ -90,7 +92,7 @@ class AspekController extends Controller
     {
         //
         $aspek = Aspek::find($id)->update($request->all());
-
+        Session::flash('success', 'Berhasil Update Data');
         return redirect()->route('domain.index');
     }
 
@@ -105,6 +107,7 @@ class AspekController extends Controller
         //
 
         Aspek::find($id)->delete();
+        Session::flash('success', 'Berhasil Hapus Data');
         return back();
     }
 }

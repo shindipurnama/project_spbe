@@ -3,6 +3,13 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <b>{{session('success')}}</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    
     <!-- Examples -->
     <div class="nav-align-top mb-4">
         <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
@@ -45,18 +52,18 @@
                     </thead>
                     <tbody>
                         @foreach ($domain as $key =>$d)
-                            <tr>
-                                <td>{{$d->domain_id}}</td>
-                                <td>{{$d->nama_domain}}</td>
-                                <td>
-                                    <button class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateDomain{{$d->id}}">
-                                        <i class='bx bxs-edit'></i>
-                                    </button>
-                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDomain{{$d->id}}">
-                                        <i class='bx bxs-trash'></i>
-                                    </button>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{$d->domain_id}}</td>
+                            <td>{{$d->nama_domain}}</td>
+                            <td>
+                                <button class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateDomain{{$d->id}}">
+                                    <i class='bx bxs-edit'></i>
+                                </button>
+                                <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteDomain{{$d->id}}">
+                                    <i class='bx bxs-trash'></i>
+                                </button>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -84,18 +91,18 @@
                     </thead>
                     <tbody>
                         @foreach ($aspek as $key =>$a)
-                            <tr>
-                                <td>{{$a->aspek_id}}</td>
-                                <td>{{$a->aspek_name}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateAspek{{$a->id}}">
-                                        <i class='bx bxs-edit'></i>
-                                    </button>
-                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAspek{{$a->id}}">
-                                        <i class='bx bxs-trash'></i>
-                                    </button>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{$a->aspek_id}}</td>
+                            <td>{{$a->aspek_name}}</td>
+                            <td>
+                                <button type="button" class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target="#updateAspek{{$a->id}}">
+                                    <i class='bx bxs-edit'></i>
+                                </button>
+                                <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAspek{{$a->id}}">
+                                    <i class='bx bxs-trash'></i>
+                                </button>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -123,18 +130,18 @@
                     </thead>
                     <tbody>
                         @foreach ($indikator as $key =>$i)
-                            <tr>
-                                <td>{{$i->indikator_id}}</td>
-                                <td>{{$i->indikator_name}}</td>
-                                <td>
-                                    <button class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateIndikator{{$i->id}}">
-                                        <i class='bx bxs-edit'></i>
-                                    </button>
-                                    <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator{{$i->id}}">
-                                        <i class='bx bxs-trash'></i>
-                                    </button>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{$i->indikator_id}}</td>
+                            <td>{{$i->indikator_name}}</td>
+                            <td>
+                                <button class="btn btn-icon btn-info" data-bs-toggle="modal" data-bs-target=".updateIndikator{{$i->id}}">
+                                    <i class='bx bxs-edit'></i>
+                                </button>
+                                <button type="button" class="btn btn-icon btn-danger" data-bs-toggle="modal" data-bs-target="#deleteIndikator{{$i->id}}">
+                                    <i class='bx bxs-trash'></i>
+                                </button>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>

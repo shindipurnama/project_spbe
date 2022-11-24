@@ -13,6 +13,13 @@
         </div>
     </div>
 
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <b>{{session('success')}}</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <!-- Examples -->
     <div class="card">
         <h5 class="card-header">Data User</h5>

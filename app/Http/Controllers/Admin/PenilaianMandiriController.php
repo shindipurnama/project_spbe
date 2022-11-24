@@ -12,6 +12,7 @@ use App\Models\Domain;
 use App\Models\Aspek;
 use App\Models\Indikator;
 use App\Models\IndikatorSPBE;
+use Session;
 
 class PenilaianMandiriController extends Controller
 {
@@ -81,6 +82,7 @@ class PenilaianMandiriController extends Controller
             'jumlah_indikator'=>0
         );
         PenilaianMandiri::create($penilaian);
+        Session::flash('success', 'Berhasil Input Data');
         return back();
     }
 
@@ -117,6 +119,7 @@ class PenilaianMandiriController extends Controller
         //
 
         PenilaianMandiri::find($id)->update($request->all());
+        Session::flash('success', 'Berhasil Update Data');
         return back();
     }
 
@@ -133,6 +136,7 @@ class PenilaianMandiriController extends Controller
         $capaian = Capaian::where('penilaian_id',$penilaian->penilaian_id)->delete();
         $penilaian->delete();
         // dd($capaian);
+        Session::flash('success', 'Berhasil Hapus Data');
         return back();
     }
 

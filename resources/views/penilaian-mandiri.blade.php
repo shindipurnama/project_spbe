@@ -31,6 +31,13 @@
         </div>
     </div>
 
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <b>{{session('success')}}</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    
     <!-- Examples -->
     <div class="card mb-4">
         <h5 class="card-header">Data Penilaian Mandiri</h5>
@@ -105,6 +112,13 @@
     @endcan
 
     @can('skpd')
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <b>{{session('success')}}</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    
     <div class="card">
         <h5 class="card-header">Jadwal Tes</h5>
         <table id="table-soal" class="table table-striped" style="width:100%">
@@ -151,7 +165,6 @@
     $(document).ready(function() {
         $("#menuPenilaianMandiri").addClass("active")
         getData()
-        getYear()
     });
 
     function getData() {

@@ -15,6 +15,13 @@
         </div>
     </div>
 
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <b>{{session('success')}}</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <!-- Examples -->
     <div class="card mb-4">
         <h5 class="card-header">Detail Penilaian Mandiri</h5>
@@ -63,14 +70,14 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="name" class="form-label">Nama</label>
-                                <input type="text" id="name" name="spbe" class="form-control" placeholder="Masukkan nama">
+                                <input required type="text" id="name" name="spbe" class="form-control" placeholder="Masukkan nama">
                                 <input type="hidden" id="name" name="penilaian_id" value="{{$penilaian->penilaian_id}}" class="form-control" placeholder="Masukkan nama">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col mb-3">
                                 <label class="form-label">Domain</label>
-                                <select id="domain" name="domain" class="form-select">
+                                <select id="domain" required name="domain" class="form-select">
                                     <option value="">-- Pilih Domain --</option>
                                     @foreach ($domain as $key => $d)
                                     <option value="{{$d->domain_id}}">{{$d->nama_domain}}</option>
@@ -81,7 +88,7 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label class="form-label">Aspek</label>
-                                <select id="aspek" name="aspek" class="form-select">
+                                <select id="aspek" required name="aspek" class="form-select">
                                     <option value="">-- Pilih Aspek --</option>
                                     @foreach ($aspek as $key => $a)
                                     <option value="{{$a->aspek_id}}">{{$a->aspek_name}}</option>
@@ -92,7 +99,7 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label class="form-label">Indikator</label>
-                                <select id="indikator" name="indikator" class="form-select">
+                                <select id="indikator" required name="indikator" class="form-select">
                                     <option value="">-- Pilih Indikator --</option>
                                     @foreach ($indikator as $key => $i)
                                     <option value="{{$i->indikator_id}}">{{$i->indikator_name}}</option>

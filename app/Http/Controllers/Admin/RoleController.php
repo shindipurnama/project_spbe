@@ -9,6 +9,7 @@ use App\Models\Aspek;
 use App\Models\Indikator;
 use App\Models\Roles;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class RoleController extends Controller
 {
@@ -58,6 +59,7 @@ class RoleController extends Controller
         );
         // dd($data);
         Roles::create($data);
+        Session::flash('success', 'Berhasil Input Data');
         return redirect()->route('role.index');
 
     }
@@ -99,7 +101,7 @@ class RoleController extends Controller
 
         // $pass = Hash::make($request->password);
         // user::find($id)->update(['password'=>$pass]);
-
+        Session::flash('success', 'Berhasil Update Data');
         return redirect()->route('role.index');
     }
 
@@ -114,6 +116,7 @@ class RoleController extends Controller
         //
 
         Roles::find($id)->delete();
+        Session::flash('success', 'Berhasil Hapus Data');
         return back();
     }
 

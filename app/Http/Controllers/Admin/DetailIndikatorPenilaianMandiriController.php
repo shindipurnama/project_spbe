@@ -9,6 +9,7 @@ use App\Models\Aspek;
 use App\Models\Indikator;
 use App\Models\Kirteria;
 use DB;
+use Session;
 
 class DetailIndikatorPenilaianMandiriController extends Controller
 {
@@ -52,6 +53,7 @@ class DetailIndikatorPenilaianMandiriController extends Controller
             'kirteria'=>$request->kirteria
         );
         Kirteria::create($data);
+        Session::flash('success', 'Berhasil Input Data');
         return back();
     }
 
@@ -94,12 +96,13 @@ class DetailIndikatorPenilaianMandiriController extends Controller
                 'kirteria_id'=>$request->kirteria_id,
                 'nilai'=>$request->capaian[$key]
             );
-            dd("masuk");
+            // dd("masuk");
             // Capaian::create($data);
         }
 
         // $capaian = Kirteria::where('spbe_id',$id)->sum('int_attribute');
         // $spbe =
+        Session::flash('success', 'Berhasil Update Data');
         return back();
     }
 
@@ -114,6 +117,7 @@ class DetailIndikatorPenilaianMandiriController extends Controller
         //Delete Kriteria
 
         $Kirteria = Kirteria::find($id)->delete();
+        Session::flash('success', 'Berhasil Hapus Data');
         return back();
     }
 

@@ -12,6 +12,7 @@ use App\Models\PenilaianMandiri;
 use App\Models\IndikatorSPBE;
 use App\Models\Capaian;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class DetailPenilaianMandiriController extends Controller
 {
@@ -79,6 +80,7 @@ class DetailPenilaianMandiriController extends Controller
             Kirteria::create($data);
         }
 
+        Session::flash('success', 'Berhasil Input Data');
         return back();
     }
 
@@ -141,10 +143,12 @@ class DetailPenilaianMandiriController extends Controller
         switch ($request->input('action')) {
             case 'save':
                 IndikatorSPBE::find($id)->update($request->all());
+                Session::flash('success', 'Berhasil Update Data');
                 return back();
             break;
             case 'kirteria':
                 Kirteria::find($id)->update($request->all());
+                Session::flash('success', 'Berhasil Update Data');
                 return back();
             break;
         }
@@ -163,6 +167,7 @@ class DetailPenilaianMandiriController extends Controller
         $Kirteria = Kirteria::where('spbe_id',$spbe->spbe_id)->delete();
         $spbe->delete();
         // dd($capaian);
+        Session::flash('success', 'Berhasil Hapus Data');
         return back();
     }
 
